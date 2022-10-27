@@ -54,7 +54,10 @@
     <ClCompile Include="CValue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CDatabase4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -90,6 +93,9 @@
       <Filter>Header Files\dm-database</Filter>
     </ClInclude>
     <ClInclude Include="CValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CDatabase4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

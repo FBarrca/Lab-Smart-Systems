@@ -28,7 +28,7 @@ using namespace std;
 std::mutex CDatabase::_driverMutex;
 uint32_t CDatabase::_connectionCounter = 0;
 // Constructor por defecto
-CDatabase::CDatabase() : _log("database") {
+CDatabase::CDatabase() : _log("log") {
 	m_p_con = NULL;
 	m_p_savept = NULL;
 	m_p_driver = NULL;

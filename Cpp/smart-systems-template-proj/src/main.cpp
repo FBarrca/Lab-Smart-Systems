@@ -9,11 +9,14 @@
 #include "CDatabase.hpp"
 
 #include "CDatabaseExample.hpp"
+#include "../CDatabase4.h"
+#include "../CValue.h"
+#include "./helpers/CTimeUtils.hpp"
 
 #define CONFIG_PATH "config"
 #define LOGS_PROPERTIES_FILE "logs.ini"
 
-#define SCHEMA_NAME "bananas"
+#define SCHEMA_NAME "MIC"
 #define HOST_NAME "127.0.0.1:3306"
 #define USER_NAME "root"
 #define PASSWORD_USER "root"
@@ -22,7 +25,12 @@
 
 int main(void){
 
-	CDatabaseExample dbObject;
+	//CDatabaseExample dbObject;
+	CDatabaseMIC dbObject;
+	helpers::CTimeUtils ctu;
+	//time_t time = ctu.getTimeTFromYMDHMS(2023, 10, 26, 3, 2, 3);
+	//CValue value(15.5, time);
+	CValue value (69, time(0));
 	
 	try {
 
@@ -32,7 +40,7 @@ int main(void){
 
 		//Configure logs
 		CLog log("log");
-		/*
+		
 		
 		
 		if (!log.initializeParametersFromIniFile(CONFIG_PATH, LOGS_PROPERTIES_FILE)) {
@@ -41,7 +49,7 @@ int main(void){
 		}
 		log.println(boost::log::trivial::info , "Log initialized");
 
-		*/
+		
 		
 		CError::LiberaPool();
 
@@ -66,10 +74,12 @@ int main(void){
 
 				//Do stuff with DB: GET DATA
 				//EXAMPLE:
-				std::string prosumer1MPAN;
-				dbObject.getProsumerMPAN(1, prosumer1MPAN);
-				log.println(boost::log::trivial::trace, "Hemos ID"+prosumer1MPAN);
+				//dbObject.getProsumerMPAN(1, prosumer1MPAN);
+				std::vector<CValue> Lcvalues;
+				dbObject.getValues(6, Lcvalues);
 
+
+				
 				dbObject.Desconectar();
 
 				// ---------------------------- PROCESS OF DATA & INTELLIGENCE ---------------------------- 
@@ -92,7 +102,7 @@ int main(void){
 
 				//Do insert of data 
 				//EXAMPLE:
-				resultInsert = resultInsert && dbObject.insertPrediction(helpers::CTimeUtils::seconds_from_epoch(execTime), CDatabaseExample::prediction_type::consumption_kWh, false);
+				resultInsert = resultInsert && dbObject.insertValue(5, value, true);
 
 				if (resultInsert) {
 					log.println(boost::log::trivial::trace, "Data insert OK");
