@@ -61,35 +61,10 @@ int main(void){
 
 			if ((helpers::CTimeUtils::seconds_from_epoch(execTime) - lastExecution) >= TIME_SCAN_CYCLE_S) {
 
-				//The content of this if should go in a execute function of the object which will contain the intelligence module
-
 				log.println(boost::log::trivial::trace, "Starting intelligence execution cycle");
 
-				// ---------------------------- GET DATA FROM DB  ---------------------------- 
-
-				//DDBB connection
+				// ---------------------------- INSERT VALUE  ---------------------------- 
 				
-				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
-				log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer getters de info");
-
-				//Do stuff with DB: GET DATA
-				//EXAMPLE:
-				//dbObject.getProsumerMPAN(1, prosumer1MPAN);
-				std::vector<CValue> Lcvalues;
-				dbObject.getValues(6, Lcvalues);
-
-
-				
-				dbObject.Desconectar();
-
-				// ---------------------------- PROCESS OF DATA & INTELLIGENCE ---------------------------- 
-
-
-
-
-
-				// ---------------------------- INSERT RESULTS IN db  ---------------------------- 
-
 				//DDBB connection
 				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
 				log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer inserts de info");
@@ -97,13 +72,11 @@ int main(void){
 				//Insert stuff in DB
 				dbObject.ComienzaTransaccion();
 
+				CValue ins_val(60, time(0));
 				//Do inserts of data
 				bool resultInsert = true;
-
-				//Do insert of data 
-				//EXAMPLE:
-				resultInsert = resultInsert && dbObject.insertValue(5, value, true);
-
+				resultInsert = resultInsert && dbObject.insertValue(5, ins_val);
+				
 				if (resultInsert) {
 					log.println(boost::log::trivial::trace, "Data insert OK");
 					dbObject.ConfirmarTransaccion();
@@ -113,7 +86,100 @@ int main(void){
 					dbObject.DeshacerTransaccion();
 				}
 
+
 				dbObject.Desconectar();
+				
+				// --------------------------- CHECK IF INSERTED
+
+				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+				log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer gets de info");
+
+				std::vector<CValue> vCValue;
+				dbObject.getValues(5, vCValue);
+
+				if (!findCValueOnVector(vCValue, ins_val))
+					std::cout << "We looked for value of that id on that time but found no data" << std::endl;
+				else
+					std::cout << "Found inserted data at that time" << std::endl;
+
+				dbObject.Desconectar();
+
+				// ---------------------------- UPDATE INSERTED DATA +1 ----------------------
+				ins_val = ins_val + 1;
+
+				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+				log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer updates de info");
+
+				dbObject.updateValue(5, ins_val);
+
+				bool resultUpdate = true;
+				resultUpdate = resultUpdate && dbObject.updateValue(5, ins_val);
+
+				if (resultUpdate) {
+					log.println(boost::log::trivial::trace, "Data insert OK");
+					dbObject.ConfirmarTransaccion();
+				}
+				else {
+					log.println(boost::log::trivial::trace, "Data insert ERROR");
+					dbObject.DeshacerTransaccion();
+				}
+
+				dbObject.Desconectar();
+
+				// --------------------------- CHECK IF UPDATED
+
+				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+				log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer gets de info");
+
+				std::vector<CValue> vCValueUpdate;
+				dbObject.getValues(5, vCValueUpdate);
+
+			
+
+				if (!findCValueOnVector(vCValueUpdate, ins_val))
+					std::cout << "We looked for value of that id on that time but found no data" << std::endl;
+				else
+					std::cout << "POSTUPDATE:Found inserted data at that time" << std::endl;
+
+				dbObject.Desconectar();
+
+				// ---------------------------- DELETE DATA  ---------------------------- 
+
+				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+				log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer updates de info");
+
+				dbObject.updateValue(5, ins_val);
+
+				bool resultDelete = true;
+				resultDelete = resultDelete && dbObject.deleteValue(5, ins_val);
+
+				if (resultDelete) {
+					log.println(boost::log::trivial::trace, "Data insert OK");
+					dbObject.ConfirmarTransaccion();
+				}
+				else {
+					log.println(boost::log::trivial::trace, "Data insert ERROR");
+					dbObject.DeshacerTransaccion();
+				}
+
+				dbObject.Desconectar();
+
+				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+				log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer gets de info");
+
+				std::vector<CValue> vCValueDelete;
+				dbObject.getValues(5, vCValueDelete);
+
+
+
+				if (!findCValueOnVector(vCValueDelete, ins_val))
+					std::cout << "DELETE: We looked for value of that id on that time but found no data" << std::endl;
+				else
+					std::cout << "DELETE: Found inserted data at that time" << std::endl;
+
+				dbObject.Desconectar();
+
+
 
 				lastExecution = helpers::CTimeUtils::seconds_from_epoch(execTime);
 			}

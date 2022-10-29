@@ -2,6 +2,7 @@
 #include <iostream>
 #include <time.h>
 #include "CValue.h"
+#include "src/helpers/CTimeUtils.hpp"""
 CDatabaseMIC::CDatabaseMIC()
 {
 }
@@ -10,7 +11,7 @@ CDatabaseMIC::~CDatabaseMIC()
 {
 }
 
-int CDatabaseMIC::insertValue(const uint64_t& IdVariable, const CValue& CValue, const bool useAutoIncrement)
+int CDatabaseMIC::insertValue(const uint64_t& IdVariable, const CValue& CValue)
 {
 	try {
 		//This condition checks that there is a connection active
@@ -78,12 +79,73 @@ bool CDatabaseMIC::getValues(const int32_t& IdVariable, std::vector<CValue>& lis
 	return result;
 }
 
-bool CDatabaseMIC::updateValue(const int32_t& IdVariable, const CValue& CValue)
+bool CDatabaseMIC::updateValue(const int32_t& IdVariable, const CValue& value)
 {
-	return false;
+	std::vector<CValue> vCValue;
+	std::vector <CValue> ::iterator it;
+	
+	if (!this->getValues(IdVariable,vCValue)) {
+		std::cout << "cant get values" << std::endl;
+		return false;
+	}
+	CValue findResult;
+	if (!findCValueOnVectorByDate(vCValue, findResult, value.getDate()))
+		std::cout << "UPDATE: We looked for value of that id on that time but found no data" << std::endl;
+	else
+		std::cout << "UPDATE: Found inserted data at that time" << std::endl;
+
+	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+	helpers::CTimeUtils ctu;
+	std::ostringstream os;
+	os << " UPDATE variable_values SET VALUE = " << value.getValue() << " WHERE(ID_VARIABLE = " << IdVariable << " AND INFO_DATE = FROM_UNIXTIME(" <<  value.getDate() << "));";
+	std::string query;
+	query = os.str();
+	std::cout << query << std::endl;
+	try {
+		if (!EjecutaQuery(query)) return false;
+	}
+	catch (sql::SQLException& e) {
+		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return true;
 }
 
 bool CDatabaseMIC::deleteValue(const int32_t& IdVariable, const CValue& CValue)
 {
+	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+	helpers::CTimeUtils ctu;
+	std::ostringstream os;
+	os << " DELETE FROM variable_values WHERE id_variable = " << IdVariable << " AND info_date  = FROM_UNIXTIME( " << CValue.getDate() << ");";
+	std::string query;
+	query = os.str();
+	std::cout << query << std::endl;
+	try {
+		if (!EjecutaQuery(query)) return false;
+	}
+	catch (sql::SQLException& e) {
+		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return true;
+}
+
+bool findCValueOnVectorByDate(std::vector<CValue>& vCValue, CValue & findValue, time_t date) {
+	std::vector<CValue> ::iterator it;
+	for (it = vCValue.begin(); it != vCValue.end(); it++)
+		if (it->getDate() == date) {
+			findValue = *it;
+			return 1;
+		}
+	return 0;
+}
+
+bool findCValueOnVector(std::vector<CValue>& vCValue,const CValue& findValue)
+{
+	std::vector<CValue> ::iterator it;
+	for (it = vCValue.begin(); it != vCValue.end(); it++)
+		if (it->getDate() == findValue.getDate() && it->getValue() == findValue.getValue()) {
+			return true;
+		}
 	return false;
 }

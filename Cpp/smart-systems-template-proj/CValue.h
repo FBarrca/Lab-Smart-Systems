@@ -22,6 +22,7 @@ public:// accesible from outside
 
 	void operator+=(const CValue& c);
 	CValue operator+(const CValue& c);
+	CValue & operator+(const int& i);
 	friend CValue operator+(const CValue& c1, const CValue& c2);
 
 	friend std::ostream& operator<<(std::ostream& o, const CValue& c); //This function is not owned by the class, but it can access to the private part of the class

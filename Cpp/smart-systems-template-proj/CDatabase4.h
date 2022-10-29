@@ -41,7 +41,7 @@ public:
 	*
 	* @return id of prediction
 	*/
-	int insertValue(const uint64_t& IdVariable, const CValue & CValue, const bool useAutoIncrement);
+	int insertValue(const uint64_t& IdVariable, const CValue & CValue);
 
 	/**
 	* Gets prosumer mpan
@@ -75,3 +75,7 @@ public:
 private:
 
 };
+
+bool findCValueOnVectorByDate(std::vector<CValue>& vCValue, CValue& findValue, time_t date);
+
+bool findCValueOnVector(std::vector<CValue>& vCValue,const CValue& findValue);
