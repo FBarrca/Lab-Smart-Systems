@@ -174,8 +174,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CDatabase4.cpp" />
+    <ClCompile Include="CActType.cpp" />
+    <ClCompile Include="CActuator.cpp" />
+    <ClCompile Include="CDatabaseBanana.cpp" />
+    <ClCompile Include="CEstate.cpp" />
+    <ClCompile Include="CMeasType.cpp" />
+    <ClCompile Include="CMeasurement.cpp" />
+    <ClCompile Include="CNode.cpp" />
+    <ClCompile Include="CPipe.cpp" />
+    <ClCompile Include="CSenseType.cpp" />
+    <ClCompile Include="CSensor.cpp" />
     <ClCompile Include="CValue.cpp" />
+    <ClCompile Include="CWeather.cpp" />
     <ClCompile Include="src\dm-database\CDatabase.cpp" />
     <ClCompile Include="src\dm-database\CDatabaseExample.cpp" />
     <ClCompile Include="src\helpers\CError.cpp" />
@@ -187,8 +197,18 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CDatabase4.h" />
+    <ClInclude Include="CActType.h" />
+    <ClInclude Include="CActuator.h" />
+    <ClInclude Include="CDatabaseBanana.h" />
+    <ClInclude Include="CEstate.h" />
+    <ClInclude Include="CMeasType.h" />
+    <ClInclude Include="CMeasurement.h" />
+    <ClInclude Include="CNode.h" />
+    <ClInclude Include="CPipe.h" />
+    <ClInclude Include="CSenseType.h" />
+    <ClInclude Include="CSensor.h" />
     <ClInclude Include="CValue.h" />
+    <ClInclude Include="CWeather.h" />
     <ClInclude Include="src\dm-database\CDatabase.hpp" />
     <ClInclude Include="src\dm-database\CDatabaseExample.hpp" />
     <ClInclude Include="src\helpers\CError.h" />

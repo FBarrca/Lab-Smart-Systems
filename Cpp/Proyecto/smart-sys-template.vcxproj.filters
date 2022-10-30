@@ -57,7 +57,37 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CDatabase4.cpp">
+    <ClCompile Include="CDatabaseBanana.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CEstate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CWeather.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPipe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CSensor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CActuator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CActType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CSenseType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMeasType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMeasurement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,7 +125,37 @@
     <ClInclude Include="CValue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CDatabase4.h">
+    <ClInclude Include="CDatabaseBanana.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CEstate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CWeather.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CPipe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CSensor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CActuator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CActType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CSenseType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CMeasType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CMeasurement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
