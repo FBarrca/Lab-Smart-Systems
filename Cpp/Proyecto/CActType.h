@@ -4,20 +4,21 @@
 
 typedef enum {
 	WATER_VALVE
-
 }PipeActType;
 typedef enum {
 	PUMP,
 	NUTRITION_VALVE
 }NodeActType;
 
-
 class CActType
 {
 public:
 	CActType();
-	CActType(boost::variant<PipeActType, NodeActType> t, std::string desc, bool sw) : m_TypeID(t), m_description(desc), m_isSwitch(sw);
-		~CActType();
+	CActType(boost::variant<PipeActType, NodeActType> t, std::string desc, bool sw) : m_TypeID(t), m_description(desc), m_isSwitch(sw) {};
+	~CActType();
+	int getLoc() {
+		return m_TypeID.which(); // returns 0 if pipe type 1 if node type
+	};
 
 private:
 	bool m_isSwitch;
