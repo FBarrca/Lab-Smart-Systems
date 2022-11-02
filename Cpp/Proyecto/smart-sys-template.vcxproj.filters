@@ -60,9 +60,6 @@
     <ClCompile Include="CDatabaseBanana.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CEstate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -84,10 +81,13 @@
     <ClCompile Include="CSenseType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CMeasType.cpp">
+    <ClCompile Include="CMeasurement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CMeasurement.cpp">
+    <ClCompile Include="CConnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CSector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,9 +128,6 @@
     <ClInclude Include="CDatabaseBanana.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CEstate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -152,10 +149,13 @@
     <ClInclude Include="CSenseType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CMeasType.h">
+    <ClInclude Include="CMeasurement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CMeasurement.h">
+    <ClInclude Include="CConnection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CSector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

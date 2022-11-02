@@ -6,27 +6,36 @@
 
 #include <boost/make_shared.hpp>
 
+
+
+
+/* This is a general class for both PIPE and SECTOR sensors.
+* As they both act the same way it would be absurd to make two classes
+* Each type of sensor has its own child class.
+* The sensor and pipe classes do a type check before adding sensors using the sensor type 
+to prevent adding a sensor at the wrong location type
+*/
+
 class CSensor
 {
-
 public:
 	CSensor();
-	CSensor(std::string d, CSenseType st, CMeasType mt) : m_description(d), m_SenseType(st), m_MeasType(mt){};
+	CSensor(std::string d, CSenseType st, CMeasType mt) : m_description(d), m_type(st){};
 	~CSensor();
 
 	// Creates a measurement and adds it to the vector of measurements.
 	//  [in] values - vector of values to be added to the measurement
 	void createMeasurement(std::vector<CValue> values){
-		mp_measurements.push_back(boost::make_shared<CMeasurement>(new CMeasurement(values, m_MeasType)));
+		//mp_measurements.push_back(boost::make_shared<CMeasurement>(new CMeasurement(values, m_type)));
 	};
-
+	CSenseType& m_getType() { return m_type; };
 private:
 	std::string m_description;									  // name of sensor
-	CSenseType m_SenseType;										  // type of sensor
-	CMeasType m_MeasType;										  // type of measurement
+	CSenseType m_type;										  //
 	bool m_isSwitch;											  // if the sensor is a switch or not(aka % on or off)
 	std::vector<boost::shared_ptr<CMeasurement>> mp_measurements; // vector of measurements over time
 };
+
 
 class CFlow : public CSensor
 {

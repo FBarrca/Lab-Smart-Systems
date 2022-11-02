@@ -33,7 +33,11 @@ private:// No-access from outside
 	//A private member variable or function cannot be accessed, or even viewed from outside the class. Only the class and friend functions can access private members
 	double m_value; /** Value*/
 	time_t m_date;  /** Date */
+};
 
+
+// In case we want to add specific features to the Actuator state 
+class CActuatorState : public CValue {
 
 
 };
