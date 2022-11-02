@@ -75,6 +75,56 @@ public:
 	*/
 	bool deleteValue(const int32_t& IdVariable, const CValue& CValue);
 
+	/*
+	* Inserts all pressure sensors instances into the sensor list
+	* 
+	* @param[in] sensor_list     list that will get all the pressure values
+	* 
+	* @return Success or failure
+	*/
+
+	bool getPressure(vector<CSensors>& sensor_list);
+
+	/*
+	* Inserts all flow rate sensors instances into the sensor list
+	*
+	* @param[in] sensor_list     list that will get all the flow rate values
+	*
+	* @return Success or failure
+	*/
+
+	bool getFlowRates(vector<CSensors>& sensor_list);
+
+	/*
+	* Inserts all mineral sensors instances into the sensor list
+	*
+	* @param[in] sensor_list     list that will get all the mineral values
+	*
+	* @return Success or failure
+	*/
+
+	bool getMineral(vector<CSensors>& sensor_list);
+
+	/*
+	* Changes the state of the valve in the specified pump
+	*
+	* @param[in] id_actuator     id of the pump
+	*
+	* @return Success or failure
+	*/
+
+	bool changeValve(int id_actuator);
+
+	/*
+	* Changes the fertilizer value in the specified pump
+	*
+	* @param[in] id_actuator     id of the pump
+	*
+	* @return Success or failure
+	*/
+
+	bool changeInjector(int id_actuator);
+
 private:
 
 };
