@@ -149,3 +149,48 @@ bool findCValueOnVector(std::vector<CValue>& vCValue,const CValue& findValue)
 		}
 	return false;
 }
+
+bool CDatabaseBanana::getPressures(list<CValue>& cv list)
+{
+	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+	bool result = false;
+	helpers::CTimeUtils timeUtil;
+	string str_date;
+	int year;
+	int month;
+	int day;
+	int hour;
+	int min;
+	int sec;
+	time_t date;
+
+	std::ostringstream os;
+	os << "SELECT vp.value,  from variable_values where id_variable =  " << id_variable;
+
+	try {
+		if (m_p_con != NULL) {
+			std::string query;
+			query = os.str();
+			p_stmt = m_p_con->createStatement();
+			res = p_stmt->executeQuery(query);
+
+			while (res->next()) {
+				str_date = res->getString("INFO_DATE");
+				CValue c1(res->getDouble("VALUE"), date);
+				cv_list.push_back(c1);
+				result = true;
+			}
+
+			delete res;
+			delete p_stmt;
+			p_stmt = NULL;
+		}
+	}
+	catch (sql::SQLException& e) {
+		if (res != NULL) delete res;
+		if (p_stmt != NULL) delete p_stmt;
+		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return result;
+}
