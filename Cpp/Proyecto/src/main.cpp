@@ -92,58 +92,87 @@ int main(void) {
 				// SYNCRONIZE THE STRUCTURE OF THE NETWORK
 				std::vector<boost::shared_ptr<CSector>> v_Sectors;
 				std::vector<boost::shared_ptr<CPipe>> v_Pipes;
-				std::vector<boost::shared_ptr<CConnection>> v_Connections;
+				//std::vector<boost::shared_ptr<CConnection>> v_Connections;
+
+				//std::vector<boost::shared_ptr<CWaterValve>> v_ChangedValves;
 
 				dbObject.getSectors(v_Sectors);
 				dbObject.getPipes(v_Pipes);
-				dbObject.getConnections(v_Connections);
+				//dbObject.getConnections(v_Sectors,v_Pipes,v_Connections);
 
 				// Syncronize the sensor data
-
 				for (size_t i = 0; i < v_Sectors.size(); i++)
 				{
-					dbObject.getSectors(v_Sectors);
+					dbObject.getSectorPressure(v_Sectors[i], from ,to);
+					dbObject.getSectorPumps(v_Sectors[i])
 				}
-
-
+				for (size_t i = 0; i < v_Pipes.size(); i++)
+				{
+					dbObject.getPipeFlow(v_Pipes[i]);
+					dbObject.getPipeValve(v_Pipes[i]);
+				}
 				dbObject.Desconectar();
 
 				// ---------------------------- PROCESS OF DATA & INTELLIGENCE ---------------------------- 
 
-				/*
 
+				for (size_t i = 0; i < v_Sectors.size(); i++)
+				{
+					////look for drops in sector pressure
+					if (DropinPressure(v_Sectors[i]))
+					{
+						//find Pipes that are in that node 
+						std::vector<boost::shared_ptr<CPipe>> v_PipesToSector;
+						if (findPipesToSector(v_PipesToSector)) {
+							for (size_t j = 0; j < v_PipesToSector.size(); j++)
+							{
+								//check if other end has also lost preasssure
+								CSector otherSector = Pipedestination(v_PipesToSector[j], v_Sectors[i]);
+								if (DropinPressure(otherSector)) // if both have lost preasure problem si between
+								{
+									CloseValve(v_PipesToSector[j]);
+								}
 
+							}
 
+						}
+					}
+					//std::vector<boost::shared_ptr<CPipe>> v_SectorsWithPressDrop;
+					//if (DropinPressure(v_Sectors, v_SectorsWithPressDrop)) {
+					//	// We try to find if two dropped sectors are connected by a pipe, if so the fault is probabbly at the pipe
+					//	
 
-				// ---------------------------- INSERT RESULTS IN db  ---------------------------- 
+					//}
+				}
 
+				// ---------------------------- UPDATE VALVE STATE  ---------------------------- 
 				//DDBB connection
 				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
 				log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer inserts de info");
 
-				//Insert stuff in DB
-				dbObject.ComienzaTransaccion();
+				
 
+				CValue ins_val(60, time(0));
 				//Do inserts of data
-				bool resultInsert = true;
+			
+				for (size_t i = 0; i < v_Pipes.size(); i++)
+				{
+					//Insert stuff in DB
+					dbObject.ComienzaTransaccion();
+					bool resultInsert = true;
+					resultInsert = resultInsert && dbObject.insertValveState(v_Pipes[i]);
 
-				//Do insert of data 
-				//EXAMPLE:
-				resultInsert = resultInsert && dbObject.insertPrediction(helpers::CTimeUtils::seconds_from_epoch(execTime), CDatabaseExample::prediction_type::consumption_kWh, false);
+					if (resultInsert) {
+						log.println(boost::log::trivial::trace, "Data insert OK");
+						dbObject.ConfirmarTransaccion();
+					}
+					else {
+						log.println(boost::log::trivial::trace, "Data insert ERROR");
+						dbObject.DeshacerTransaccion();
+					}
 
-				if (resultInsert) {
-					log.println(boost::log::trivial::trace, "Data insert OK");
-					dbObject.ConfirmarTransaccion();
 				}
-				else {
-					log.println(boost::log::trivial::trace, "Data insert ERROR");
-					dbObject.DeshacerTransaccion();
-				}
-
 				dbObject.Desconectar();
-
-				lastExecution = helpers::CTimeUtils::seconds_from_epoch(execTime);
-			*/
 			}
 		}
 
