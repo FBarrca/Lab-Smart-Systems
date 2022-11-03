@@ -2,6 +2,9 @@
 #include <iostream>
 #include <time.h>
 #include "CValue.h"
+#include "CSector.h"
+#include "CEstate.h"
+#include "CPipes.h"
 #include "src/helpers/CTimeUtils.hpp"""
 CDatabaseBanana::CDatabaseBanana()
 {
@@ -150,34 +153,38 @@ bool findCValueOnVector(std::vector<CValue>& vCValue,const CValue& findValue)
 	return false;
 }
 
-bool CDatabaseBanana::getPressures(list<CValue>& cv list)
-{
+
+
+
+
+
+
+/*
+* 
+* ---------------------------------------------- BANANA QUERIES
+* 
+*/
+
+bool CDatabaseBanana::getSectors(std::vector<boost::shared_ptr<CSector>>& sectors) {
+	
 	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
 	bool result = false;
-	helpers::CTimeUtils timeUtil;
-	string str_date;
-	int year;
-	int month;
-	int day;
-	int hour;
-	int min;
-	int sec;
-	time_t date;
 
 	std::ostringstream os;
-	os << "SELECT vp.value,  from variable_values where id_variable =  " << id_variable;
-
+	os << "SELECT ID_SECTOR AS ID, LON, LAT, WATER_DEMAND AS H20 FROM SECTOR;" << endl;// << prosumer_id;
 	try {
 		if (m_p_con != NULL) {
 			std::string query;
 			query = os.str();
+			std::cout << query << std::endl;
 			p_stmt = m_p_con->createStatement();
 			res = p_stmt->executeQuery(query);
 
+
 			while (res->next()) {
-				str_date = res->getString("INFO_DATE");
-				CValue c1(res->getDouble("VALUE"), date);
-				cv_list.push_back(c1);
+				
+				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
+				sectors.push_back(CSector(res->getInt64("ID"), CEstate(res->getint64('LON'), CEstate(res->getint64('LAT')), res->getFloat("H20")));
 				result = true;
 			}
 
@@ -193,4 +200,86 @@ bool CDatabaseBanana::getPressures(list<CValue>& cv list)
 		return false;
 	}
 	return result;
+
 }
+
+
+
+bool CDatabaseBanana::getPipes(std::vector<boost::shared_ptr<CPipe>>& pipes) {
+	
+	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+	bool result = false;
+
+	std::ostringstream os;
+	os << "SELECT ID_PIPE AS ID FROM PIPES;" << endl;// << prosumer_id;
+	try {
+		if (m_p_con != NULL) {
+			std::string query;
+			query = os.str();
+			std::cout << query << std::endl;
+			p_stmt = m_p_con->createStatement();
+			res = p_stmt->executeQuery(query);
+
+
+			while (res->next()) {
+
+				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
+				pipes.push_back(CPipe(res->getInt64("ID")));
+				result = true;
+			}
+
+			delete res;
+			delete p_stmt;
+			p_stmt = NULL;
+		}
+	}
+	catch (sql::SQLException& e) {
+		if (res != NULL) delete res;
+		if (p_stmt != NULL) delete p_stmt;
+		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return result;
+
+}
+
+
+
+bool getConnections(std::vector<boost::shared_ptr<CSector>>& sectors, std::vector<boost::shared_ptr<CPipe>>& pipes, std::vector<boost::shared_ptr<CConnection>>& connection s) {
+		
+	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+	bool result = false;
+
+	std::ostringstream os;
+	os << "SELECT ID_PIPE AS ID, ID_SECTOR_IN AS IN, ID_SECTOR_OUT AS OUT FROM CONNECTION;" << endl;// << prosumer_id;
+	try {
+		if (m_p_con != NULL) {
+			std::string query;
+			query = os.str();
+			std::cout << query << std::endl;
+			p_stmt = m_p_con->createStatement();
+			res = p_stmt->executeQuery(query);
+
+
+			while (res->next()) {
+
+				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
+				
+				result = true;
+			}
+
+			delete res;
+			delete p_stmt;
+			p_stmt = NULL;
+		}
+	}
+	catch (sql::SQLException& e) {
+		if (res != NULL) delete res;
+		if (p_stmt != NULL) delete p_stmt;
+		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return result;
+
+}
+

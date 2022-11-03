@@ -134,7 +134,7 @@ public:
 
 	bool getPipes(std::vector<boost::shared_ptr<CPipe>> & pipes);
 
-	bool getConnections(std::vector<boost::shared_ptr<CConnection>> & connection s);
+	bool getConnections(std::vector<boost::shared_ptr<CSector>>& sectors, std::vector<boost::shared_ptr<CPipe>>& pipes, std::vector<boost::shared_ptr<CConnection>> & connection s);
 
 private:
 

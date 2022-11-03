@@ -10,7 +10,7 @@
 class CPipe
 {
 public:
-	CPipe(CSector f, CSector t, int id) : m_from(f), m_to(t), m_ID(id)
+	CPipe(int id) : m_ID(id)
 	{
 		//CConnection c1(f, t, this);
 	};
@@ -38,8 +38,6 @@ public:
 
 private:
 	unsigned int m_ID;
-	CSector m_from;
-	CSector m_to;
 
 	std::vector<boost::shared_ptr<CSensor>> m_Sensors; // Sensor at the node
 
