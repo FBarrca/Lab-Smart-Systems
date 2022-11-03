@@ -16,7 +16,10 @@
 
 #include "CDatabase.hpp"
 #include "CValue.h"
+#include "CSensor.h"
+
 #include <list>
+#include <vector>
 
 
 class CDatabaseBanana : public CDatabase
@@ -83,7 +86,7 @@ public:
 	* @return Success or failure
 	*/
 
-	bool getPressure(vector<CSensors>& sensor_list);
+	bool getPressure(std::vector<CSensor>& sensor_list);
 
 	/*
 	* Inserts all flow rate sensors instances into the sensor list
@@ -93,7 +96,7 @@ public:
 	* @return Success or failure
 	*/
 
-	bool getFlowRates(vector<CSensors>& sensor_list);
+	bool getFlowRates(std::vector<CSensors>& sensor_list);
 
 	/*
 	* Inserts all mineral sensors instances into the sensor list
@@ -103,7 +106,7 @@ public:
 	* @return Success or failure
 	*/
 
-	bool getMineral(vector<CSensors>& sensor_list);
+	bool getMineral(std::vector<CSensor>& sensor_list);
 
 	/*
 	* Changes the state of the valve in the specified pump
@@ -124,6 +127,14 @@ public:
 	*/
 
 	bool changeInjector(int id_actuator);
+
+
+
+	bool getSectors(std::vector<boost::shared_ptr<CSector>> & sectors);
+
+	bool getPipes(std::vector<boost::shared_ptr<CPipe>> & pipes);
+
+	bool getConnections(std::vector<boost::shared_ptr<CConnection>> & connection s);
 
 private:
 
