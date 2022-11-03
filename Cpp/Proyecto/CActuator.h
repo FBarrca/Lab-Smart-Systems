@@ -5,7 +5,7 @@
 #include "CValue.h"
 class CActuator
 {
-public:
+public: //prueba 
     CActuator(){};
     CActuator(unsigned int i , std::string d, CActType t):m_ID(i),m_description(d), m_type(t){};
     ~CActuator(){};
