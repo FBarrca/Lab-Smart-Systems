@@ -4,6 +4,8 @@
 #include "../imgui.h"
 #include "../imnodes/imnodes.h"
 
+//#include "./CPipe.h"
+
 #include <iostream>
 
 class CSector
@@ -22,15 +24,15 @@ public:
         ImNodes::BeginNode(this->m_id);
         ImNodes::BeginNodeTitleBar();
         ImGui::Text("Sector %d", this->m_id);
-        // ImGui::TextUnformatted("output node");
         ImNodes::EndNodeTitleBar();
+
         ImGui::Text("Desc: %s", this->m_description.c_str());
         // Water Demand
         if (this->m_gui_data.m_editing_water_demand)
         {
             ImVec2 nodeWidth = ImNodes::GetNodeDimensions(this->m_id);
             ImGui::Text("");
-            ImGui::SameLine(); //HelpMarker("Fixed width.");
+            ImGui::SameLine(); // HelpMarker("Fixed width.");
             ImGui::PushItemWidth(60);
             ImGui::InputFloat("Water Demand", &this->m_water_demand, 0.1f, 1.0f, "%.1f", ImGuiInputTextFlags_EnterReturnsTrue);
             ImGui::SameLine();
@@ -58,6 +60,26 @@ public:
         // UI functions
         ImGui::Text("Connections");
         ImNodes::EndOutputAttribute();
+        char id_string[32];
+        sprintf(id_string, "%d", m_id);
+        char child_name[64] = "S&A Sector"
+        ;
+        ImGui::BeginChild(strcat(child_name, id_string), ImVec2(200, 80), false);
+        if (ImGui::TreeNode("Sensors"))
+        {
+
+            ImGui::Text("ABOUT THIS DEMO:");
+            ImGui::TreePop();
+        }
+
+        if (ImGui::TreeNode("Actuators"))
+        {
+
+            ImGui::Text("ABOUT THIS DEMO:");
+            ImGui::TreePop();
+        }
+        ImGui::EndChild();
+        // ImGui::PopClipRect();
 
         ImNodes::EndNode();
     };
@@ -67,9 +89,10 @@ private:
     std::string m_description;
     CEstate m_estate;
     float m_water_demand;
-    // std::vector<boost::shared_ptr<CPipe>> m_Pipes;		 // Pipes that arrive to that node
-    // std::vector<boost::shared_ptr<CSensor>> m_Sensors;	 // Sensor at the node
-    // std::vector<boost::shared_ptr<CActuator>> m_Actuators; // Sensor at the node
+    // std::vector<CPipe> m_Pipes;
+    //  std::vector<boost::shared_ptr<CPipe>> m_Pipes;		 // Pipes that arrive to that node
+    //  std::vector<boost::shared_ptr<CSensor>> m_Sensors;	 // Sensor at the node
+    //  std::vector<boost::shared_ptr<CActuator>> m_Actuators; // Sensor at the node
 
     // Structure with gui data
     struct

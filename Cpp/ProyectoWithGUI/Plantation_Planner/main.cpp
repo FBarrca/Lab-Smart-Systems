@@ -271,7 +271,7 @@ int main()
             ImGui::SetNextWindowSize(whole_content_size);
             ImGui::Begin("ImguiTemplate", 0, flags);
             ImGui::Text("Estate Node Viewer");
-
+             
             /*----------------------
             |  GUI DRAW CODE
             -----------------------*/
@@ -291,7 +291,7 @@ int main()
 
             ImNodes::EndNodeEditor();
             ImGui::End();
-            //ImGui::ShowDemoWindow();
+            ImGui::ShowDemoWindow();
             ImGui::EndFrame();
 
             g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
