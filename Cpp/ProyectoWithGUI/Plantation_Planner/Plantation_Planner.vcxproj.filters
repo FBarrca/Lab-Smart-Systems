@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\dm-database">
+      <UniqueIdentifier>{ce32f128-8729-48b4-b299-73bd0fe84d10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\helpers">
+      <UniqueIdentifier>{aff163be-a774-418c-943d-4bc26727006b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\helpers">
+      <UniqueIdentifier>{5796a631-7bc8-43dc-9e87-49913ca7287f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dm-database">
+      <UniqueIdentifier>{1caf79ea-ac48-44f5-884e-702d3d1fdcf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\bananas">
+      <UniqueIdentifier>{2f95955c-b7b0-46bc-99c9-2df426743188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bananas">
+      <UniqueIdentifier>{5b3cd7d1-9823-4bb3-84a4-042c28e061a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\imnodes">
+      <UniqueIdentifier>{4ea30477-742b-4469-98d7-c5cb1b0e2e08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\imnodes">
+      <UniqueIdentifier>{2e68eda8-088d-4e32-a038-04bb76236d0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\imgui">
+      <UniqueIdentifier>{0ca1e529-1445-4a6a-ba62-2f6a6c6a9e15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\imgui">
+      <UniqueIdentifier>{c0ba3f53-a75a-467a-9667-0c7241f45219}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CError.cpp">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CLog.cpp">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CLogListenerConsole.cpp">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CLogListenerFile.cpp">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CLogUtils.cpp">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CTimeUtils.cpp">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="dm-database\CDatabase.cpp">
+      <Filter>Source Files\dm-database</Filter>
+    </ClCompile>
+    <ClCompile Include="dm-database\CDatabaseExample.cpp">
+      <Filter>Source Files\dm-database</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CDatabase4.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CValue.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="imnodes\imnodes.cpp">
+      <Filter>Source Files\imnodes</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CEstate.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CSector.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_widgets.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_demo.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_dx9.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_win32.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="helpers\CError.h">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CLog.hpp">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CLogListener.hpp">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CLogListenerConsole.hpp">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CLogListenerFile.hpp">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CLogUtils.hpp">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CSingleton.hpp">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CTimeUtils.hpp">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="dm-database\CDatabase.hpp">
+      <Filter>Header Files\dm-database</Filter>
+    </ClInclude>
+    <ClInclude Include="dm-database\CDatabaseExample.hpp">
+      <Filter>Header Files\dm-database</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CDatabase4.h">
+      <Filter>Header Files\bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CValue.h">
+      <Filter>Header Files\bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="imnodes\imnodes.h">
+      <Filter>Header Files\imnodes</Filter>
+    </ClInclude>
+    <ClInclude Include="imnodes\imnodes_internal.h">
+      <Filter>Header Files\imnodes</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CEstate.h">
+      <Filter>Header Files\bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CSector.h">
+      <Filter>Header Files\bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_dx9.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_win32.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_internal.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_rectpack.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_textedit.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_truetype.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imconfig.h">
+      <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

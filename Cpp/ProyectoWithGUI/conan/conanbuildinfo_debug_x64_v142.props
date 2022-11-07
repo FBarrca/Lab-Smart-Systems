@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Label="Conan-RootDirs">
+    <Conan-openssl-Root>$(USERPROFILE)\.conan\data\openssl\1.0.2s\_\_\package\a6deb10c65388e171398bba44b51776561f03e02</Conan-openssl-Root>
+    <Conan-boost-Root>C:\.conan\becace\1</Conan-boost-Root>
+    <Conan-mysql-connector-cpp-Root>$(USERPROFILE)\.conan\data\mysql-connector-cpp\8.0.16\smartSys\testing\package\4f1710918aa542fccb5a54d7bd712e4b0750b50d</Conan-mysql-connector-cpp-Root>
+    <Conan-rapidjson-Root>$(USERPROFILE)\.conan\data\rapidjson\1.1.0\_\_\package\5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9</Conan-rapidjson-Root>
+    <Conan-zlib-Root>$(USERPROFILE)\.conan\data\zlib\1.2.12\_\_\package\d057732059ea44a47760900cb5e4855d2bea8714</Conan-zlib-Root>
+    <Conan-bzip2-Root>$(USERPROFILE)\.conan\data\bzip2\1.0.8\_\_\package\589a23dff5fdb23a7fb851223eb766480ead0a9a</Conan-bzip2-Root>
+  </PropertyGroup>
+  <PropertyGroup Label="ConanVariables">
+    <ConanPackageName></ConanPackageName>
+    <ConanPackageVersion></ConanPackageVersion>
+    <ConanCompilerFlags></ConanCompilerFlags>
+    <ConanLinkerFlags></ConanLinkerFlags>
+    <ConanPreprocessorDefinitions>BOOST_STACKTRACE_USE_NOOP;BOOST_STACKTRACE_USE_WINDBG;BOOST_STACKTRACE_USE_WINDBG_CACHED;BOOST_ALL_NO_LIB;</ConanPreprocessorDefinitions>
+    <ConanIncludeDirectories>$(USERPROFILE)\.conan\data\openssl\1.0.2s\_\_\package\a6deb10c65388e171398bba44b51776561f03e02\include;C:\.conan\becace\1\include;$(USERPROFILE)\.conan\data\mysql-connector-cpp\8.0.16\smartSys\testing\package\4f1710918aa542fccb5a54d7bd712e4b0750b50d\include;$(USERPROFILE)\.conan\data\rapidjson\1.1.0\_\_\package\5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9\include;$(USERPROFILE)\.conan\data\zlib\1.2.12\_\_\package\d057732059ea44a47760900cb5e4855d2bea8714\include;$(USERPROFILE)\.conan\data\bzip2\1.0.8\_\_\package\589a23dff5fdb23a7fb851223eb766480ead0a9a\include;</ConanIncludeDirectories>
+    <ConanResourceDirectories>$(USERPROFILE)\.conan\data\openssl\1.0.2s\_\_\package\a6deb10c65388e171398bba44b51776561f03e02\res;</ConanResourceDirectories>
+    <ConanLibraryDirectories>$(USERPROFILE)\.conan\data\openssl\1.0.2s\_\_\package\a6deb10c65388e171398bba44b51776561f03e02\lib;C:\.conan\becace\1\lib;$(USERPROFILE)\.conan\data\mysql-connector-cpp\8.0.16\smartSys\testing\package\4f1710918aa542fccb5a54d7bd712e4b0750b50d\lib;$(USERPROFILE)\.conan\data\zlib\1.2.12\_\_\package\d057732059ea44a47760900cb5e4855d2bea8714\lib;$(USERPROFILE)\.conan\data\bzip2\1.0.8\_\_\package\589a23dff5fdb23a7fb851223eb766480ead0a9a\lib;</ConanLibraryDirectories>
+    <ConanBinaryDirectories>$(USERPROFILE)\.conan\data\openssl\1.0.2s\_\_\package\a6deb10c65388e171398bba44b51776561f03e02\bin;$(USERPROFILE)\.conan\data\mysql-connector-cpp\8.0.16\smartSys\testing\package\4f1710918aa542fccb5a54d7bd712e4b0750b50d\bin;$(USERPROFILE)\.conan\data\bzip2\1.0.8\_\_\package\589a23dff5fdb23a7fb851223eb766480ead0a9a\bin;</ConanBinaryDirectories>
+    <ConanLibraries>ssleay32.lib;libeay32.lib;libboost_contract.lib;libboost_coroutine.lib;libboost_fiber_numa.lib;libboost_fiber.lib;libboost_context.lib;libboost_graph.lib;libboost_iostreams.lib;libboost_log_setup.lib;libboost_log.lib;libboost_locale.lib;libboost_math_c99.lib;libboost_math_c99f.lib;libboost_math_c99l.lib;libboost_math_tr1.lib;libboost_math_tr1f.lib;libboost_math_tr1l.lib;libboost_program_options.lib;libboost_random.lib;libboost_regex.lib;libboost_stacktrace_noop.lib;libboost_stacktrace_windbg.lib;libboost_stacktrace_windbg_cached.lib;libboost_type_erasure.lib;libboost_thread.lib;libboost_atomic.lib;libboost_container.lib;libboost_date_time.lib;libboost_unit_test_framework.lib;libboost_prg_exec_monitor.lib;libboost_test_exec_monitor.lib;libboost_exception.lib;libboost_timer.lib;libboost_chrono.lib;libboost_wave.lib;libboost_filesystem.lib;libboost_wserialization.lib;libboost_serialization.lib;mysqlcppconn.lib;mysqlcppconn8.lib;zlib.lib;bz2.lib;</ConanLibraries>
+    <ConanSystemDeps>crypt32.lib;ws2_32.lib;advapi32.lib;user32.lib;ole32.lib;dbgeng.lib;bcrypt.lib;</ConanSystemDeps>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LocalDebuggerEnvironment>PATH=%PATH%;$(USERPROFILE)\.conan\data\openssl\1.0.2s\_\_\package\a6deb10c65388e171398bba44b51776561f03e02\bin;$(USERPROFILE)\.conan\data\mysql-connector-cpp\8.0.16\smartSys\testing\package\4f1710918aa542fccb5a54d7bd712e4b0750b50d\bin;$(USERPROFILE)\.conan\data\bzip2\1.0.8\_\_\package\589a23dff5fdb23a7fb851223eb766480ead0a9a\bin;</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ConanIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(ConanPreprocessorDefinitions)%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>$(ConanCompilerFlags) %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(ConanLibraryDirectories)%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(ConanLibraries)%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ConanSystemDeps)%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>$(ConanLinkerFlags) %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <Midl>
+      <AdditionalIncludeDirectories>$(ConanIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(ConanIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(ConanPreprocessorDefinitions)%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>$(ConanCompilerFlags) %(AdditionalOptions)</AdditionalOptions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{8e86ed85-eeca-43cf-9394-5f74aab3f99f}</ProjectGuid>
+    <RootNamespace>ImguiTemplated3d9</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Plantation Planner</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="conan\conanbuildinfo_multi.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="bananas\CDatabase4.cpp" />
+    <ClCompile Include="bananas\CEstate.cpp" />
+    <ClCompile Include="bananas\CSector.cpp" />
+    <ClCompile Include="bananas\CValue.cpp" />
+    <ClCompile Include="dm-database\CDatabase.cpp" />
+    <ClCompile Include="dm-database\CDatabaseExample.cpp" />
+    <ClCompile Include="helpers\CError.cpp" />
+    <ClCompile Include="helpers\CLog.cpp" />
+    <ClCompile Include="helpers\CLogListenerConsole.cpp" />
+    <ClCompile Include="helpers\CLogListenerFile.cpp" />
+    <ClCompile Include="helpers\CLogUtils.cpp" />
+    <ClCompile Include="helpers\CTimeUtils.cpp" />
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="imgui_demo.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_dx9.cpp" />
+    <ClCompile Include="imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui_widgets.cpp" />
+    <ClCompile Include="imnodes\imnodes.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="bananas\CDatabase4.h" />
+    <ClInclude Include="bananas\CEstate.h" />
+    <ClInclude Include="bananas\CSector.h" />
+    <ClInclude Include="bananas\CValue.h" />
+    <ClInclude Include="dm-database\CDatabase.hpp" />
+    <ClInclude Include="dm-database\CDatabaseExample.hpp" />
+    <ClInclude Include="helpers\CError.h" />
+    <ClInclude Include="helpers\CLog.hpp" />
+    <ClInclude Include="helpers\CLogListener.hpp" />
+    <ClInclude Include="helpers\CLogListenerConsole.hpp" />
+    <ClInclude Include="helpers\CLogListenerFile.hpp" />
+    <ClInclude Include="helpers\CLogUtils.hpp" />
+    <ClInclude Include="helpers\CSingleton.hpp" />
+    <ClInclude Include="helpers\CTimeUtils.hpp" />
+    <ClInclude Include="imconfig.h" />
+    <ClInclude Include="imgui.h" />
+    <ClInclude Include="imgui_impl_dx9.h" />
+    <ClInclude Include="imgui_impl_win32.h" />
+    <ClInclude Include="imgui_internal.h" />
+    <ClInclude Include="imnodes\imnodes.h" />
+    <ClInclude Include="imnodes\imnodes_internal.h" />
+    <ClInclude Include="imstb_rectpack.h" />
+    <ClInclude Include="imstb_textedit.h" />
+    <ClInclude Include="imstb_truetype.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
