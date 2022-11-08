@@ -2,6 +2,11 @@
 #include <string>
 #include<boost/variant.hpp>
 
+/*
+* This implementation of classes can work in two ways either as to tables or one.
+* When ever you create although it is VERY important that when you create the class
+* you typecast the m_TypeID to the appropiate type to avoid bugs.
+*/
 typedef enum {
 	WATER_VALVE
 }PipeActType;
@@ -26,12 +31,3 @@ private:
 	boost::variant<PipeActType, NodeActType> m_TypeID;
 };
 
-class CWaterValve : public CActType {
-	CWaterValve() : CActType(WATER_VALVE, "Water Valve", true) {};
-};
-class CPump : public CActType {
-	CPump() : CActType(PUMP, "Pump", true) {};
-};
-class CNutritionValve : public CActType {
-	CNutritionValve() : CActType(NUTRITION_VALVE, "Nutrition_valve", false) {};
-};

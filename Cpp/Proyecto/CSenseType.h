@@ -3,6 +3,13 @@
 #include <vector>
 #include <boost/variant.hpp>
 #include "CMeasType.h"
+
+
+/*
+* This implementation of classes can work in two ways either as to tables or one.
+* When ever you create although it is VERY important that when you create the class
+* you typecast the m_TypeID to the appropiate type to avoid bugs.
+*/
 typedef enum
 {
 	FLOW,
@@ -11,19 +18,19 @@ typedef enum
 } PipeSensType;
 typedef enum
 {
-	HUMIDITY,
+	HUMIDITY=100,
 	TEMPERATURE,
 	RAIN,
 	SOLAR_INCIDENCE,
 	BAROMETER
 
 } NodeSensType;
-
+#define PIPESENSORTYPE 0
+#define NODESENSORTYPE 1
 class CSenseType
 {
 public:
 	CSenseType();
-	// CSenseType(boost::variant<PipeSensType, NodeSensType> t, std::string desc, std::vector<CMeasType*> vm ) : m_TypeID(t), m_description(desc), mp_Measuremets(vm) {};
 	CSenseType(boost::variant<PipeSensType, NodeSensType> t, std::string desc) : m_TypeID(t), m_description(desc){};
 
 	~CSenseType(){
@@ -34,10 +41,15 @@ public:
 	{
 		return m_TypeID.which(); // returns 0 if pipe type 1 if node type
 	};
-	std::vector<CMeasType *> getMeasurements() { return mp_Measuremets; };
+	
+
 
 private:
 	std::string m_description; // name of type
 	boost::variant<PipeSensType, NodeSensType> m_TypeID;
-	// std::vector<CMeasType *> mp_Measuremets; // type of measurements the sensor creates (vector incase there are multiple )
+	std::string m_desc;
+protected:
+	unsigned int m_NumberMeas; // to allow multiple values to be stored in a single measurement (of the same type)
 };
+
+

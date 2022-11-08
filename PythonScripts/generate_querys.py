@@ -3,6 +3,7 @@ import os
 
 
 querys = []
+
 #table sector
 querys_sector = []
 for id_sector in range(1,4):
@@ -27,9 +28,11 @@ for i in range(1, 4):
     querys_adress.append("INSERT INTO address (LON, LAT, description) VALUES ( " + str(lon) + ", " + str(lat) + ", address" + str(i) +");")
     querys_weather.append("INSERT INTO weather (LON, LAT, timestamp, rain, temperature) VALUES ( " + str(lon) + ", " + str(lat) + ", " + str(timestamp) + ", " + str(rain) + ", " + str(temperature) +");")
 
+
 querys.append(querys_estate)
 querys.append(querys_adress)
 querys.append(querys_weather)
+
 
 #table sect_sensor_loc
 querys_sect_sensor_loc = []
@@ -41,12 +44,14 @@ for i in range(1, 4):
 
 querys.append(querys_sect_sensor_loc)
 
+
 #table sensor_sector
 querys_sensor_sector = []
 for id_sensor in range(1, 12):
     id_measurement_type = rd.randint(1, 3)  # 1 humidity, 2 temperature, 3 mineral, 4 flow, 5 pressure
     id_sensor_type = id_measurement_type
     querys_sensor_sector.append("INSERT INTO sensor_sector (id_sensor, id_measurment_type, id_sensor_type) VALUES ( " + str(id_sensor) + ", " + str(id_measurement_type) + "," + str(id_sensor_type) + ");")
+
 
 querys.append(querys_sensor_sector)
 
@@ -67,6 +72,7 @@ for i in range (1,4): # mineral valve (4 uno por sector), water valve (12 dos po
     id_type = 1
     querys_actuator_sector.append("INSERT INTO actuator_sector (ID_ACTUATOR, ID_TYPE) VALUES ("+str(id_actuator)+","+str(id_type)+");")
 
+
 querys.append(querys_actuator_sector)
 
 #table value_sector_actuator 
@@ -76,6 +82,7 @@ for i in range (1,4):
         id_actuator = i
         timestamp_unix = rd.randint(1660000000,1667476927)
         value = rd.randint(0,100) #porcentaje
+
         querys_value_sector_actuator.append("INSERT INTO value_sector_actuator (ID_ACTUATOR, TIMESTAMP, VALUE) VALUES ("+str(id_actuator)+", FROM_UNIXTIME("+str(timestamp_unix)+"),"+str(value)+");")
 
 querys.append(querys_value_sector_actuator)
@@ -137,6 +144,7 @@ querys_pipe_act_loc.append("INSERT INTO pipe_act_loc (ID_ACTUATOR, ID_PIPE) VALU
 
 querys.append(querys_pipe_act_loc)
 
+
 #table pipe 
 querys_pipe = []
 for i in range (1,6):
@@ -162,9 +170,11 @@ for i in range (1,6):
         id_sensor = i*j+12
         id_sensor_type = rd.randint(4,5) # 1 humidity, 2 temperature, 3 mineral, 4 flow, 5 pressure
         id_measurement_type = id_sensor_type 
+
         querys_sensor_pipe.append("INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE) VALUES ("+str(id_sensor)+","+str(id_measurement_type)+","+str(id_sensor_type)+");")
 
 querys.append(querys_sensor_pipe)
+
 
 #table value_pipe_sensor
 querys_value_pipe_sensor = []
@@ -174,6 +184,7 @@ for i in range (1,6):
         timestamp_unix = rd.randint(1660000000,1667476927)
         id_sensor_type = rd.randint(4,5) # 1 humidity, 2 temperature, 3 mineral, 4 flow, 5 pressure
         id_measurement_type = id_sensor_type
+
         value = rd.random()*10
         querys_value_pipe_sensor.append("INSERT INTO value_pipe_sensor (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE) VALUES ("+str(id_sensor)+", SELECT FROM_UNIXTIME("+str(timestamp_unix)+"),"+str(id_measurement_type)+","+str(value)+");")
 

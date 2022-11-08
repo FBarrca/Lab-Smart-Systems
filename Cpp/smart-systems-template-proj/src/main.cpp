@@ -110,8 +110,6 @@ int main(void){
 				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
 				log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer updates de info");
 
-				dbObject.updateValue(5, ins_val);
-
 				bool resultUpdate = true;
 				resultUpdate = resultUpdate && dbObject.updateValue(5, ins_val);
 
@@ -148,8 +146,6 @@ int main(void){
 				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
 				log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer updates de info");
 
-				dbObject.updateValue(5, ins_val);
-
 				bool resultDelete = true;
 				resultDelete = resultDelete && dbObject.deleteValue(5, ins_val);
 
@@ -163,7 +159,7 @@ int main(void){
 				}
 
 				dbObject.Desconectar();
-
+				// -------------------------- - CHECK IF DELETE
 				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
 				log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer gets de info");
 

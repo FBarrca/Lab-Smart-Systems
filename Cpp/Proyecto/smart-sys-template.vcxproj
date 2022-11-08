@@ -176,12 +176,12 @@
   <ItemGroup>
     <ClCompile Include="CActType.cpp" />
     <ClCompile Include="CActuator.cpp" />
+    <ClCompile Include="CConnection.cpp" />
     <ClCompile Include="CDatabaseBanana.cpp" />
     <ClCompile Include="CEstate.cpp" />
-    <ClCompile Include="CMeasType.cpp" />
     <ClCompile Include="CMeasurement.cpp" />
-    <ClCompile Include="CNode.cpp" />
     <ClCompile Include="CPipe.cpp" />
+    <ClCompile Include="CSector.cpp" />
     <ClCompile Include="CSenseType.cpp" />
     <ClCompile Include="CSensor.cpp" />
     <ClCompile Include="CValue.cpp" />
@@ -199,12 +199,12 @@
   <ItemGroup>
     <ClInclude Include="CActType.h" />
     <ClInclude Include="CActuator.h" />
+    <ClInclude Include="CConnection.h" />
     <ClInclude Include="CDatabaseBanana.h" />
     <ClInclude Include="CEstate.h" />
-    <ClInclude Include="CMeasType.h" />
     <ClInclude Include="CMeasurement.h" />
-    <ClInclude Include="CNode.h" />
     <ClInclude Include="CPipe.h" />
+    <ClInclude Include="CSector.h" />
     <ClInclude Include="CSenseType.h" />
     <ClInclude Include="CSensor.h" />
     <ClInclude Include="CValue.h" />

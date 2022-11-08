@@ -1,5 +1,8 @@
 #pragma once
 
+#include "CSector.h"
+#include "CSensor.h"
+#include "CActuator.h"
 #include <vector>
 #include <string>
 #include <boost/variant.hpp>
@@ -7,11 +10,14 @@
 class CPipe
 {
 public:
-	CPipe();
+	CPipe(int id) : m_ID(id)
+	{
+		//CConnection c1(f, t, this);
+	};
 	~CPipe();
 	bool addSensor(boost::shared_ptr<CSensor> s)
 	{
-		if (s->getLoc() == 0) // if sensor is a pipe sensor
+		if (s->m_getType().getLoc() == NODESENSORTYPE) // if sensor is a pipe sensor
 		{
 			m_Sensors.push_back(s);
 			return true;
@@ -21,7 +27,7 @@ public:
 	};
 	bool addActuator(boost::shared_ptr<CActuator> a)
 	{
-		if (a->getLoc() == 0) // if actuator is a pipe actuator
+		if (a->m_getType().getLoc() == PIPESENSORTYPE) // if actuator is a pipe actuator
 		{
 			m_Actuators.push_back(a);
 			return true;
@@ -31,7 +37,9 @@ public:
 	};
 
 private:
-	std::vector<boost::shared_ptr<CSensor>> Sensors; // Sensor at the node
+	unsigned int m_ID;
 
-	std::vector<boost::shared_ptr<CActuator>> Actuators; // Sensor at the node
+	std::vector<boost::shared_ptr<CSensor>> m_Sensors; // Sensor at the node
+
+	std::vector<boost::shared_ptr<CActuator>> m_Actuators; // Sensor at the node
 };

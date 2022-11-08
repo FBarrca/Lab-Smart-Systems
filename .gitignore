@@ -30,3 +30,17 @@
 *.exe
 *.out
 *.app
+
+
+# Folder config file
+
+# Ignore everything at x64 and x86
+Cpp/ProyectoWithGUI/Plantation_Planner/x64/*
+Cpp/ProyectoWithGUI/x64/*
+Cpp/ProyectoWithGUI/Plantation_Planner/x86/*
+Cpp/ProyectoWithGUI/x86/*
+# Ignore obj and bin folders
+Cpp/ProyectoWithGUI/Plantation_Planner/obj/*
+Cpp/ProyectoWithGUI/Plantation_Planner/bin/*
+#ignore .vs folder
+Cpp/ProyectoWithGUI/.vs/*

@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include <boost/smart_ptr/shared_ptr.hpp>
 #include "CWeather.h"
@@ -18,7 +19,6 @@ public:
 
 private:
 	struct {
-	
 		int lon;
 		int lat;
 		std::string description = "No description given";
