@@ -1,33 +1,33 @@
 [includedirs]
-C:/Users/franb/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/include
-C:/.conan/25e70c/1/include
-C:/Users/franb/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/include
-C:/Users/franb/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
-C:/Users/franb/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/include
-C:/Users/franb/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/include
+C:/Users/quint/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/include
+C:/.conan/924bde/1/include
+C:/Users/quint/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/include
+C:/Users/quint/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/quint/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/include
+C:/Users/quint/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/include
 
 [libdirs]
-C:/Users/franb/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/lib
-C:/.conan/25e70c/1/lib
-C:/Users/franb/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/lib
-C:/Users/franb/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/lib
-C:/Users/franb/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/lib
+C:/Users/quint/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/lib
+C:/.conan/924bde/1/lib
+C:/Users/quint/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/lib
+C:/Users/quint/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/lib
+C:/Users/quint/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/lib
 
 [bindirs]
-C:/Users/franb/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/bin
-C:/Users/franb/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/bin
-C:/Users/franb/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/bin
+C:/Users/quint/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/bin
+C:/Users/quint/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/bin
+C:/Users/quint/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/bin
 
 [resdirs]
-C:/Users/franb/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/res
+C:/Users/quint/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/res
 
 [builddirs]
-C:/Users/franb/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/
-C:/.conan/25e70c/1/
-C:/Users/franb/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/
-C:/Users/franb/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
-C:/Users/franb/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/
-C:/Users/franb/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/
+C:/Users/quint/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/
+C:/.conan/924bde/1/
+C:/Users/quint/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/
+C:/Users/quint/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/quint/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/
+C:/Users/quint/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/
 
 [libs]
 ssleay32
@@ -115,19 +115,19 @@ BOOST_ALL_NO_LIB
 
 
 [includedirs_openssl]
-C:/Users/franb/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/include
+C:/Users/quint/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/include
 
 [libdirs_openssl]
-C:/Users/franb/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/lib
+C:/Users/quint/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/lib
 
 [bindirs_openssl]
-C:/Users/franb/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/bin
+C:/Users/quint/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/bin
 
 [resdirs_openssl]
-C:/Users/franb/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/res
+C:/Users/quint/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/res
 
 [builddirs_openssl]
-C:/Users/franb/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/
+C:/Users/quint/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58/
 
 [libs_openssl]
 ssleay32
@@ -168,7 +168,7 @@ bcrypt
 
 
 [rootpath_openssl]
-C:/Users/franb/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58
+C:/Users/quint/.conan/data/openssl/1.0.2s/_/_/package/37640f580f8d84e46da7cc52d78e1553db2c2e58
 
 [name_openssl]
 openssl
@@ -185,10 +185,10 @@ cmake_find_package_multi=OpenSSL
 
 
 [includedirs_boost]
-C:/.conan/25e70c/1/include
+C:/.conan/924bde/1/include
 
 [libdirs_boost]
-C:/.conan/25e70c/1/lib
+C:/.conan/924bde/1/lib
 
 [bindirs_boost]
 
@@ -197,7 +197,7 @@ C:/.conan/25e70c/1/lib
 
 
 [builddirs_boost]
-C:/.conan/25e70c/1/
+C:/.conan/924bde/1/
 
 [libs_boost]
 libboost_contract
@@ -274,7 +274,7 @@ BOOST_ALL_NO_LIB
 
 
 [rootpath_boost]
-C:/.conan/25e70c/1
+C:/.conan/924bde/1
 
 [name_boost]
 boost
@@ -292,19 +292,19 @@ cmake_find_package_multi=Boost
 
 
 [includedirs_mysql-connector-cpp]
-C:/Users/franb/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/include
+C:/Users/quint/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/include
 
 [libdirs_mysql-connector-cpp]
-C:/Users/franb/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/lib
+C:/Users/quint/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/lib
 
 [bindirs_mysql-connector-cpp]
-C:/Users/franb/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/bin
+C:/Users/quint/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/bin
 
 [resdirs_mysql-connector-cpp]
 
 
 [builddirs_mysql-connector-cpp]
-C:/Users/franb/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/
+C:/Users/quint/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e/
 
 [libs_mysql-connector-cpp]
 mysqlcppconn
@@ -341,7 +341,7 @@ mysqlcppconn8
 
 
 [rootpath_mysql-connector-cpp]
-C:/Users/franb/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e
+C:/Users/quint/.conan/data/mysql-connector-cpp/8.0.16/smartSys/testing/package/127af201a4cdf8111e2e08540525c245c9b3b99e
 
 [name_mysql-connector-cpp]
 mysql-connector-cpp
@@ -357,7 +357,7 @@ mysql-connector-cpp
 
 
 [includedirs_rapidjson]
-C:/Users/franb/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
+C:/Users/quint/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include
 
 [libdirs_rapidjson]
 
@@ -369,7 +369,7 @@ C:/Users/franb/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88
 
 
 [builddirs_rapidjson]
-C:/Users/franb/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
+C:/Users/quint/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/
 
 [libs_rapidjson]
 
@@ -405,7 +405,7 @@ C:/Users/franb/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88
 
 
 [rootpath_rapidjson]
-C:/Users/franb/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
+C:/Users/quint/.conan/data/rapidjson/1.1.0/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9
 
 [name_rapidjson]
 rapidjson
@@ -422,10 +422,10 @@ cmake_find_package_multi=RapidJSON
 
 
 [includedirs_zlib]
-C:/Users/franb/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/include
+C:/Users/quint/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/include
 
 [libdirs_zlib]
-C:/Users/franb/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/lib
+C:/Users/quint/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/lib
 
 [bindirs_zlib]
 
@@ -434,7 +434,7 @@ C:/Users/franb/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba31158520
 
 
 [builddirs_zlib]
-C:/Users/franb/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/
+C:/Users/quint/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab/
 
 [libs_zlib]
 zlib
@@ -470,7 +470,7 @@ zlib
 
 
 [rootpath_zlib]
-C:/Users/franb/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab
+C:/Users/quint/.conan/data/zlib/1.2.12/_/_/package/3fb49604f9c2f729b85ba3115852006824e72cab
 
 [name_zlib]
 zlib
@@ -487,19 +487,19 @@ cmake_find_package_multi=ZLIB
 
 
 [includedirs_bzip2]
-C:/Users/franb/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/include
+C:/Users/quint/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/include
 
 [libdirs_bzip2]
-C:/Users/franb/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/lib
+C:/Users/quint/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/lib
 
 [bindirs_bzip2]
-C:/Users/franb/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/bin
+C:/Users/quint/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/bin
 
 [resdirs_bzip2]
 
 
 [builddirs_bzip2]
-C:/Users/franb/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/
+C:/Users/quint/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5/
 
 [libs_bzip2]
 bz2
@@ -535,7 +535,7 @@ bz2
 
 
 [rootpath_bzip2]
-C:/Users/franb/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5
+C:/Users/quint/.conan/data/bzip2/1.0.8/_/_/package/d16a91eadaaf5829b928b12d2f836ff7680d3df5
 
 [name_bzip2]
 bzip2
@@ -560,9 +560,9 @@ stacktrace_addr2line_available=False
 [USER_zlib]
 [ENV_openssl]
 [ENV_boost]
-BOOST_ROOT=C:\.conan\25e70c\1
+BOOST_ROOT=C:\.conan\924bde\1
 [ENV_mysql-connector-cpp]
 [ENV_rapidjson]
 [ENV_zlib]
 [ENV_bzip2]
-PATH=["C:\Users\franb\.conan\data\bzip2\1.0.8\_\_\package\d16a91eadaaf5829b928b12d2f836ff7680d3df5\bin"]
+PATH=["C:\Users\quint\.conan\data\bzip2\1.0.8\_\_\package\d16a91eadaaf5829b928b12d2f836ff7680d3df5\bin"]

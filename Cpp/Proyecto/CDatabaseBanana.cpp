@@ -260,12 +260,17 @@ bool getConnections(std::vector<boost::shared_ptr<CSector>>& sectors, std::vecto
 			p_stmt = m_p_con->createStatement();
 			res = p_stmt->executeQuery(query);
 
+			unsigned int id, in, out;
 
 			while (res->next()) {
 
-				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
-				
-				result = true;
+				id = res->getInt64("ID");
+				in = res->getInt64("IN");
+				out = res->getInt64("OUT");
+
+				for (i = 0; i < pipes.size(); i++) {
+					pipes[i]->
+				}
 			}
 
 			delete res;

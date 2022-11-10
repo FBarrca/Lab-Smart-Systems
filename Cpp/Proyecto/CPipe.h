@@ -15,6 +15,7 @@ public:
 		//CConnection c1(f, t, this);
 	};
 	~CPipe();
+	unsigned int getId()
 	bool addSensor(boost::shared_ptr<CSensor> s)
 	{
 		if (s->m_getType().getLoc() == NODESENSORTYPE) // if sensor is a pipe sensor
