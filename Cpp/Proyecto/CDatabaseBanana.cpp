@@ -184,7 +184,7 @@ bool CDatabaseBanana::getSectors(std::vector<boost::shared_ptr<CSector>>& sector
 			while (res->next()) {
 				
 				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
-				sectors.push_back(CSector(res->getInt64("ID"), CEstate(res->getint64('LON'), CEstate(res->getint64('LAT')), res->getFloat("H20")));
+				sectors.push_back(CSector(res->getInt64("ID"), CEstate(res->getint64('LON'), CEstate(res->getint64('LAT')), res->getFloat("H20"))); // si no funciona usar getDouble
 				result = true;
 			}
 
@@ -260,12 +260,17 @@ bool getConnections(std::vector<boost::shared_ptr<CSector>>& sectors, std::vecto
 			p_stmt = m_p_con->createStatement();
 			res = p_stmt->executeQuery(query);
 
+			unsigned int id, in, out;
 
 			while (res->next()) {
 
-				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
-				
-				result = true;
+				id = res->getInt64("ID");
+				in = res->getInt64("IN");
+				out = res->getInt64("OUT");
+
+				for (i = 0; i < pipes.size(); i++) {
+					pipes[i]->
+				}
 			}
 
 			delete res;
@@ -283,3 +288,67 @@ bool getConnections(std::vector<boost::shared_ptr<CSector>>& sectors, std::vecto
 
 }
 
+
+/*
+getSectors. Donde haces la petición a la base de datos de todos los sectores que hay
+( solo hace falta lo básico nada de coger los actuadores ni sensores ni nada)
+y los añada a una lista de punteros o mejor shared_ptr que le has pasado a 
+la función por referencia.
+*/
+
+
+bool CDatabaseBanana::getSectors(std::vector<boost::shared_ptr<CSector>>& sectors)
+{
+	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+	bool result = false;
+	helpers::CTimeUtils timeUtil;
+	string str_date;
+	int year;
+	int month;
+	int day;
+	int hour;
+	int min;
+	int sec;
+	time_t date;
+
+	std::ostringstream os;
+	os << "SELECT * FROM sectors";
+
+	try {
+		if (m_p_con != NULL) {
+			std::string query;
+			query = os.str();
+			p_stmt = m_p_con->createStatement();
+			res = p_stmt->executeQuery(query);
+
+			while (res->next()) {
+				/*str_date = res->getString("INFO_DATE");
+				year = stoi(str_date.substr(0, 4));
+				month = stoi(str_date.substr(5, 2));
+				day = stoi(str_date.substr(8, 2));
+				hour = stoi(str_date.substr(11, 2));
+				min = stoi(str_date.substr(14, 2));
+				sec = stoi(str_date.substr(17, 2));
+				date = timeUtil.computeFech(year, month, day, hour, min, sec);
+				CValue c1(res->getDouble("VALUE"), date);
+				cv_list.push_back(c1);*/
+
+				result = true;
+			}
+
+			delete res;
+			delete p_stmt;
+			p_stmt = NULL;
+		}
+	}
+	catch (sql::SQLException& e) {
+		if (res != NULL) delete res;
+		if (p_stmt != NULL) delete p_stmt;
+		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return result;
+
+
+
+}

@@ -8,14 +8,15 @@
 
 #include <iostream>
 
+
 class CSector
 {
 public:
     CSector();
     //~CSector();
     virtual ~CSector(void){};
-    CSector(unsigned int i, CEstate e, float w) : m_id(i), m_estate(e), m_water_demand(w), m_description("Hola"){};
-
+    //CSector(unsigned int i, CEstate e, float w) : m_id(i), m_estate(e), m_water_demand(w), m_description("Hola"){};
+    CSector(unsigned int i, CEstate e, float w);
     // Draws Sector on IMGUI
     void draw()
     {
@@ -54,8 +55,8 @@ public:
         }
 
         // Rightside attribute
-        const int output_attr_id = m_id * 1000 + 2;
-        ImNodes::BeginOutputAttribute(output_attr_id);
+        //const int output_attr_id = m_id * OFFSETCONNECTION + 2;
+        ImNodes::BeginOutputAttribute(m_gui_data.Nodeid);
         // in between Begin|EndAttribute calls, you can call ImGui
         // UI functions
         ImGui::Text("Connections");
@@ -91,12 +92,15 @@ private:
     float m_water_demand;
     // std::vector<CPipe> m_Pipes;
     //  std::vector<boost::shared_ptr<CPipe>> m_Pipes;		 // Pipes that arrive to that node
-    //  std::vector<boost::shared_ptr<CSensor>> m_Sensors;	 // Sensor at the node
+      //std::vector<boost::shared_ptr<CSensor>> m_Sensors;	 // Sensor at the node
     //  std::vector<boost::shared_ptr<CActuator>> m_Actuators; // Sensor at the node
 
     // Structure with gui data
     struct
     {
         bool m_editing_water_demand = false;
+        int Nodeid; // id of input at imnodes
+
     } m_gui_data;
+    friend class CPipe;
 };

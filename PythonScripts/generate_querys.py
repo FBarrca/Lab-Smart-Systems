@@ -239,10 +239,10 @@ for i in range (1,5):
 querys.append(querys_sensor_type)
 
 base_path = os.getcwd()
-with open(base_path+"/querys.txt","w") as fd:
+with open(base_path+"/querys.sql","w") as fd:
     fd.write(f"\n")
 for i in querys:
     for j in i:
-        with open(base_path+"/querys.txt","a") as fd:
+        with open(base_path+"/querys.sql","a") as fd:
             fd.write(j + "\n")
 
