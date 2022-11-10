@@ -1,38 +1,29 @@
 import random as rd
 import os
 
-
+#table state, address, weather, sector
 querys = []
-
-#table sector
-querys_sector = []
-for id_sector in range(1,4):
-    lon = 90 * rd.random()
-    lat = 360 * rd.random()
-    water_demand = 1000 * rd.random()
-    querys_sector.append("INSERT INTO sector (id_sector, LON, LAT, WATER_DEMAND) VALUES ( " + str(id_sector) + ", " + str(lon) + ", " + str(lat) + ", " + str(water_demand) + ");")
-
-querys.append(querys_sector)
-
-#table state, address, weather
 querys_estate = []
 querys_adress = []
 querys_weather = []
+querys_sector = []
 for i in range(1, 4):
     lon = 90 * rd.random()
     lat = 360 * rd.random()
     timestamp = rd.randint(1660000000,1667476927)
     rain = 100 * rd.random()
     temperature = rd.randint(15, 32)
+    for id_sector in range(1,4):
+        water_demand = 1000 * rd.random()
+        querys_sector.append("INSERT INTO sector (id_sector, LON, LAT, WATER_DEMAND) VALUES ( " + str(id_sector) + ", " + str(lon) + ", " + str(lat) + ", " + str(water_demand) + ");")
     querys_estate.append("INSERT INTO estate (LON, LAT) VALUES ( " + str(lon) + ", " + str(lat) + ");")
     querys_adress.append("INSERT INTO address (LON, LAT, description) VALUES ( " + str(lon) + ", " + str(lat) + ", address" + str(i) +");")
     querys_weather.append("INSERT INTO weather (LON, LAT, timestamp, rain, temperature) VALUES ( " + str(lon) + ", " + str(lat) + ", " + str(timestamp) + ", " + str(rain) + ", " + str(temperature) +");")
 
-
 querys.append(querys_estate)
+querys.append(querys_sector)
 querys.append(querys_adress)
 querys.append(querys_weather)
-
 
 #table sect_sensor_loc
 querys_sect_sensor_loc = []
@@ -44,14 +35,12 @@ for i in range(1, 4):
 
 querys.append(querys_sect_sensor_loc)
 
-
 #table sensor_sector
 querys_sensor_sector = []
 for id_sensor in range(1, 12):
     id_measurement_type = rd.randint(1, 3)  # 1 humidity, 2 temperature, 3 mineral, 4 flow, 5 pressure
     id_sensor_type = id_measurement_type
-    querys_sensor_sector.append("INSERT INTO sensor_sector (id_sensor, id_measurment_type, id_sensor_type) VALUES ( " + str(id_sensor) + ", " + str(id_measurement_type) + "," + str(id_sensor_type) + ");")
-
+    querys_sensor_sector.append("INSERT INTO sensor_sector (id_sensor, id_measurement_type, id_sensor_type) VALUES ( " + str(id_sensor) + ", " + str(id_measurement_type) + "," + str(id_sensor_type) + ");")
 
 querys.append(querys_sensor_sector)
 
@@ -72,7 +61,6 @@ for i in range (1,4): # mineral valve (4 uno por sector), water valve (12 dos po
     id_type = 1
     querys_actuator_sector.append("INSERT INTO actuator_sector (ID_ACTUATOR, ID_TYPE) VALUES ("+str(id_actuator)+","+str(id_type)+");")
 
-
 querys.append(querys_actuator_sector)
 
 #table value_sector_actuator 
@@ -82,7 +70,6 @@ for i in range (1,4):
         id_actuator = i
         timestamp_unix = rd.randint(1660000000,1667476927)
         value = rd.randint(0,100) #porcentaje
-
         querys_value_sector_actuator.append("INSERT INTO value_sector_actuator (ID_ACTUATOR, TIMESTAMP, VALUE) VALUES ("+str(id_actuator)+", FROM_UNIXTIME("+str(timestamp_unix)+"),"+str(value)+");")
 
 querys.append(querys_value_sector_actuator)
@@ -144,7 +131,6 @@ querys_pipe_act_loc.append("INSERT INTO pipe_act_loc (ID_ACTUATOR, ID_PIPE) VALU
 
 querys.append(querys_pipe_act_loc)
 
-
 #table pipe 
 querys_pipe = []
 for i in range (1,6):
@@ -170,11 +156,9 @@ for i in range (1,6):
         id_sensor = i*j+12
         id_sensor_type = rd.randint(4,5) # 1 humidity, 2 temperature, 3 mineral, 4 flow, 5 pressure
         id_measurement_type = id_sensor_type 
-
         querys_sensor_pipe.append("INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE) VALUES ("+str(id_sensor)+","+str(id_measurement_type)+","+str(id_sensor_type)+");")
 
 querys.append(querys_sensor_pipe)
-
 
 #table value_pipe_sensor
 querys_value_pipe_sensor = []
@@ -184,7 +168,6 @@ for i in range (1,6):
         timestamp_unix = rd.randint(1660000000,1667476927)
         id_sensor_type = rd.randint(4,5) # 1 humidity, 2 temperature, 3 mineral, 4 flow, 5 pressure
         id_measurement_type = id_sensor_type
-
         value = rd.random()*10
         querys_value_pipe_sensor.append("INSERT INTO value_pipe_sensor (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE) VALUES ("+str(id_sensor)+", SELECT FROM_UNIXTIME("+str(timestamp_unix)+"),"+str(id_measurement_type)+","+str(value)+");")
 
@@ -192,14 +175,14 @@ querys.append(querys_value_pipe_sensor)
 
 #table actuator_type
 querys_actuator_type = [] # 1 mineral valve, 2 water valve, 3 pumps  
-description1 = "MINERAL VALVE"
-location1 = "SECTOR"
+description1 = '"MINERAL VALVE"'
+location1 = '"SECTOR"'
 querys_actuator_type.append("INSERT INTO actuator_pipe (ID_TYPE, DESCRIPTION, IS_SWITCH, LOCATION) VALUES (1, "+description1+", 1, "+location1+");")
-description2 = "WATER VALVE"
-location2 = "PIPE"
+description2 = '"WATER VALVE"'
+location2 = '"PIPE"'
 querys_actuator_type.append("INSERT INTO actuator_pipe (ID_TYPE, DESCRIPTION, IS_SWITCH, LOCATION) VALUES (2, "+description2+", 1, "+location2+");")
-description3 = "PUMP"
-location3 = "PIPE"
+description3 = '"PUMP"'
+location3 = '"PIPE"'
 querys_actuator_type.append("INSERT INTO actuator_pipe (ID_TYPE, DESCRIPTION, IS_SWITCH, LOCATION) VALUES (3, "+description3+", 1, "+location3+");")
 
 querys.append(querys_actuator_pipe)
@@ -222,34 +205,34 @@ for i in range (1,5):
     id_measurement_type = id_sensor_type
 
     if i == 1:
-        sensor_description = "HUMIDITY"
+        sensor_description = '"HUMIDITY"'
         measurement_description = sensor_description
-        unit = "g/m3"
-        location = "SECTOR"
+        unit = '"g/m3"'
+        location = '"SECTOR"'
 
     if i == 2:
-        sensor_description = "TEMPERATURE"
+        sensor_description = '"TEMPERATURE"'
         measurement_description = sensor_description
-        unit = "ºc"
-        location = "SECTOR"
+        unit = '"ºc"'
+        location = '"SECTOR"'
 
     if i == 3:
-        sensor_description = "MINERAL"
+        sensor_description = '"MINERAL"'
         measurement_description = sensor_description
-        unit = "ppm"
-        location = "SECTOR"
+        unit = '"ppm"'
+        location = '"SECTOR"'
 
     if i == 4:
-        sensor_description = "FLOW"
+        sensor_description = '"FLOW"'
         measurement_description = sensor_description
-        unit = "m3/s"
-        location = "PIPE"
+        unit = '"m3/s"'
+        location = '"PIPE"'
 
     if i == 5:
-        sensor_description = "PRESSURE"
+        sensor_description = '"PRESSURE"'
         measurement_description = sensor_description
-        unit = "pa"
-        location = "PIPE"
+        unit = '"pa"'
+        location = '"PIPE"'
 
     querys_sensor_type.append("INSERT INTO sensor_type (ID_SENSOR_TYPE, ID_MEASUREMENT_TYPE, SENSOR_DESCRIPTION, MEASUREMENT_DESCRIPTION, UNIT, LOCATION) VALUES ("+str(id_sensor_type)+","+str(id_measurement_type)+", "+sensor_description+", "+measurement_description+", "+unit+", "+location+");")
 
