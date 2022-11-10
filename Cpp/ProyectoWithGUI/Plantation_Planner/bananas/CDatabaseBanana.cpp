@@ -54,8 +54,7 @@ bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 	os << "SELECT ID_SECTOR AS ID, LON, LAT, WATER_DEMAND AS H20 FROM SECTOR;" << std::endl; // << prosumer_id;
 	try
 	{
-		// if (m_p_con != NULL)
-		if (true) // Hardcode
+		 if (m_p_con != NULL)
 		{
 			std::string query;
 			query = os.str();
@@ -66,18 +65,10 @@ bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 			while (res->next())
 			{
 
-				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
-				// sectors.push_back(CSector(res->getInt64("ID"), CEstate(res->getint64('LON'), CEstate(res->getint64('LAT')), res->getFloat("H20"))); // si no funciona usar getDouble
-
-				// Add a share pointer of a sector to the list
 				CEstate estate = CEstate(res->getDouble("LON"), res->getDouble("LAT"));
-
 				sectors.push_back(std::make_shared<CSector>(res->getInt64("ID"), estate, res->getDouble("H20")));
 				// Print ID string
-				
-				_log.println(boost::log::trivial::error, "Sector ID: " + std::to_string(res->getInt64("ID")));
-				// sectors.push_back(std::shared_ptr<CSector>(new CSector(res->getInt64("ID"), CEstate(res->getDouble("LON"), res->getDouble("LAT"), res->getDouble("H20")))));
-
+				_log.println(boost::log::trivial::info, "Sector ID: " + std::to_string(res->getInt64("ID")));
 				result = true;
 			}
 
@@ -100,42 +91,45 @@ bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 	return result;
 }
 
-// bool CDatabaseBanana::getPipes(std::vector<boost::shared_ptr<CPipe>>& pipes) {
+ bool CDatabaseBanana::getPipes(std::list<std::shared_ptr<CPipe>>& pipes, std::list<std::shared_ptr<CSector>>& sectors) {
 
-// 	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
-// 	bool result = false;
+ 	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+ 	bool result = false;
 
-// 	std::ostringstream os;
-// 	os << "SELECT ID_PIPE AS ID FROM PIPES;" << endl;// << prosumer_id;
-// 	try {
-// 		if (m_p_con != NULL) {
-// 			std::string query;
-// 			query = os.str();
-// 			std::cout << query << std::endl;
-// 			p_stmt = m_p_con->createStatement();
-// 			res = p_stmt->executeQuery(query);
+ 	std::ostringstream os;
+ 	os << "SELECT *  FROM connection;" << std::endl;
+ 	try {
+ 		if (m_p_con != NULL) {
+ 			std::string query;
+ 			query = os.str();
+ 			std::cout << query << std::endl;
+ 			p_stmt = m_p_con->createStatement();
+ 			res = p_stmt->executeQuery(query);
 
-// 			while (res->next()) {
+ 			while (res->next()) {
 
+				pipes.push_back(std::make_shared<CPipe>(res->getInt64("ID_PIPE"), getSectorById(res->getInt64("ID_SECTOR_IN"),sectors), getSectorById(res->getInt64("ID_SECTOR_OUT"), sectors)));
+				// Print ID string
+				_log.println(boost::log::trivial::info, "PIPE ID: " + std::to_string(res->getInt64("ID_PIPE")));
 // 				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
 // 				pipes.push_back(CPipe(res->getInt64("ID")));
-// 				result = true;
-// 			}
+ 				result = true;
+ 			}
 
-// 			delete res;
-// 			delete p_stmt;
-// 			p_stmt = NULL;
-// 		}
-// 	}
-// 	catch (sql::SQLException& e) {
-// 		if (res != NULL) delete res;
-// 		if (p_stmt != NULL) delete p_stmt;
-// 		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
-// 		return false;
-// 	}
-// 	return result;
+ 			delete res;
+ 			delete p_stmt;
+ 			p_stmt = NULL;
+ 		}
+ 	}
+ 	catch (sql::SQLException& e) {
+ 		if (res != NULL) delete res;
+ 		if (p_stmt != NULL) delete p_stmt;
+ 		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+ 		return false;
+ 	}
+ 	return result;
 
-// }
+ }
 
 // bool getConnections(std::vector<boost::shared_ptr<CSector>>& sectors, std::vector<boost::shared_ptr<CPipe>>& pipes, std::vector<boost::shared_ptr<CConnection>>& connection s) {
 
