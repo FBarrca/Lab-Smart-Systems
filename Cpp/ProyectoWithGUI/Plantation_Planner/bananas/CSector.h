@@ -7,7 +7,7 @@
 //#include "./CPipe.h"
 
 #include <iostream>
-
+#include <list>
 
 class CSector
 {
@@ -15,7 +15,7 @@ public:
     CSector();
     //~CSector();
     virtual ~CSector(void){};
-    //CSector(unsigned int i, CEstate e, float w) : m_id(i), m_estate(e), m_water_demand(w), m_description("Hola"){};
+    // CSector(unsigned int i, CEstate e, float w) : m_id(i), m_estate(e), m_water_demand(w), m_description("Hola"){};
     CSector(unsigned int i, CEstate e, float w);
     // Draws Sector on IMGUI
     void draw()
@@ -55,7 +55,7 @@ public:
         }
 
         // Rightside attribute
-        //const int output_attr_id = m_id * OFFSETCONNECTION + 2;
+        // const int output_attr_id = m_id * OFFSETCONNECTION + 2;
         ImNodes::BeginOutputAttribute(m_gui_data.Nodeid);
         // in between Begin|EndAttribute calls, you can call ImGui
         // UI functions
@@ -63,8 +63,7 @@ public:
         ImNodes::EndOutputAttribute();
         char id_string[32];
         sprintf(id_string, "%d", m_id);
-        char child_name[64] = "S&A Sector"
-        ;
+        char child_name[64] = "S&A Sector";
         ImGui::BeginChild(strcat(child_name, id_string), ImVec2(200, 80), false);
         if (ImGui::TreeNode("Sensors"))
         {
@@ -92,7 +91,7 @@ private:
     float m_water_demand;
     // std::vector<CPipe> m_Pipes;
     //  std::vector<boost::shared_ptr<CPipe>> m_Pipes;		 // Pipes that arrive to that node
-      //std::vector<boost::shared_ptr<CSensor>> m_Sensors;	 // Sensor at the node
+    // std::vector<boost::shared_ptr<CSensor>> m_Sensors;	 // Sensor at the node
     //  std::vector<boost::shared_ptr<CActuator>> m_Actuators; // Sensor at the node
 
     // Structure with gui data
@@ -102,5 +101,10 @@ private:
         int Nodeid; // id of input at imnodes
 
     } m_gui_data;
-    friend class CPipe;
+
+    friend class CPipe; // To access m_id
+    // Friend funtion to get a Sector by an id
+    friend CSector *getSectorById(unsigned int id, std::list<CSector *> &sectors);
 };
+
+CSector *getSectorById(unsigned int id, std::list<CSector *> &sectors);

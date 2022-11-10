@@ -9,7 +9,7 @@ CPipe::CPipe()
 
 }
 
-CPipe::CPipe(int id,CSector * from, CSector * to)
+CPipe::CPipe(int id,  CSector * from, CSector * to)
 {
     m_id = id;
     m_description = "Pipe" + std::to_string(id);

@@ -37,7 +37,6 @@
 #include "bananas/CPipe.h"
 #include "bananas/CValue.h"
 
-
 #include "./helpers/CTimeUtils.hpp"
 
 #define CONFIG_PATH "config"
@@ -61,6 +60,9 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 int main()
 {
+    /*----------------------
+    |  INIT GUI
+     -----------------------*/
     WNDCLASSEX wc = {sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("Plantation Planner"), NULL};
     ::RegisterClassEx(&wc);
     HWND hwnd = ::CreateWindow(wc.lpszClassName, _T("Plantation Planner"), WS_OVERLAPPEDWINDOW, 100, 100, 1280, 720, NULL, NULL, wc.hInstance, NULL);
@@ -72,7 +74,9 @@ int main()
         ::UnregisterClass(wc.lpszClassName, wc.hInstance);
         return 1;
     }
-
+    /*----------------------
+    |  INIT SQL CONNECTION
+     -----------------------*/
     CDatabaseMIC dbObject;
     helpers::CTimeUtils ctu;
     try
@@ -117,13 +121,14 @@ int main()
         MSG msg;
         ZeroMemory(&msg, sizeof(msg));
 
+        std::list<CSector *> v_Sectors;
+        std::list<CPipe *> v_Pipes;
+
         CEstate Tenerife_Estate(3, 4);
-        CSector Sector1(1, Tenerife_Estate, 2.0);
-        CSector Sector2(2, Tenerife_Estate, 2.0);
 
-        CPipe Pipe1(1, &Sector1, &Sector2);
-
-
+        /*----------------------
+        |  SQL REQUESTS
+         -----------------------*/
         while (msg.message != WM_QUIT)
         {
             /*----------------------
@@ -138,118 +143,88 @@ int main()
 
                 log.println(boost::log::trivial::trace, "Starting intelligence execution cycle");
 
-                // ---------------------------- INSERT VALUE  ----------------------------
+                // ---------------------------- GET DATA FROM DB  ----------------------------
 
                 // DDBB connection
-                dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
-                log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer inserts de info");
-
-                // Insert stuff in DB
-                dbObject.ComienzaTransaccion();
-
-                CValue ins_val(60, time(0));
-                // Do inserts of data
-                bool resultInsert = true;
-                resultInsert = resultInsert && dbObject.insertValue(5, ins_val);
-
-                if (resultInsert)
-                {
-                    log.println(boost::log::trivial::info, "Data insert OK");
-                    dbObject.ConfirmarTransaccion();
-                }
-                else
-                {
-                    log.println(boost::log::trivial::info, "Data insert ERROR");
-                    dbObject.DeshacerTransaccion();
-                }
-
-                dbObject.Desconectar();
-
-                // --------------------------- CHECK IF INSERTED
 
                 dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
-                log.println(boost::log::trivial::info, "Hemos conectado con la DB para hacer gets de info");
+                log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer getters de info");
 
-                std::vector<CValue> vCValue;
-                dbObject.getValues(5, vCValue);
+                // SYNCRONIZE THE STRUCTURE OF THE NETWORK (placeholder for testing)
+                // Create a new Sector and add it to the list of sectors
+                v_Sectors.push_back(new CSector(1, Tenerife_Estate, 2.0));
+                v_Sectors.push_back(new CSector(2, Tenerife_Estate, 3.0));
+                v_Pipes.push_back(new CPipe(3, getSectorById(1, v_Sectors), getSectorById(2, v_Sectors)));
 
-                if (!findCValueOnVector(vCValue, ins_val))
-                    log.println(boost::log::trivial::info, "We looked for value of that id on that time but found no data");
-                else
-                    log.println(boost::log::trivial::info, "Found inserted data at that time");
+                
 
-                dbObject.Desconectar();
+                //// Syncronize the sensor data
+                // for (size_t i = 0; i < v_Sectors.size(); i++)
+                //{
+                //     dbObject.getSectorPressure(v_Sectors[i], from, to);
+                //     dbObject.getSectorPumps(v_Sectors[i])
+                // }
+                // for (size_t i = 0; i < v_Pipes.size(); i++)
+                //{
+                //     dbObject.getPipeFlow(v_Pipes[i]);
+                //     dbObject.getPipeValve(v_Pipes[i]);
+                // }
+                // dbObject.Desconectar();
 
-                // ---------------------------- UPDATE INSERTED DATA +1 ----------------------
-                ins_val = ins_val + 1;
+                /*----------------------
+                |  PROCESS OF DATA & INTELLIGENCE
+                -----------------------*/
 
-                dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
-                log.println(boost::log::trivial::info, "Hemos conectado con la DB para hacer updates de info");
+                // for (size_t i = 0; i < v_Sectors.size(); i++)
+                //{
+                //     ////look for drops in sector pressure
+                //     if (DropinPressure(v_Sectors[i]))
+                //     {
+                //         //find Pipes that are in that node
+                //         std::vector<boost::shared_ptr<CPipe>> v_PipesToSector;
+                //         if (findPipesToSector(v_PipesToSector)) {
+                //             for (size_t j = 0; j < v_PipesToSector.size(); j++)
+                //             {
+                //                 //check if other end has also lost preasssure
+                //                 CSector otherSector = Pipedestination(v_PipesToSector[j], v_Sectors[i]);
+                //                 if (DropinPressure(otherSector)) // if both have lost preasure problem si between
+                //                 {
+                //                     CloseValve(v_PipesToSector[j]);
+                //                 }
 
-                bool resultUpdate = true;
-                resultUpdate = resultUpdate && dbObject.updateValue(5, ins_val);
+                //            }
 
-                if (resultUpdate)
-                {
-                    log.println(boost::log::trivial::info, "Data insert OK");
-                    dbObject.ConfirmarTransaccion();
-                }
-                else
-                {
-                    log.println(boost::log::trivial::info, "Data insert ERROR");
-                    dbObject.DeshacerTransaccion();
-                }
+                //        }
+                //    }
 
-                dbObject.Desconectar();
+                /*----------------------
+                |  UPDATE VALVE STATE
+                -----------------------*/
+                // DDBB connection
+                // dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+                // log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer inserts de info");
 
-                // --------------------------- CHECK IF UPDATED
+                // CValue ins_val(60, time(0));
+                ////Do inserts of data
 
-                dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
-                log.println(boost::log::trivial::info, "Hemos conectado con la DB para hacer gets de info");
+                // for (size_t i = 0; i < v_Pipes.size(); i++)
+                //{
+                //     //Insert stuff in DB
+                //     dbObject.ComienzaTransaccion();
+                //     bool resultInsert = true;
+                //     resultInsert = resultInsert && dbObject.insertValveState(v_Pipes[i]);
 
-                std::vector<CValue> vCValueUpdate;
-                dbObject.getValues(5, vCValueUpdate);
+                //    if (resultInsert) {
+                //        log.println(boost::log::trivial::trace, "Data insert OK");
+                //        dbObject.ConfirmarTransaccion();
+                //    }
+                //    else {
+                //        log.println(boost::log::trivial::trace, "Data insert ERROR");
+                //        dbObject.DeshacerTransaccion();
+                //    }
 
-                if (!findCValueOnVector(vCValueUpdate, ins_val))
-                    log.println(boost::log::trivial::info, "We looked for value of that id on that time but found no data");
-                else
-                    log.println(boost::log::trivial::info, "POSTUPDATE:Found inserted data at that time");
-
-                dbObject.Desconectar();
-
-                // ---------------------------- DELETE DATA  ----------------------------
-
-                dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
-                log.println(boost::log::trivial::info, "Hemos conectado con la DB para hacer updates de info");
-
-                bool resultDelete = true;
-                resultDelete = resultDelete && dbObject.deleteValue(5, ins_val);
-
-                if (resultDelete)
-                {
-                    log.println(boost::log::trivial::info, "Data insert OK");
-                    dbObject.ConfirmarTransaccion();
-                }
-                else
-                {
-                    log.println(boost::log::trivial::info, "Data insert ERROR");
-                    dbObject.DeshacerTransaccion();
-                }
-
-                dbObject.Desconectar();
-                // -------------------------- - CHECK IF DELETE
-                dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
-                log.println(boost::log::trivial::info, "Hemos conectado con la DB para hacer gets de info");
-
-                std::vector<CValue> vCValueDelete;
-                dbObject.getValues(5, vCValueDelete);
-
-                if (!findCValueOnVector(vCValueDelete, ins_val))
-                    log.println(boost::log::trivial::info, "DELETE: We looked for value of that id on that time but found no data");
-                else
-                    log.println(boost::log::trivial::info, "DELETE: Found inserted data at that time");
-
-                dbObject.Desconectar();
+                //}
+                // dbObject.Desconectar();
 
                 lastExecution = helpers::CTimeUtils::seconds_from_epoch(execTime);
             }
@@ -276,24 +251,22 @@ int main()
             ImGui::SetNextWindowSize(whole_content_size);
             ImGui::Begin("ImguiTemplate", 0, flags);
             ImGui::Text("Estate Node Viewer");
-             
+
             /*----------------------
             |  GUI DRAW CODE
             -----------------------*/
-            // ImGui::ShowDemoWindow();
-            // ImGui::End();
-
-            // Make GUI fullscreen
-            //  ImGui::SetNextWindowPos({0, 0});
-            //  io = ImGui::GetIO();
-            //  whole_content_size = io.DisplaySize;
-
-            // ImGui::Begin("Estate View", 0, flags);
             ImNodes::BeginNodeEditor();
 
-            Sector1.draw();
-            Sector2.draw();
-            Pipe1.draw();
+            // DRAW FOR EACH SECTOR IN THE NETWORK (using iterators)
+            for (auto it = v_Sectors.begin(); it != v_Sectors.end(); ++it)
+            {
+                (*it)->draw();
+            }
+            // DRAW FOR EACH PIPE IN THE NETWORK (using iterators)
+            for (auto it = v_Pipes.begin(); it != v_Pipes.end(); ++it)
+            {
+                (*it)->draw();
+            }
 
             ImNodes::EndNodeEditor();
             ImGui::End();
