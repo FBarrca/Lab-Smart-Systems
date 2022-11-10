@@ -1,7 +1,7 @@
 #pragma once
 #include <String>
-#include "CSenseType.h"
-#include "CMeasurement.h"
+//#include "CSenseType.h"
+//#include "CMeasurement.h"
 #include <vector>
 
 #include <boost/make_shared.hpp>

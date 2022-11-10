@@ -30,4 +30,5 @@ private:
 	std::string m_Address = "Not Provided";
 
 	// std::vector<boost::shared_ptr<CWeather>> mp_Weather_forecast;
+ 
 };

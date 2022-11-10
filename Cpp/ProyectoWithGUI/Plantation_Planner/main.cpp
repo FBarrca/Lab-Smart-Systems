@@ -31,6 +31,7 @@
 //#include "CDatabase4.h"
 #include "bananas/CDatabase4.h"
 //#include "CValue.h"
+#include "bananas/CDatabaseBanana.h"
 
 #include "bananas/CEstate.h"
 #include "bananas/CSector.h"
@@ -42,7 +43,7 @@
 #define CONFIG_PATH "config"
 #define LOGS_PROPERTIES_FILE "logs.ini"
 
-#define SCHEMA_NAME "MIC"
+#define SCHEMA_NAME "banana"
 #define HOST_NAME "127.0.0.1:3306"
 #define USER_NAME "root"
 #define PASSWORD_USER "root"
@@ -77,7 +78,7 @@ int main()
     /*----------------------
     |  INIT SQL CONNECTION
      -----------------------*/
-    CDatabaseMIC dbObject;
+    CDatabaseBanana dbObject;
     helpers::CTimeUtils ctu;
     try
     {
@@ -121,8 +122,11 @@ int main()
         MSG msg;
         ZeroMemory(&msg, sizeof(msg));
 
-        std::list<CSector *> v_Sectors;
-        std::list<CPipe *> v_Pipes;
+        // std::list<CSector *> v_Sectors;
+        // std::list<CPipe *> v_Pipes;
+        // List of shared pointers
+        std::list<std::shared_ptr<CSector>> v_Sectors;
+        std::list<std::shared_ptr<CPipe>> v_Pipes;
 
         CEstate Tenerife_Estate(3, 4);
 
@@ -151,12 +155,13 @@ int main()
                 log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer getters de info");
 
                 // SYNCRONIZE THE STRUCTURE OF THE NETWORK (placeholder for testing)
-                // Create a new Sector and add it to the list of sectors
-                v_Sectors.push_back(new CSector(1, Tenerife_Estate, 2.0));
-                v_Sectors.push_back(new CSector(2, Tenerife_Estate, 3.0));
-                v_Pipes.push_back(new CPipe(3, getSectorById(1, v_Sectors), getSectorById(2, v_Sectors)));
-
+                // Add a new shared pointers to the list of sectors
+                //v_Sectors.push_back(std::make_shared<CSector>(1, Tenerife_Estate, 2.0));
+                //v_Sectors.push_back(std::make_shared<CSector>(2, Tenerife_Estate, 3.0));
+                // Add a new shared pointers to the list of pipes
+                //v_Pipes.push_back(std::make_shared<CPipe>(3, getSectorById(1, v_Sectors), getSectorById(2, v_Sectors)));
                 
+                dbObject.getSectors(v_Sectors);
 
                 //// Syncronize the sensor data
                 // for (size_t i = 0; i < v_Sectors.size(); i++)

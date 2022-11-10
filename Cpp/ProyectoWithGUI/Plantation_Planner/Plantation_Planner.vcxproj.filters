@@ -108,6 +108,9 @@
     <ClCompile Include="bananas\CPipe.cpp">
       <Filter>Source Files\bananas</Filter>
     </ClCompile>
+    <ClCompile Include="bananas\CDatabaseBanana.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\CError.h">
@@ -183,6 +186,9 @@
       <Filter>Header Files\imgui</Filter>
     </ClInclude>
     <ClInclude Include="bananas\CPipe.h">
+      <Filter>Header Files\bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CDatabaseBanana.h">
       <Filter>Header Files\bananas</Filter>
     </ClInclude>
   </ItemGroup>

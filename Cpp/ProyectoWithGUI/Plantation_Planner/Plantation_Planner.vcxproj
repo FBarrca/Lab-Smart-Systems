@@ -55,6 +55,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bananas\CDatabase4.cpp" />
+    <ClCompile Include="bananas\CDatabaseBanana.cpp" />
     <ClCompile Include="bananas\CEstate.cpp" />
     <ClCompile Include="bananas\CPipe.cpp" />
     <ClCompile Include="bananas\CSector.cpp" />
@@ -78,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bananas\CDatabase4.h" />
+    <ClInclude Include="bananas\CDatabaseBanana.h" />
     <ClInclude Include="bananas\CEstate.h" />
     <ClInclude Include="bananas\CPipe.h" />
     <ClInclude Include="bananas\CSector.h" />

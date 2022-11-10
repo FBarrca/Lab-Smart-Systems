@@ -17,7 +17,7 @@
 class CPipe
 {
 public:
-	CPipe(int id, CSector* from, CSector* to);
+	CPipe(int id, std::shared_ptr<CSector> from, std::shared_ptr<CSector> to);
 	CPipe();
 	~CPipe();
 	//bool addSensor(boost::shared_ptr<CSensor> s);
@@ -28,8 +28,8 @@ public:
 private:
 	unsigned int m_id;
 	std::string m_description;
-	CSector * m_fromSector;
-	CSector * m_toSector;
+	std::shared_ptr<CSector> m_fromSector;
+	std::shared_ptr<CSector> m_toSector;
 	struct
 	{
 		bool hasLeak;
