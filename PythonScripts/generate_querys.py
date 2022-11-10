@@ -185,7 +185,7 @@ description3 = '"PUMP"'
 location3 = '"PIPE"'
 querys_actuator_type.append("INSERT INTO actuator_pipe (ID_TYPE, DESCRIPTION, IS_SWITCH, LOCATION) VALUES (3, "+description3+", 1, "+location3+");")
 
-querys.append(querys_actuator_pipe)
+querys.append(querys_actuator_type)
 
 #table connection
 querys_connection = []
