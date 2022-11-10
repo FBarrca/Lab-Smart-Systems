@@ -103,7 +103,7 @@ int main(void) {
 				// Syncronize the sensor data
 				for (size_t i = 0; i < v_Sectors.size(); i++)
 				{
-					dbObject.getSectorPressure(v_Sectors[i], from ,to);
+					dbObject.getSectorPressure(v_Sectors[i], from_fecha ,to_fecha);
 					dbObject.getSectorPumps(v_Sectors[i])
 				}
 				for (size_t i = 0; i < v_Pipes.size(); i++)

@@ -133,3 +133,4 @@ time_t helpers::CTimeUtils::getTimeTFromYMDHMS(const int &y, const int &m, const
 	tm.tm_isdst = -1; // Is DST on? 1 = yes, 0 = no, -1 = unknown
 	return mktime(&tm);
 }
+

@@ -128,7 +128,9 @@ public:
 
 	bool changeInjector(int id_actuator);
 
+	bool getSectorPumps(const CSector& sector);
 
+	bool getSectorPressure(const CSector& sector, time_t from_fecha, time_t to_fecha, std::list<CValues*>& pressure_list);
 
 	bool getSectors(std::vector<boost::shared_ptr<CSector>> & sectors);
 
