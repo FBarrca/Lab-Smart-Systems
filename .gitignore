@@ -50,3 +50,6 @@ Cpp/ProyectoWithGUI/.vs/*
 
 # Ignore conan to avoid issues with folders
 Cpp/ProyectoWithGUI/Plantation_Planner/conan/*
+Cpp/ProyectoWithGUI/Plantation_Planner/conan/conan_imports_manifest.txt
+*.props
+Cpp/ProyectoWithGUI/Plantation_Planner/conan/conaninfo.txt
