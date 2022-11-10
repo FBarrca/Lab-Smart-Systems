@@ -1,0 +1,20 @@
+2022-11-10 16:51:41 #00000001 <info>: Log initialized
+2022-11-10 16:51:44 #00000003 <error>: ERROR:Can't connect to MySQL server on '127.0.0.1' (10061)
+2022-11-10 16:51:44 #00000005 <info>: Data insert ERROR
+2022-11-10 16:51:46 #00000006 <error>: ERROR:Can't connect to MySQL server on '127.0.0.1' (10061)
+2022-11-10 16:51:46 #00000007 <info>: Hemos conectado con la DB para hacer gets de info
+2022-11-10 16:51:46 #00000008 <info>: We looked for value of that id on that time but found no data
+2022-11-10 16:51:48 #00000009 <error>: ERROR:Can't connect to MySQL server on '127.0.0.1' (10061)
+2022-11-10 16:51:48 #0000000a <info>: Hemos conectado con la DB para hacer updates de info
+2022-11-10 16:51:48 #0000000b <info>: cant get values
+2022-11-10 16:51:48 #0000000c <info>: Data insert ERROR
+2022-11-10 16:51:50 #0000000d <error>: ERROR:Can't connect to MySQL server on '127.0.0.1' (10061)
+2022-11-10 16:51:50 #0000000e <info>: Hemos conectado con la DB para hacer gets de info
+2022-11-10 16:51:50 #0000000f <info>: We looked for value of that id on that time but found no data
+2022-11-10 16:51:52 #00000010 <error>: ERROR:Can't connect to MySQL server on '127.0.0.1' (10061)
+2022-11-10 16:51:52 #00000011 <info>: Hemos conectado con la DB para hacer updates de info
+2022-11-10 16:51:52 #00000012 <info>:  DELETE FROM variable_values WHERE id_variable = 5 AND info_date  = FROM_UNIXTIME( 1668095504);
+2022-11-10 16:51:52 #00000013 <info>: Data insert OK
+2022-11-10 16:51:54 #00000014 <error>: ERROR:Can't connect to MySQL server on '127.0.0.1' (10061)
+2022-11-10 16:51:54 #00000015 <info>: Hemos conectado con la DB para hacer gets de info
+2022-11-10 16:51:54 #00000016 <info>: DELETE: We looked for value of that id on that time but found no data

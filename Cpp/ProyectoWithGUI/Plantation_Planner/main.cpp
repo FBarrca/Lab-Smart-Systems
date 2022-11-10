@@ -34,7 +34,9 @@
 
 #include "bananas/CEstate.h"
 #include "bananas/CSector.h"
+#include "bananas/CPipe.h"
 #include "bananas/CValue.h"
+
 
 #include "./helpers/CTimeUtils.hpp"
 
@@ -118,6 +120,9 @@ int main()
         CEstate Tenerife_Estate(3, 4);
         CSector Sector1(1, Tenerife_Estate, 2.0);
         CSector Sector2(2, Tenerife_Estate, 2.0);
+
+        CPipe Pipe1(1, &Sector1, &Sector2);
+
 
         while (msg.message != WM_QUIT)
         {
@@ -288,6 +293,7 @@ int main()
 
             Sector1.draw();
             Sector2.draw();
+            Pipe1.draw();
 
             ImNodes::EndNodeEditor();
             ImGui::End();

@@ -56,6 +56,7 @@
   <ItemGroup>
     <ClCompile Include="bananas\CDatabase4.cpp" />
     <ClCompile Include="bananas\CEstate.cpp" />
+    <ClCompile Include="bananas\CPipe.cpp" />
     <ClCompile Include="bananas\CSector.cpp" />
     <ClCompile Include="bananas\CValue.cpp" />
     <ClCompile Include="dm-database\CDatabase.cpp" />
@@ -78,6 +79,7 @@
   <ItemGroup>
     <ClInclude Include="bananas\CDatabase4.h" />
     <ClInclude Include="bananas\CEstate.h" />
+    <ClInclude Include="bananas\CPipe.h" />
     <ClInclude Include="bananas\CSector.h" />
     <ClInclude Include="bananas\CValue.h" />
     <ClInclude Include="dm-database\CDatabase.hpp" />
