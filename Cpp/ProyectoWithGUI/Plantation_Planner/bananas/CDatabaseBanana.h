@@ -18,6 +18,7 @@
 #include "CValue.h"
 //#include "CSensor.h"
 #include "CSector.h"
+#include "CPipe.h"
 
 #include <list>
 #include <vector>
@@ -78,6 +79,8 @@ public:
 	 */
 
 	bool getSectors(std::list<std::shared_ptr<CSector>> &sectors);
+
+	bool getPipes(std::list<std::shared_ptr<CPipe>> &pipes, std::list<std::shared_ptr<CSector>> &sectors);
 	
 private:
 };

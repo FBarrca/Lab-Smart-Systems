@@ -15,7 +15,7 @@ CSector::CSector(unsigned int i, CEstate e, float w)
     m_estate = e;
     m_water_demand = w;
 
-    m_gui_data.Nodeid = m_id * OFFSETCONNECTION + 2;
+    m_gui_data.Nodeid = m_id * OFFSETCONNECTION + 1;
 }
 
 // CSector::~CSector() {}

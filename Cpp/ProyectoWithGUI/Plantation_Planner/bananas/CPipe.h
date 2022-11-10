@@ -35,5 +35,6 @@ private:
 		bool hasLeak;
 		int fromNodeId; // id if imnodes input
 		int toNodeid; //id of imnodes output
+		int pipeId;
 	} m_gui_data;
 };

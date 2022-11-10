@@ -162,7 +162,7 @@ int main()
                 //v_Pipes.push_back(std::make_shared<CPipe>(3, getSectorById(1, v_Sectors), getSectorById(2, v_Sectors)));
                 
                 dbObject.getSectors(v_Sectors);
-
+                dbObject.getPipes(v_Pipes, v_Sectors);
                 //// Syncronize the sensor data
                 // for (size_t i = 0; i < v_Sectors.size(); i++)
                 //{
@@ -272,7 +272,7 @@ int main()
             {
                 (*it)->draw();
             }
-
+            ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
             ImNodes::EndNodeEditor();
             ImGui::End();
             ImGui::ShowDemoWindow();
