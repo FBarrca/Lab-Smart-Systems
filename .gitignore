@@ -44,3 +44,9 @@ Cpp/ProyectoWithGUI/Plantation_Planner/obj/*
 Cpp/ProyectoWithGUI/Plantation_Planner/bin/*
 #ignore .vs folder
 Cpp/ProyectoWithGUI/.vs/*
+
+# Ignore log files
+*.log
+
+# Ignore conan to avoid issues with folders
+Cpp/ProyectoWithGUI/Plantation_Planner/conan/*
