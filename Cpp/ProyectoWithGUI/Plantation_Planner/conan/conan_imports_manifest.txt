@@ -1,5 +1,0 @@
-1668099743
-C:\Users\quint\Documents\MASTER\Smart Systems\GIT\Lab-Smart-Systems\Cpp\ProyectoWithGUI\Plantation_Planner\bin\x64\Release\libeay32.dll: 611e8da3d2deadd5c53f679aaf3dee27
-C:\Users\quint\Documents\MASTER\Smart Systems\GIT\Lab-Smart-Systems\Cpp\ProyectoWithGUI\Plantation_Planner\bin\x64\Release\mysqlcppconn-7-vs14.dll: 7590f9e9e8200134acd32248b1d5c4db
-C:\Users\quint\Documents\MASTER\Smart Systems\GIT\Lab-Smart-Systems\Cpp\ProyectoWithGUI\Plantation_Planner\bin\x64\Release\mysqlcppconn8-2-vs14.dll: 22ca7eb8fbc8497e740b52fb76a8c6b3
-C:\Users\quint\Documents\MASTER\Smart Systems\GIT\Lab-Smart-Systems\Cpp\ProyectoWithGUI\Plantation_Planner\bin\x64\Release\ssleay32.dll: e3f9ed6727b615126712bbfb0831f3fc
