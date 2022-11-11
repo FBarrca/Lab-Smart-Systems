@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "imgui.h"
 #include "imgui_impl_dx9.h"
 #include "imgui_impl_win32.h"
@@ -130,6 +131,8 @@ int main()
 
         CEstate Tenerife_Estate(3, 4);
 
+        bool firstrun = true; // Flag to see if it is the first Update
+
         /*----------------------
         |  SQL REQUESTS
          -----------------------*/
@@ -156,11 +159,11 @@ int main()
 
                 // SYNCRONIZE THE STRUCTURE OF THE NETWORK (placeholder for testing)
                 // Add a new shared pointers to the list of sectors
-                //v_Sectors.push_back(std::make_shared<CSector>(1, Tenerife_Estate, 2.0));
-                //v_Sectors.push_back(std::make_shared<CSector>(2, Tenerife_Estate, 3.0));
+                // v_Sectors.push_back(std::make_shared<CSector>(1, Tenerife_Estate, 2.0));
+                // v_Sectors.push_back(std::make_shared<CSector>(2, Tenerife_Estate, 3.0));
                 // Add a new shared pointers to the list of pipes
-                //v_Pipes.push_back(std::make_shared<CPipe>(3, getSectorById(1, v_Sectors), getSectorById(2, v_Sectors)));
-                
+                // v_Pipes.push_back(std::make_shared<CPipe>(3, getSectorById(1, v_Sectors), getSectorById(2, v_Sectors)));
+
                 dbObject.getSectors(v_Sectors);
                 dbObject.getPipes(v_Pipes, v_Sectors);
                 //// Syncronize the sensor data
@@ -261,21 +264,37 @@ int main()
             |  GUI DRAW CODE
             -----------------------*/
             ImNodes::BeginNodeEditor();
-
             // DRAW FOR EACH SECTOR IN THE NETWORK (using iterators)
+            // log.println(boost::log::trivial::info, "Click X  " + std::to_string(click_pos.x) + "Click Y  " + std::to_string(click_pos.y));
+
             for (auto it = v_Sectors.begin(); it != v_Sectors.end(); ++it)
             {
                 (*it)->draw();
+                if (firstrun)
+                {
+                    ImVec2 pos = setSectorInGrid((*it)->get_id(), std::ceil(std::sqrt(v_Sectors.size())));
+                    (*it)->setPos(pos);
+                    ImNodes::SetNodeScreenSpacePos((*it)->get_id(), pos);
+                }
             }
+
             // DRAW FOR EACH PIPE IN THE NETWORK (using iterators)
             for (auto it = v_Pipes.begin(); it != v_Pipes.end(); ++it)
             {
                 (*it)->draw();
+                if (firstrun)
+                {
+                    (*it)->setPipeInGrid();
+                    std::cout << "Pipe " << (*it)->getInitialPos().x << "     ,     " << (*it)->getInitialPos().y << std::endl;
+                     ImNodes::SetNodeScreenSpacePos((*it)->get_GUIPipeId(),ImVec2((*it)->getInitialPos().x, (*it)->getInitialPos().y));
+                    //  setSectorInGrid((*it)->get_id(),  std::ceil(std::sqrt(v_Sectors.size()))
+                }
             }
+            firstrun = false;
             ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
             ImNodes::EndNodeEditor();
             ImGui::End();
-            ImGui::ShowDemoWindow();
+            //ImGui::ShowDemoWindow();
             ImGui::EndFrame();
 
             g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);

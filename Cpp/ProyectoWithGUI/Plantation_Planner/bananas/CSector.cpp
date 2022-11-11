@@ -15,11 +15,19 @@ CSector::CSector(unsigned int i, CEstate e, float w)
     m_estate = e;
     m_water_demand = w;
 
-    m_gui_data.Nodeid = m_id * OFFSETCONNECTION + 1;
+    m_gui_data.leftId = m_id * OFFSETCONNECTION + 1;
+    m_gui_data.rightId = m_id * OFFSETCONNECTION + 2;
 }
 
 // CSector::~CSector() {}
-
+unsigned int CSector::get_id()
+{
+    return m_id;
+}
+void CSector::setPos(ImVec2 pos)
+{
+    m_gui_data.initialPos = pos;
+}
 void CSector::draw()
 {
     ImNodes::PushColorStyle(
@@ -56,13 +64,16 @@ void CSector::draw()
         }
     }
 
-    // Rightside attribute
-    // const int output_attr_id = m_id * OFFSETCONNECTION + 2;
-    ImNodes::BeginOutputAttribute(m_gui_data.Nodeid);
-    // in between Begin|EndAttribute calls, you can call ImGui
-    // UI functions
+    ImNodes::BeginInputAttribute(m_gui_data.leftId);
     ImGui::Text("Connections");
+    ImGui::SameLine();
+    ImNodes::EndInputAttribute();
+
+    ImNodes::BeginOutputAttribute(m_gui_data.rightId);
+    ImGui::SameLine();
+    // ImGui::Text("To");
     ImNodes::EndOutputAttribute();
+
     char id_string[32];
     sprintf(id_string, "%d", m_id);
     char child_name[64] = "S&A Sector";
@@ -96,4 +107,13 @@ std::shared_ptr<CSector> getSectorById(unsigned int id, std::list<std::shared_pt
         }
     }
     return nullptr;
+}
+
+ImVec2 setSectorInGrid(unsigned int id, unsigned int w)
+{
+    int j = id - 1;
+    int distance = 500;
+    int x = (j % w) * distance;
+    int y = (j / w) * distance;
+    return ImVec2(x, y);
 }

@@ -1,4 +1,5 @@
 #include "CPipe.h"
+#include "../imgui.h"
 
 #define PIPE_OFFSET 10000000
 
@@ -16,15 +17,26 @@ CPipe::CPipe(int id, std::shared_ptr<CSector> from, std::shared_ptr<CSector> to)
     m_toSector = to;
 
     m_gui_data.hasLeak = false;
-    m_gui_data.fromNodeId = id * PIPE_OFFSET  +1;
-    m_gui_data.toNodeid = id * PIPE_OFFSET  +2;
+    m_gui_data.leftId = id * PIPE_OFFSET + 1;
+    m_gui_data.rightId = id * PIPE_OFFSET + 2;
     m_gui_data.pipeId = id * PIPE_OFFSET;
+
+    m_gui_data.pos.x = 0;
+    m_gui_data.pos.y = 0;
 }
 
 CPipe::~CPipe()
 {
 }
+unsigned int CPipe::get_GUIPipeId()
+{
+    return m_gui_data.pipeId;
+}
 
+ImVec2 CPipe::getInitialPos()
+{
+    return m_gui_data.pos;
+}
 void CPipe::draw()
 {
     ImNodes::PushColorStyle(
@@ -37,12 +49,15 @@ void CPipe::draw()
     ImNodes::EndNodeTitleBar();
 
     ImGui::Text("Desc: %s", this->m_description.c_str());
-    ImNodes::BeginInputAttribute(m_gui_data.fromNodeId);
-    ImGui::Text("From");
+
+    ImNodes::BeginInputAttribute(m_gui_data.leftId);
+    ImGui::Text("Connections");
+    ImGui::SameLine();
     ImNodes::EndInputAttribute();
 
-    ImNodes::BeginOutputAttribute(m_gui_data.toNodeid);
-    ImGui::Text("To");
+    ImNodes::BeginOutputAttribute(m_gui_data.rightId);
+    ImGui::SameLine();
+    // ImGui::Text("To");
     ImNodes::EndOutputAttribute();
     char id_string[32];
     sprintf(id_string, "%d", m_id);
@@ -66,11 +81,25 @@ void CPipe::draw()
     ImNodes::EndNode();
     ImNodes::PopColorStyle();
     ImNodes::PopColorStyle();
+
+    // Decide if to place line on right or left
+
     std::vector<std::pair<int, int>> links;
-    //Debug
-    //std::cout << "From PIPE" << m_gui_data.fromNodeId << "to Sector" << m_fromSector->m_gui_data.Nodeid << std::endl;
-    links.push_back({m_gui_data.fromNodeId, m_fromSector->m_gui_data.Nodeid});
-    links.push_back({m_gui_data.toNodeid, m_toSector->m_gui_data.Nodeid});
+
+    ImVec2 pipe_pos = ImNodes::GetNodeGridSpacePos(m_gui_data.pipeId);
+    ImVec2 from_pos = ImNodes::GetNodeGridSpacePos(m_fromSector.get()->m_id);
+    ImVec2 to_pos = ImNodes::GetNodeGridSpacePos(m_toSector.get()->m_id);
+
+    m_gui_data.pos = pipe_pos; // Update position
+    if (((float)pipe_pos.x - from_pos.x) > 0)
+        links.push_back({m_gui_data.leftId, m_fromSector.get()->m_gui_data.rightId});
+    else
+        links.push_back({m_gui_data.rightId, m_fromSector.get()->m_gui_data.leftId});
+    if (((float)pipe_pos.x - to_pos.x) > 0)
+        links.push_back({m_gui_data.leftId, m_toSector.get()->m_gui_data.rightId});
+    else
+        links.push_back({m_gui_data.rightId, m_toSector.get()->m_gui_data.leftId});
+
     // elsewhere in the code...
     for (int i = 0; i < links.size(); ++i)
     {
@@ -78,7 +107,16 @@ void CPipe::draw()
         // in this case, we just use the array index of the link
         // as the unique identifier
         ImNodes::Link(i + m_id * PIPE_OFFSET, p.first, p.second);
-
     }
     links.clear();
 };
+void CPipe::setPipeInGrid()
+{
+    // Small random offset to avoid overlapping between -50 and 50
+    int offsetx = rand() % 100 - 50;
+    int offsety = rand() % 100 - 50;
+
+    float middlePointx = (m_fromSector->m_gui_data.initialPos.x - m_toSector->m_gui_data.initialPos.x) / 2 + m_toSector->m_gui_data.initialPos.x + offsetx;
+    float middlePointy = (m_fromSector->m_gui_data.initialPos.y - m_toSector->m_gui_data.initialPos.y) / 2 + m_toSector->m_gui_data.initialPos.y + offsety;
+    m_gui_data.pos = ImVec2(middlePointx, middlePointy);
+}

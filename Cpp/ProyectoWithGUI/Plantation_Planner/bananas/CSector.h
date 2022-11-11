@@ -19,6 +19,9 @@ public:
     CSector(unsigned int i, CEstate e, float w);
     // Draws Sector on IMGUI
     void draw();
+    unsigned int get_id();
+
+    void setPos(ImVec2 pos);
 
 private:
     unsigned int m_id;
@@ -26,7 +29,7 @@ private:
     CEstate m_estate;
     float m_water_demand;
 
-        // std::vector<CPipe> m_Pipes;
+    // std::vector<CPipe> m_Pipes;
     //  std::vector<boost::shared_ptr<CPipe>> m_Pipes;		 // Pipes that arrive to that node
     // std::vector<boost::shared_ptr<CSensor>> m_Sensors;	 // Sensor at the node
     //  std::vector<boost::shared_ptr<CActuator>> m_Actuators; // Sensor at the node
@@ -35,8 +38,9 @@ private:
     struct
     {
         bool m_editing_water_demand = false;
-        int Nodeid; // id of input at imnodes
-
+        int leftId;  // id of input at imnodes
+        int rightId; // id of output at imnodes
+        ImVec2 initialPos;
     } m_gui_data;
 
     friend class CPipe; // To access m_id
@@ -45,3 +49,5 @@ private:
 };
 
 std::shared_ptr<CSector> getSectorById(unsigned int id, std::list<std::shared_ptr<CSector>> &sectors);
+
+ImVec2 setSectorInGrid(unsigned int id, unsigned int w);
