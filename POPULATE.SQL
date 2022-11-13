@@ -1,10 +1,13 @@
-use BANANA -- @block
+Drop DATABASE BANANAS;
+
+-- @block
 INSERT INTO address (LON, LAT, description)
 VALUES (
         55.366258634519916,
         157.53885533006786,
         "address1"
     );
+    --@block
 INSERT INTO address (LON, LAT, description)
 VALUES (
         79.34888330082836,
@@ -111,6 +114,15 @@ INSERT INTO sensor_type (
         LOCATION
     )
 VALUES (4, 4, "FLOW", "FLOW", "m3/s", "PIPE");
+INSERT INTO sensor_type (
+        ID_SENSOR_TYPE,
+        ID_MEASUREMENT_TYPE,
+        SENSOR_DESCRIPTION,
+        MEASUREMENT_DESCRIPTION,
+        UNIT,
+        LOCATION
+    )
+VALUES (5, 5, "PRESSURE", "PRESSURE", "bar", "PIPE");
 INSERT INTO sensor_sector (id_sensor, id_measurement_type, id_sensor_type)
 VALUES (1, 3, 3);
 INSERT INTO sensor_sector (id_sensor, id_measurement_type, id_sensor_type)
@@ -511,39 +523,49 @@ VALUES (16, 4, 4);
 INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
 VALUES (17, 4, 4);
 -- @block
-INSERT INTO value_pipe_sensor (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
         13,
-        SELECT FROM_UNIXTIME(1661230761),
-        5,
+        FROM_UNIXTIME(1661230761),
+        4,
         2.103547531265436
     );
-INSERT INTO value_pipe_sensor (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
+-- @block
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP,ID_MEASUREMENT_TYPE, value)
 VALUES (
         14,
-        SELECT FROM_UNIXTIME(1660489828),
+        FROM_UNIXTIME(1660489828),
         5,
         4.438330171083398
     );
-INSERT INTO value_pipe_sensor (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
+-- @block
+INSERT INTO value_sector_sensor (id_sensor, timestamp, id_measurement_type, value)
 VALUES (
-        15,
-        SELECT FROM_UNIXTIME(1667348479),
-        4,
-        5.495475137943508
+        10,
+        FROM_UNIXTIME(1661017607),
+        1,
+        8.006210722231518
     );
-INSERT INTO value_pipe_sensor (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
+INSERT INTO value_sector_sensor (id_sensor, timestamp, id_measurement_type, value)
+VALUES (
+        11,
+        FROM_UNIXTIME(1663268428),
+        3,
+        7.3064367452302195
+    );
+-- @block
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
         16,
-        SELECT FROM_UNIXTIME(1665554009),
-        5,
+        FROM_UNIXTIME(1665554009),
+        4,
         9.703135648750909
     );
-INSERT INTO value_pipe_sensor (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP,ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
         17,
-        SELECT FROM_UNIXTIME(1662232828),
-        5,
+        FROM_UNIXTIME(1662232828),
+        4,
         3.425335317172855
     );
 -- @block
@@ -560,3 +582,6 @@ VALUES (2, 1, 5);
 SELECT *
 FROM connection;
 -- Get all the pipes in the system and their connections
+
+-- @block
+SELECT VALUE, UNIX_TIMESTAMP(TIMESTAMP) as udate FROM VALUE_PIPE_SENSOR WHERE ID_MEASUREMENT_TYPE = 5 AND TIMESTAMP > FROM_UNIXTIME( 1577833200) AND TIMESTAMP < FROM_UNIXTIME( 1672527600);

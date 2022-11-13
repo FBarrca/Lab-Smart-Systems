@@ -14,6 +14,7 @@
 //
 // --------------------------------------------------------------------------
 
+#include <string>
 #include "CDatabase.hpp"
 #include "CValue.h"
 #include "CSensor.h"

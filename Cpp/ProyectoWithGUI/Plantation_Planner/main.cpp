@@ -47,7 +47,7 @@
 #define SCHEMA_NAME "banana"
 #define HOST_NAME "127.0.0.1:3306"
 #define USER_NAME "root"
-#define PASSWORD_USER "root"
+#define PASSWORD_USER "MySQLal314fa315"
 
 #define TIME_SCAN_CYCLE_S 900 // 15 min
 
@@ -166,12 +166,21 @@ int main()
 
                 dbObject.getSectors(v_Sectors);
                 dbObject.getPipes(v_Pipes, v_Sectors);
+                time_t from_fecha = helpers::CTimeUtils::getTimeTFromYMDHMS(2020, 1, 1, 0, 0, 0);
+                time_t to_fecha = helpers::CTimeUtils::getTimeTFromYMDHMS(2023, 1, 1, 0, 0, 0);
+                std::list<CValue*> pressure_list;
+                std::list<std::shared_ptr<CSector>>::iterator it;
                 //// Syncronize the sensor data
-                // for (size_t i = 0; i < v_Sectors.size(); i++)
-                //{
-                //     dbObject.getSectorPressure(v_Sectors[i], from, to);
-                //     dbObject.getSectorPumps(v_Sectors[i])
-                // }
+                for (int i = 0; i < v_Sectors.size(); it++, i++) {
+                    dbObject.getSectorPressure(*(*it), from_fecha, to_fecha, pressure_list);
+                    // dbObject.getSectorPumps(v_Sectors[i])
+                }
+                std::list<CValue*>::iterator it_pressure;
+                it_pressure = pressure_list.begin();
+                for (int i = 0; i < pressure_list.size(); i++, it_pressure++)
+                {
+                    std::cout << (*it_pressure)->getValue() << std::endl;
+                }
                 // for (size_t i = 0; i < v_Pipes.size(); i++)
                 //{
                 //     dbObject.getPipeFlow(v_Pipes[i]);

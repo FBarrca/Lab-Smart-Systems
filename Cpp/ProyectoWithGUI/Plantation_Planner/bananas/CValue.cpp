@@ -63,6 +63,17 @@ void CValue::operator=(const CValue& c) { //Operator = overloaded
 #endif
 
 }
+
+void CValue::setValue(float val)
+{
+	this->m_value = val;
+}
+
+void CValue::setDate(time_t date_set)
+{
+	this->m_date = date_set;
+}
+
 void CValue::operator+=(const CValue& c) { //Operator = overloaded
 #if VERBOSE
 	cout << "Operator+= Tenia:" << m_value << " at date = " << m_date << endl;

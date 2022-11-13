@@ -10,7 +10,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{8e86ed85-eeca-43cf-9394-5f74aab3f99f}</ProjectGuid>
-    <RootNamespace>ImguiTemplated3d9</RootNamespace>
+    <RootNamespace>Plantation_Planner</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>Plantation Planner</ProjectName>
   </PropertyGroup>

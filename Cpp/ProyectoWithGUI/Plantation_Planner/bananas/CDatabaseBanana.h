@@ -14,6 +14,7 @@
 //
 // --------------------------------------------------------------------------
 
+#include <string>
 #include "../dm-database/CDatabase.hpp"
 #include "CValue.h"
 //#include "CSensor.h"
@@ -81,6 +82,8 @@ public:
 	bool getSectors(std::list<std::shared_ptr<CSector>> &sectors);
 
 	bool getPipes(std::list<std::shared_ptr<CPipe>> &pipes, std::list<std::shared_ptr<CSector>> &sectors);
+
+	bool getSectorPressure(const CSector& sector, time_t from_fecha, time_t to_fecha, std::list<CValue*>& pressure_list);
 	
 private:
 };

@@ -80,10 +80,23 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "BANANA",
-            "database": "BANANA",
+            "database": "banana",
             "username": "root",
-            "password": "nbaacb10"
+            "password": "root",
+            "name": "bananas FINAL"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "askForPassword": true,
+            "driver": "MySQL",
+            "name": "bananas",
+            "database": "bananas",
+            "username": "root"
         },
         {
             "mysqlOptions": {
@@ -93,10 +106,10 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
+            "name": "banana",
             "database": "banana",
             "username": "root",
-            "password": "root",
-            "name": "bananas FINAL"
+            "password": "MySQLal314fa315"
         }
     ]
 }

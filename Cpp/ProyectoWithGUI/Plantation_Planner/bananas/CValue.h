@@ -19,6 +19,9 @@ public:// accesible from outside
 	double getValue() const;
 	time_t getDate() const;
 	void operator=(const CValue& c);
+	// setters
+	void setValue(float val);
+	void setDate(time_t date_set);
 
 	void operator+=(const CValue& c);
 	CValue operator+(const CValue& c);

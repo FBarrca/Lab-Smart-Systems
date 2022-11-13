@@ -235,55 +235,45 @@ bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 
 // }
 
-// CDatabaseBanana::getSectorPressure(const CSector& sector, time_t from_fecha, time_t to_fecha, std::list<CValues*>& pressure_list)
-// {
-// 	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
-// 	bool result = false;
-// 	helpers::CTimeUtils timeHelper;
-// 	int year;
-// 	int month;
-// 	int day;
-// 	int hour;
-// 	int min;
-// 	int sec;
-// 	time_t date;
+bool CDatabaseBanana::getSectorPressure(const CSector& sector, time_t from_fecha, time_t to_fecha, std::list<CValue*>& pressure_list)
+{
+	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+	bool result = false;
+	helpers::CTimeUtils timeHelper;
+	std::string str_date;
 
-// 	std::ostringstream os;
-// 	os << "SELECT * FROM VALUE_SECTOR_SENSOR WHERE ID_MEASUREMENT_TYPE = " << 2 <<"AND TIMESTAMP > FROM_UNIXTIME( "<< from_fecha << ") AND TIMESTAMP < FROM_UNIXTIME( "<< to_fecha << ");";
-// 	try {
-// 		if (m_p_con != NULL) {
-// 			std::string query;
-// 			query = os.str();
-// 			std::cout << query << std::endl;
-// 			p_stmt = m_p_con->createStatement();
-// 			res = p_stmt->executeQuery(query);
+	std::ostringstream os;
+	os << "SELECT VALUE, UNIX_TIMESTAMP(TIMESTAMP) as udate, TIMESTAMP FROM VALUE_PIPE_SENSOR, WHERE ID_MEASUREMENT_TYPE = " << 5 << " AND TIMESTAMP > FROM_UNIXTIME( " << from_fecha << ") AND TIMESTAMP < FROM_UNIXTIME( " << to_fecha << ");";
 
-// 			while (res->next()) {
+	try {
+		if (m_p_con != NULL) {
+			std::string query;
+			query = os.str();
+			std::cout << query << std::endl;
+			p_stmt = m_p_con->createStatement();
+			res = p_stmt->executeQuery(query);
 
-// 				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
-// 				// sectors.push_back(CSector(res->getInt64("ID"), CEstate(res->getint64('LON'), CEstate(res->getint64('LAT')), res->getFloat("H20"))); // si no funciona usar getDouble
-// 				year = stoi(str_date.substr(0, 4));
-// 				month = stoi(str_date.substr(5, 2));
-// 				day = stoi(str_date.substr(8, 2));
-// 				hour = stoi(str_date.substr(11, 2));
-// 				min = stoi(str_date.substr(14, 2));
-// 				sec = stoi(str_date.substr(17, 2));
-// 				date = timeHelper.getTimeTFromYMDHMS(const int& year, const int& month, const int& day, const int& hour, const int& min, const int& sec);
-// 				pressure_list.push_back(CValue(res->getDouble("VALUE"), date);
-// 				result = true;
-// 			}
+			while (res->next()) {
 
-// 			delete res;
-// 			delete p_stmt;
-// 			p_stmt = NULL;
-// 		}
-// 	}
-// 	catch (sql::SQLException& e) {
-// 		if (res != NULL) delete res;
-// 		if (p_stmt != NULL) delete p_stmt;
-// 		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
-// 		return false;
-// 	}
-// 	return result;
+				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
+				// sectors.push_back(CSector(res->getInt64("ID"), CEstate(res->getint64('LON'), CEstate(res->getint64('LAT')), res->getFloat("H20"))); // si no funciona usar getDouble
+				str_date = res->getString("TIMESTAMP");
+				CValue pressure(res->getDouble("VALUE"), res->getInt64("udate"));
+				pressure_list.push_back(&pressure);
+				result = true;
+			}
 
-// }
+			delete res;
+			delete p_stmt;
+			p_stmt = NULL;
+		}
+	}
+	catch (sql::SQLException& e) {
+		if (res != NULL) delete res;
+		if (p_stmt != NULL) delete p_stmt;
+		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return result;
+
+}
