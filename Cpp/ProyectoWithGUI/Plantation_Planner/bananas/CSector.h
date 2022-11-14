@@ -19,7 +19,7 @@ public:
     CSector(unsigned int i, CEstate e, float w);
     // Draws Sector on IMGUI
     void draw();
-    unsigned int get_id();
+    unsigned int get_id() const;
 
     void setPos(ImVec2 pos);
 

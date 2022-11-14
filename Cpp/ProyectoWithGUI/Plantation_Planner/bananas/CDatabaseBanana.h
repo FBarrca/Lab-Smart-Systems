@@ -89,7 +89,7 @@ public:
 	 * 
 	*/
 
-	bool getSectorPressure(const CSector& sector, time_t from_fecha, time_t to_fecha, std::list<CValue*>& pressure_list);
+	bool getSectorPressure(const std::shared_ptr<CSector> sector, time_t from_fecha, time_t to_fecha);
 	
 private:
 };

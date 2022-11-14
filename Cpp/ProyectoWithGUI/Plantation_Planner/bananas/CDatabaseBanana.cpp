@@ -235,7 +235,7 @@ bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 
 // }
 
-bool CDatabaseBanana::getSectorPressure(const CSector& sector, time_t from_fecha, time_t to_fecha, std::list<CValue*>& pressure_list)
+bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, time_t from_fecha, time_t to_fecha)
 {
 	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
 	bool result = false;
@@ -243,14 +243,22 @@ bool CDatabaseBanana::getSectorPressure(const CSector& sector, time_t from_fecha
 	std::string str_date;
 
 	std::ostringstream os;
-	os << "SELECT VALUE, UNIX_TIMESTAMP(TIMESTAMP) as udate, TIMESTAMP FROM VALUE_PIPE_SENSOR AS VPS, SENSOR_PIPE AS SP, PIPE_SENS_LOC AS PSL, PIPE AS P, CONNECTION AS C WHERE VPS.ID_MEASUREMENT_TYPE = " << 5 
-		<< " AND TIMESTAMP > FROM_UNIXTIME( " << from_fecha << ") AND TIMESTAMP < FROM_UNIXTIME( " << to_fecha << ")" <<
-		" AND VPS.ID_MEASUREMENT_TYPE = SP.ID_MEASUREMENT_TYPE" <<
-		" AND VPS.ID_SENSOR = SP.ID_SENSOR" <<
-		" AND PSL.ID_SENSOR = SP.ID_SENSOR" <<
-		" AND PSL.ID_PIPE = P.ID_PIPE" << 
-		" AND C.ID_SECTOR_IN = P.ID_PIPE" <<
-		" AND C.ID_SECTOR_IN = " << sector;
+	os << "SELECT * FROM value_pipe_sensor as vps," <<
+		" sensor_pipe as sp," <<
+		" pipe_sens_loc as psl," <<
+		" pipe as p," <<
+		" connection as c" <<
+		" WHERE vps.ID_SENSOR IN" << 
+		" (SELECT ID_SENSOR FROM sensor_pipe as sp," <<
+		" sensor_type as st" <<
+		" WHERE sp.id_measurement_type = st.id_measurement_type" << 
+		" AND sp.id_sensor_type = st.id_measurement_type" << 
+		" AND st.ID_MEASUREMENT_TYPE = 5)" <<
+		" AND vps.ID_SENSOR = sp.ID_SENSOR" <<
+		" AND sp.ID_SENSOR = psl.ID_SENSOR" <<
+		" AND psl.ID_PIPE = p.ID_PIPE" <<
+		" AND p.ID_PIPE = c.ID_PIPE" << 
+		" AND c.ID_SECTOR_IN = " << sector.get()->get_id() << std::endl << " ;";
 
 	try {
 		if (m_p_con != NULL) {
@@ -264,9 +272,8 @@ bool CDatabaseBanana::getSectorPressure(const CSector& sector, time_t from_fecha
 
 				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
 				// sectors.push_back(CSector(res->getInt64("ID"), CEstate(res->getint64('LON'), CEstate(res->getint64('LAT')), res->getFloat("H20"))); // si no funciona usar getDouble
-				str_date = res->getString("TIMESTAMP");
-				CValue pressure(res->getDouble("VALUE"), res->getInt64("udate"));
-				pressure_list.push_back(&pressure);
+				CValue pressure(res->getDouble("VALUE"), 0);
+				std::cout << pressure << std::endl;
 				result = true;
 			}
 

@@ -20,7 +20,7 @@ CSector::CSector(unsigned int i, CEstate e, float w)
 }
 
 // CSector::~CSector() {}
-unsigned int CSector::get_id()
+unsigned int CSector::get_id() const
 {
     return m_id;
 }

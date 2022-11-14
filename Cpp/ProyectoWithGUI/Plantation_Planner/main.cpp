@@ -170,9 +170,11 @@ int main()
                 time_t to_fecha = helpers::CTimeUtils::getTimeTFromYMDHMS(2023, 1, 1, 0, 0, 0);
                 std::list<CValue*> pressure_list;
                 std::list<std::shared_ptr<CSector>>::iterator it;
+                it = v_Sectors.begin();
                 //// Syncronize the sensor data
                 for (int i = 0; i < v_Sectors.size(); it++, i++) {
-                    dbObject.getSectorPressure(*(*it), from_fecha, to_fecha, pressure_list);
+                //for (auto it = v_Sectors.begin(); it != v_Sectors.end(); ++it){
+                    dbObject.getSectorPressure(*it, from_fecha, to_fecha);
                     // dbObject.getSectorPumps(v_Sectors[i])
                 }
                 std::list<CValue*>::iterator it_pressure;
