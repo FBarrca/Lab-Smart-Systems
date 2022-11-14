@@ -243,7 +243,7 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 	std::string str_date;
 
 	std::ostringstream os;
-	os << "SELECT * FROM value_pipe_sensor as vps," <<
+	os << "SELECT vps.ID_SENSOR, UNIX_TIMESTAMP(TIMESTAMP) AS udate, vps.VALUE FROM value_pipe_sensor as vps," <<
 		" sensor_pipe as sp," <<
 		" pipe_sens_loc as psl," <<
 		" pipe as p," <<
@@ -254,6 +254,8 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 		" WHERE sp.id_measurement_type = st.id_measurement_type" << 
 		" AND sp.id_sensor_type = st.id_measurement_type" << 
 		" AND st.ID_MEASUREMENT_TYPE = 5)" <<
+		" AND UNIX_TIMESTAMP(TIMESTAMP) <" << to_fecha <<
+		" AND UNIX_TIMESTAMP(TIMESTAMP) >" << from_fecha <<
 		" AND vps.ID_SENSOR = sp.ID_SENSOR" <<
 		" AND sp.ID_SENSOR = psl.ID_SENSOR" <<
 		" AND psl.ID_PIPE = p.ID_PIPE" <<
@@ -272,7 +274,7 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 
 				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
 				// sectors.push_back(CSector(res->getInt64("ID"), CEstate(res->getint64('LON'), CEstate(res->getint64('LAT')), res->getFloat("H20"))); // si no funciona usar getDouble
-				CValue pressure(res->getDouble("VALUE"), 0);
+				CValue pressure(res->getDouble("VALUE"), res->getInt64("udate"));
 				std::cout << pressure << std::endl;
 				result = true;
 			}

@@ -45,7 +45,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="main2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="helpers\CError.cpp">
@@ -110,6 +110,15 @@
     </ClCompile>
     <ClCompile Include="bananas\CDatabaseBanana.cpp">
       <Filter>Source Files\bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="CMeasurement.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="CValue.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +198,12 @@
       <Filter>Header Files\bananas</Filter>
     </ClInclude>
     <ClInclude Include="bananas\CDatabaseBanana.h">
+      <Filter>Header Files\bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="CMeasurement.h">
+      <Filter>Header Files\bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="CValue.h">
       <Filter>Header Files\bananas</Filter>
     </ClInclude>
   </ItemGroup>
