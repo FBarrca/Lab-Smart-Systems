@@ -83,6 +83,12 @@ public:
 
 	bool getPipes(std::list<std::shared_ptr<CPipe>> &pipes, std::list<std::shared_ptr<CSector>> &sectors);
 
+	/*
+	 * tomar la presión de un sector y guardarla en el objeto de sector (lista de CSensors en sector)
+	 * 
+	 * 
+	*/
+
 	bool getSectorPressure(const CSector& sector, time_t from_fecha, time_t to_fecha, std::list<CValue*>& pressure_list);
 	
 private:

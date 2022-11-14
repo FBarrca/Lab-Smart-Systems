@@ -243,7 +243,14 @@ bool CDatabaseBanana::getSectorPressure(const CSector& sector, time_t from_fecha
 	std::string str_date;
 
 	std::ostringstream os;
-	os << "SELECT VALUE, UNIX_TIMESTAMP(TIMESTAMP) as udate, TIMESTAMP FROM VALUE_PIPE_SENSOR, WHERE ID_MEASUREMENT_TYPE = " << 5 << " AND TIMESTAMP > FROM_UNIXTIME( " << from_fecha << ") AND TIMESTAMP < FROM_UNIXTIME( " << to_fecha << ");";
+	os << "SELECT VALUE, UNIX_TIMESTAMP(TIMESTAMP) as udate, TIMESTAMP FROM VALUE_PIPE_SENSOR AS VPS, SENSOR_PIPE AS SP, PIPE_SENS_LOC AS PSL, PIPE AS P, CONNECTION AS C WHERE VPS.ID_MEASUREMENT_TYPE = " << 5 
+		<< " AND TIMESTAMP > FROM_UNIXTIME( " << from_fecha << ") AND TIMESTAMP < FROM_UNIXTIME( " << to_fecha << ")" <<
+		" AND VPS.ID_MEASUREMENT_TYPE = SP.ID_MEASUREMENT_TYPE" <<
+		" AND VPS.ID_SENSOR = SP.ID_SENSOR" <<
+		" AND PSL.ID_SENSOR = SP.ID_SENSOR" <<
+		" AND PSL.ID_PIPE = P.ID_PIPE" << 
+		" AND C.ID_SECTOR_IN = P.ID_PIPE" <<
+		" AND C.ID_SECTOR_IN = " << sector;
 
 	try {
 		if (m_p_con != NULL) {
