@@ -45,7 +45,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main2.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="helpers\CError.cpp">
@@ -117,7 +117,7 @@
     <ClCompile Include="CValue.cpp">
       <Filter>Source Files\bananas</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="main1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

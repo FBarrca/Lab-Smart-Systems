@@ -1,46 +1,19 @@
-//#include "CSensor.h"
-//
-//CSensor::CSensor()
-//{
-//	m_description = "";
-//	m_type = CSenseType();
-//	m_isSwitch = 0;
-//}
-//
-//CSensor::CSensor(std::string d, CSenseType st)
-//{
-//	m_description = d;
-//	m_type = st;
-//}
-//
-//CSensor::~CSensor()
-//{
-//}
-//
-//CFlow::~CFlow()
-//{
-//}
-//
-//CPressure::~CPressure()
-//{
-//}
-//
-//CMineral::~CMineral()
-//{
-//}
-//
-//CHumidity::~CHumidity()
-//{
-//}
-//
-//CTemperature::~CTemperature()
-//{
-//}
-//
-//CRain::~CRain()
-//{
-//}
-//
-//CSolarIncidence::~CSolarIncidence()
-//{
-//}
+#include "CSensor.h"
+
+CSensor::CSensor()
+{
+	std::vector<std::shared_ptr<CMeasurement>> measurements;
+	id_sensor = 0;
+	sensor_measurements = measurements;
+
+}
+
+CSensor::CSensor(int id, std::vector<std::shared_ptr<CMeasurement>> measurements)
+{
+	id_sensor = id;
+	sensor_measurements = measurements;
+}
+
+CSensor::~CSensor()
+{
+}

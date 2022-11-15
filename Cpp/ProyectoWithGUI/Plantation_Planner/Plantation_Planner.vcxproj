@@ -71,8 +71,8 @@
     <ClCompile Include="helpers\CLogUtils.cpp" />
     <ClCompile Include="helpers\CTimeUtils.cpp" />
     <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="main1.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="main2.cpp" />
     <ClCompile Include="imgui_demo.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
     <ClCompile Include="imgui_impl_dx9.cpp" />
