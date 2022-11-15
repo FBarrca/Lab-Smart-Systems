@@ -19,7 +19,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -44,6 +44,8 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <Optimization>Disabled</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -59,8 +61,8 @@
     <ClCompile Include="bananas\CEstate.cpp" />
     <ClCompile Include="bananas\CPipe.cpp" />
     <ClCompile Include="bananas\CSector.cpp" />
-    <ClCompile Include="bananas\CValue.cpp" />
     <ClCompile Include="CMeasurement.cpp" />
+    <ClCompile Include="CSensor.cpp" />
     <ClCompile Include="CValue.cpp" />
     <ClCompile Include="dm-database\CDatabase.cpp" />
     <ClCompile Include="dm-database\CDatabaseExample.cpp" />
@@ -71,7 +73,6 @@
     <ClCompile Include="helpers\CLogUtils.cpp" />
     <ClCompile Include="helpers\CTimeUtils.cpp" />
     <ClCompile Include="imgui.cpp" />
-    <ClCompile Include="main1.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="imgui_demo.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
@@ -79,6 +80,7 @@
     <ClCompile Include="imgui_impl_win32.cpp" />
     <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="imnodes\imnodes.cpp" />
+    <ClCompile Include="main2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bananas\CDatabase4.h" />
@@ -88,7 +90,7 @@
     <ClInclude Include="bananas\CSector.h" />
     <ClInclude Include="bananas\CValue.h" />
     <ClInclude Include="CMeasurement.h" />
-    <ClInclude Include="CValue.h" />
+    <ClInclude Include="CSensor.h" />
     <ClInclude Include="dm-database\CDatabase.hpp" />
     <ClInclude Include="dm-database\CDatabaseExample.hpp" />
     <ClInclude Include="helpers\CError.h" />

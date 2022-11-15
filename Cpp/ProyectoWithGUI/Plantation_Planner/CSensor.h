@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "CValue.h"
+#include "bananas/CValue.h"
 
 class CSensor
 {
@@ -34,6 +34,7 @@ class SensorType
 public:
 	SensorType();
 	~SensorType();
+	SensorType(unsigned int id, std::string description, std::string unit, TypeOfLoc Loc);
 
 private:
 	unsigned int m_id;

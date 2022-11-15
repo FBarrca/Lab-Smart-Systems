@@ -1,9 +1,10 @@
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
 #endif
-#include "CValue.h"
+#include "bananas/CValue.h"
 #include <iostream>
 #include <ctime>
+#include "bananas\CValue.h"
 
 #define VERBOSE false;
 using namespace std;
@@ -62,6 +63,14 @@ void CValue::operator=(const CValue& c) { //Operator = overloaded
 	cout << "Ahora es: " << c.m_value << " at date = " << c.m_date << endl;
 #endif
 
+}
+void CValue::setValue(float val)
+{
+	m_value = val;
+}
+void CValue::setDate(time_t date_set)
+{
+	m_date = date_set;
 }
 void CValue::operator+=(const CValue& c) { //Operator = overloaded
 #if VERBOSE

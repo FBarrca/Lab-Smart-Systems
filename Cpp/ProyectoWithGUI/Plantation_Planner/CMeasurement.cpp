@@ -1,9 +1,19 @@
 #include "CMeasurement.h"
 
+CMeasurement::CMeasurement(std::vector<CValue> values)
+{
+	std::vector<CValue>::iterator it;
+	it = values.begin();
+	for (int i = 0; i < values.size(); i++, it++)
+	{
+		m_values.push_back(*it);
+	}
+}
+
 CMeasurement::CMeasurement()
 {
 	std::vector<CValue> values;
-	m_ts = time(0);
+	//m_ts = time(0);
 	m_values = values;
 }
 
@@ -11,10 +21,10 @@ CMeasurement::~CMeasurement()
 {
 }
 
-time_t CMeasurement::getTimestamp() const
-{
-	return m_ts;
-}
+//time_t CMeasurement::getTimestamp() const
+//{
+//	return m_ts;
+//}
 
 //CSenseType CMeasurement::getSenseType() const
 //{
