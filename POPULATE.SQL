@@ -1,13 +1,9 @@
-Drop DATABASE BANANAS;
-
--- @block
 INSERT INTO address (LON, LAT, description)
 VALUES (
         55.366258634519916,
         157.53885533006786,
         "address1"
     );
-    --@block
 INSERT INTO address (LON, LAT, description)
 VALUES (
         79.34888330082836,
@@ -244,6 +240,7 @@ VALUES (
         3,
         7.3064367452302195
     );
+
 INSERT INTO actuator_type (ID_TYPE, DESCRIPTION, IS_SWITCH, LOCATION)
 VALUES (1, "MINERAL VALVE", 1, "SECTOR");
 INSERT INTO actuator_type (ID_TYPE, DESCRIPTION, IS_SWITCH, LOCATION)
@@ -500,18 +497,14 @@ INSERT INTO value_pipe_actuator (ID_ACTUATOR, TIMESTAMP, VALUE)
 VALUES (21, FROM_UNIXTIME(1661446228), 82);
 INSERT INTO value_pipe_actuator (ID_ACTUATOR, TIMESTAMP, VALUE)
 VALUES (21, FROM_UNIXTIME(1662933031), 51);
--- @block
-INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
-VALUES (13, 1);
-INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
-VALUES (14, 2);
-INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
-VALUES (15, 3);
-INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
-VALUES (16, 4);
-INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
-VALUES (17, 5);
--- @block
+INSERT INTO connection (ID_SECTOR_IN, ID_SECTOR_OUT, ID_PIPE)
+VALUES (1, 2, 1);
+INSERT INTO connection (ID_SECTOR_IN, ID_SECTOR_OUT, ID_PIPE)
+VALUES (1, 3, 2);
+INSERT INTO connection (ID_SECTOR_IN, ID_SECTOR_OUT, ID_PIPE)
+VALUES (2, 3, 4);
+INSERT INTO connection (ID_SECTOR_IN, ID_SECTOR_OUT, ID_PIPE)
+VALUES (2, 1, 5);
 INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
 VALUES (13, 4, 4);
 INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
@@ -522,7 +515,16 @@ INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
 VALUES (16, 4, 4);
 INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
 VALUES (17, 4, 4);
--- @block
+INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
+VALUES (13, 1);
+INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
+VALUES (14, 2);
+INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
+VALUES (15, 3);
+INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
+VALUES (16, 4);
+INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
+VALUES (17, 5);
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
         13,
@@ -530,7 +532,6 @@ VALUES (
         4,
         2.103547531265436
     );
--- @block
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP,ID_MEASUREMENT_TYPE, value)
 VALUES (
         14,
@@ -538,22 +539,6 @@ VALUES (
         5,
         4.438330171083398
     );
--- @block
-INSERT INTO value_sector_sensor (id_sensor, timestamp, id_measurement_type, value)
-VALUES (
-        10,
-        FROM_UNIXTIME(1661017607),
-        1,
-        8.006210722231518
-    );
-INSERT INTO value_sector_sensor (id_sensor, timestamp, id_measurement_type, value)
-VALUES (
-        11,
-        FROM_UNIXTIME(1663268428),
-        3,
-        7.3064367452302195
-    );
--- @block
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
         16,
@@ -568,15 +553,7 @@ VALUES (
         4,
         3.425335317172855
     );
--- @block
-INSERT INTO connection (ID_SECTOR_IN, ID_SECTOR_OUT, ID_PIPE)
-VALUES (1, 2, 1);
-INSERT INTO connection (ID_SECTOR_IN, ID_SECTOR_OUT, ID_PIPE)
-VALUES (1, 3, 2);
-INSERT INTO connection (ID_SECTOR_IN, ID_SECTOR_OUT, ID_PIPE)
-VALUES (2, 3, 4);
-INSERT INTO connection (ID_SECTOR_IN, ID_SECTOR_OUT, ID_PIPE)
-VALUES (2, 1, 5);
+
 -- @block
 -- Get all the pipes in the system and their connections
 SELECT *
