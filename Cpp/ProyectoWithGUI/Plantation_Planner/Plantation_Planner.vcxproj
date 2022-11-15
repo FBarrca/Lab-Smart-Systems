@@ -60,6 +60,8 @@
     <ClCompile Include="bananas\CPipe.cpp" />
     <ClCompile Include="bananas\CSector.cpp" />
     <ClCompile Include="bananas\CValue.cpp" />
+    <ClCompile Include="CActType.cpp" />
+    <ClCompile Include="CActuator.cpp" />
     <ClCompile Include="CMeasurement.cpp" />
     <ClCompile Include="CValue.cpp" />
     <ClCompile Include="dm-database\CDatabase.cpp" />
@@ -87,6 +89,8 @@
     <ClInclude Include="bananas\CPipe.h" />
     <ClInclude Include="bananas\CSector.h" />
     <ClInclude Include="bananas\CValue.h" />
+    <ClInclude Include="CActType.h" />
+    <ClInclude Include="CActuator.h" />
     <ClInclude Include="CMeasurement.h" />
     <ClInclude Include="CValue.h" />
     <ClInclude Include="dm-database\CDatabase.hpp" />

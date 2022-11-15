@@ -6,6 +6,9 @@
 #include "CEstate.h"
 #include "CPipe.h"
 #include "../helpers/CTimeUtils.hpp"
+#include "../CActType.h"
+#include "../CActuator.h"
+
 CDatabaseBanana::CDatabaseBanana()
 {
 }
@@ -293,3 +296,6 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 	return result;
 
 }
+
+
+

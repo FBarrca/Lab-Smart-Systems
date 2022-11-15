@@ -120,6 +120,12 @@
     <ClCompile Include="main1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CActType.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="CActuator.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helpers\CError.h">
@@ -204,6 +210,12 @@
       <Filter>Header Files\bananas</Filter>
     </ClInclude>
     <ClInclude Include="CValue.h">
+      <Filter>Header Files\bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="CActType.h">
+      <Filter>Header Files\bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="CActuator.h">
       <Filter>Header Files\bananas</Filter>
     </ClInclude>
   </ItemGroup>

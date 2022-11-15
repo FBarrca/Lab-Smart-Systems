@@ -47,7 +47,7 @@
 #define SCHEMA_NAME "banana"
 #define HOST_NAME "127.0.0.1:3306"
 #define USER_NAME "root"
-#define PASSWORD_USER "MySQLal314fa315"
+#define PASSWORD_USER "root"
 
 #define TIME_SCAN_CYCLE_S 900 // 15 min
 
@@ -189,6 +189,15 @@ int main()
                 //     dbObject.getPipeValve(v_Pipes[i]);
                 // }
                 // dbObject.Desconectar();
+
+
+                
+
+
+
+
+
+
 
                 /*----------------------
                 |  PROCESS OF DATA & INTELLIGENCE
