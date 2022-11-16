@@ -298,4 +298,46 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 }
 
 
+bool CDatabaseBanana::getPipeActuators(std::vector<CActuator*> actuator_vector, std::shared_ptr<CPipe> pipe)
+{
+	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+	bool result = false;
+
+	std::ostringstream os;
+	os << "SELECT * FROM ACTUATOR_PIPE, ACTUATOR_TYPE, PIPE_ACT_LOC " 
+		<< "WHERE ACTUATOR_PIPE.ID_TYPE = ACTUATOR_TYPE.ID_TYPE AND ACTUATOR_PIPE.ID_ACTUATOR = PIPE_ACT_LOC.ID_ACTUATOR"
+		<< "AND PIPE_ACT_LOC.ID_PIPE = " << pipe.get()->getId()
+		<< std::endl;
+	
+	try {
+		if (m_p_con != NULL) {
+			std::string query;
+			query = os.str();
+			std::cout << query << std::endl;
+			p_stmt = m_p_con->createStatement();
+			res = p_stmt->executeQuery(query);
+			
+			while (res->next()) {
+				// CActType type = CActType(res->getInt64("IS_SWITCH"), res->getInt64("ID_TYPE"), res->getString("DESCRIPTION"), res->getString("LOCATION"));
+				// CActuator actuator = CActuator(res->getInt64("ID_ACTUATOR"), type);
+				// actuator_vector.push_back(&actuator);
+				result = true;
+			}
+			
+			delete res;
+			delete p_stmt;
+			p_stmt = NULL; 
+		}
+	}
+	catch (sql::SQLException& e) {
+		if (res != NULL) delete res;
+		if (p_stmt != NULL) delete p_stmt;
+		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return result;
+}
+
+
+
 

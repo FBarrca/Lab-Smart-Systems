@@ -26,6 +26,7 @@ public:
 	// bool addActuator(boost::shared_ptr<CActuator> a);
 	void draw();
 	unsigned int get_GUIPipeId();
+	int getId() { return m_id; };
 	ImVec2 getInitialPos();
 	void setPipeInGrid();
 
