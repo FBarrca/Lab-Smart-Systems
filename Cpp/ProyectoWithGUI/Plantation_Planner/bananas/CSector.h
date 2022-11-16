@@ -17,10 +17,15 @@ public:
     virtual ~CSector(void){};
     // CSector(unsigned int i, CEstate e, float w) : m_id(i), m_estate(e), m_water_demand(w), m_description("Hola"){};
     CSector(unsigned int i, CEstate e, float w);
-    // Draws Sector on IMGUI
-    void draw();
+    
+    
     unsigned int get_id() const;
-
+    
+    //Finds if the pressure of the sector is too low
+    bool DropInPressure(float min_preass);
+    
+    // GUI Functions
+    void draw();
     void setPos(ImVec2 pos);
 
 private:
@@ -40,7 +45,7 @@ private:
         bool m_editing_water_demand = false;
         int leftId;  // id of input at imnodes
         int rightId; // id of output at imnodes
-        ImVec2 initialPos;
+        ImVec2 initialPos = ImVec2(0,0);
     } m_gui_data;
 
     friend class CPipe; // To access m_id

@@ -4,9 +4,10 @@
 
 #define OFFSETCONNECTION 1000
 
-CSector::CSector()
+CSector::CSector() : m_id(99), m_estate(CEstate(0, 0)), m_water_demand(0)
 {
-    std::cout << "CSector::CSector()" << std::endl;
+    m_gui_data.leftId = m_id * OFFSETCONNECTION + 1;
+    m_gui_data.rightId = m_id * OFFSETCONNECTION + 2;
 }
 
 CSector::CSector(unsigned int i, CEstate e, float w)
@@ -23,6 +24,25 @@ CSector::CSector(unsigned int i, CEstate e, float w)
 unsigned int CSector::get_id() const
 {
     return m_id;
+}
+bool CSector::DropInPressure(float min_preass)
+{
+    // Get all sensors of type pressure of the sector
+    //  for (auto sensor : m_sensors)
+    //  {
+    //      if (sensor->get_type() == "Pressure")
+    //      {
+    //          //Get the value of the sensor
+    //          float value = sensor->get_value();
+    //          //If the value is lower than the minimum pressure
+    //          if (value < min_preass)
+    //          {
+    //              //Return true
+    //              return true;
+    //          }
+    //      }
+    //  }
+    return false;
 }
 void CSector::setPos(ImVec2 pos)
 {

@@ -25,6 +25,10 @@ public:
 
 	// bool addActuator(boost::shared_ptr<CActuator> a);
 	void draw();
+	unsigned int getId();
+	std::shared_ptr<CSector> otherSector(std::shared_ptr<CSector> sector);
+
+	// GUI Functions
 	unsigned int get_GUIPipeId();
 	ImVec2 getInitialPos();
 	void setPipeInGrid();
@@ -42,4 +46,8 @@ private:
 		int pipeId;
 		ImVec2 pos;
 	} m_gui_data;
+
+	friend bool findwithSector(std::shared_ptr<CSector> s, std::list<std::shared_ptr<CPipe>> v_PipesToSector, std::list<std::shared_ptr<CPipe>> v_Pipes);
 };
+
+bool findwithSector(std::shared_ptr<CSector> s, std::list<std::shared_ptr<CPipe>> v_PipesToSector, std::list<std::shared_ptr<CPipe>> v_Pipes);

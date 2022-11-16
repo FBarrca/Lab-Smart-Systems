@@ -109,6 +109,19 @@ void CPipe::draw()
         ImNodes::Link(i + m_id * PIPE_OFFSET, p.first, p.second);
     }
     links.clear();
+}
+unsigned int CPipe::getId()
+{
+    return m_id;
+}
+std::shared_ptr<CSector> CPipe::otherSector(std::shared_ptr<CSector> sector)
+{
+    if (m_fromSector == sector)
+        return m_toSector;
+    else if (m_toSector == sector)
+        return m_fromSector;
+    else
+        return nullptr;
 };
 void CPipe::setPipeInGrid()
 {
@@ -119,4 +132,16 @@ void CPipe::setPipeInGrid()
     float middlePointx = (m_fromSector->m_gui_data.initialPos.x - m_toSector->m_gui_data.initialPos.x) / 2 + m_toSector->m_gui_data.initialPos.x + offsetx;
     float middlePointy = (m_fromSector->m_gui_data.initialPos.y - m_toSector->m_gui_data.initialPos.y) / 2 + m_toSector->m_gui_data.initialPos.y + offsety;
     m_gui_data.pos = ImVec2(middlePointx, middlePointy);
+}
+
+bool findwithSector(std::shared_ptr<CSector> s, std::list<std::shared_ptr<CPipe>> v_PipesToSector, std::list<std::shared_ptr<CPipe>> v_Pipes)
+{
+    for (std::shared_ptr<CPipe> p : v_Pipes)
+    {
+        if (p.get()->m_fromSector == s || p.get()->m_toSector == s)
+        {
+            v_PipesToSector.push_back(p);
+        }
+    }
+    return !v_PipesToSector.empty();
 }
