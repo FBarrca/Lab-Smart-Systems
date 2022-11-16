@@ -79,11 +79,11 @@
             "previewLimit": 50,
             "server": "localhost",
             "port": 3306,
+            "askForPassword": true,
             "driver": "MySQL",
             "name": "BANANA",
             "database": "BANANA",
-            "username": "root",
-            "password": "nbaacb10"
+            "username": "root"
         }
     ]
 }

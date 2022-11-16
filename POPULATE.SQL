@@ -561,18 +561,16 @@ FROM connection;
 -- Get all the pipes in the system and their connections
 
 -- @block
-SELECT * FROM value_pipe_sensor as vps,
-sensor_pipe as sp,
-pipe_sens_loc as psl,
-pipe as p,
-connection as c
-WHERE vps.ID_SENSOR IN (SELECT ID_SENSOR FROM
-                        sensor_pipe as sp,
+SELECT vss.ID_SENSOR, UNIX_TIMESTAMP(TIMESTAMP) AS udate, vss.VALUE FROM value_sector_sensor as vss,
+sensor_sector as ss,
+sect_sens_loc as ssloc,
+sector as s
+WHERE vss.ID_SENSOR IN (SELECT ID_SENSOR FROM
+                        sensor_sector as ss,
                         sensor_type as st
-                        WHERE sp.id_measurement_type = st.id_measurement_type
-                        AND sp.id_sensor_type = st.id_measurement_type
-                        AND st.ID_MEASUREMENT_TYPE = 5)
-AND vps.ID_SENSOR = sp.ID_SENSOR
-AND sp.ID_SENSOR = psl.ID_SENSOR
-AND psl.ID_PIPE = p.ID_PIPE
-AND p.ID_PIPE = c.ID_PIPE; 
+                        WHERE ss.id_measurement_type = st.id_measurement_type
+                        AND ss.id_sensor_type = st.id_measurement_type
+                        AND st.ID_MEASUREMENT_TYPE = 3)
+AND vss.ID_SENSOR = ss.ID_SENSOR
+AND ss.ID_SENSOR = ssloc.ID_SENSOR
+AND ssloc.ID_SECTOR = s.ID_SECTOR;

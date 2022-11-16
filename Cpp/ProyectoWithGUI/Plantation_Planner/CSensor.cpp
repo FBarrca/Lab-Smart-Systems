@@ -40,16 +40,16 @@ void CSensor::getValues(std::vector<CValue*>& values)
 
 CValue CSensor::getLastValue()
 {
-	std::vector<CValue>::iterator it;
-	auto it = sensor_values.begin();
+	std::vector<CValue*>::iterator it;
+	it = sensor_values.begin();
 	time_t min_t = 0;
-	CValue lastValue(it->getValue(), it->getDate());
+	CValue lastValue((*it)->getValue(), (*it)->getDate());
 	for (int i = 0; i < sensor_values.size(); i++, it++)
 	{
-		if ((lastValue.getDate()) < (it->getDate()))
+		if ((lastValue.getDate()) < ((*it)->getDate()))
 		{
-			lastValue.setDate(it->getDate());
-			lastValue.setValue(it->getValue());
+			lastValue.setDate((*it)->getDate());
+			lastValue.setValue((*it)->getValue());
 		}
 	}
 

@@ -2,6 +2,26 @@
 #include <vector>
 #include "bananas/CValue.h"
 
+typedef enum {
+	SECTORTYPE,
+	PIPETYPE
+} TypeOfLoc;
+
+class SensorType
+{
+public:
+	SensorType();
+	~SensorType();
+	SensorType(unsigned int id, std::string description, std::string unit, TypeOfLoc Loc);
+
+private:
+	unsigned int m_id;
+	std::string m_description;
+	std::string m_unit;
+	TypeOfLoc m_Loc;
+
+};
+
 class CSensor
 {
 private:
@@ -23,26 +43,5 @@ public:
 	void setValues(std::vector<CValue*> values);
 
 };
-
-typedef enum {
-SECTORTYPE,
-PIPETYPE
-} TypeOfLoc; 
-
-class SensorType
-{
-public:
-	SensorType();
-	~SensorType();
-	SensorType(unsigned int id, std::string description, std::string unit, TypeOfLoc Loc);
-
-private:
-	unsigned int m_id;
-	std::string m_description;
-	std::string m_unit;
-	TypeOfLoc m_Loc;
-
-	friend CSensor;
-}; 
 
 

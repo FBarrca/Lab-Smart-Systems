@@ -243,24 +243,22 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 	std::string str_date;
 
 	std::ostringstream os;
-	os << "SELECT vps.ID_SENSOR, UNIX_TIMESTAMP(TIMESTAMP) AS udate, vps.VALUE FROM value_pipe_sensor as vps," <<
-		" sensor_pipe as sp," <<
-		" pipe_sens_loc as psl," <<
-		" pipe as p," <<
-		" connection as c" <<
-		" WHERE vps.ID_SENSOR IN" << 
-		" (SELECT ID_SENSOR FROM sensor_pipe as sp," <<
+	os << "SELECT vss.ID_SENSOR, UNIX_TIMESTAMP(TIMESTAMP) AS udate, vss.VALUE FROM value_sector_sensor as vss," <<
+		" sensor_sector as ss," <<
+		" sect_sens_loc as ssloc," <<
+		" sector as s," <<
+		" WHERE vss.ID_SENSOR IN" << 
+		" (SELECT ID_SENSOR FROM sensor_sector as ss," <<
 		" sensor_type as st" <<
-		" WHERE sp.id_measurement_type = st.id_measurement_type" << 
-		" AND sp.id_sensor_type = st.id_measurement_type" << 
-		" AND st.ID_MEASUREMENT_TYPE = 5)" <<
+		" WHERE ss.id_measurement_type = st.id_measurement_type" << 
+		" AND ss.id_sensor_type = st.id_measurement_type" << 
+		" AND st.ID_MEASUREMENT_TYPE = 3)" <<
 		" AND UNIX_TIMESTAMP(TIMESTAMP) <" << to_fecha <<
 		" AND UNIX_TIMESTAMP(TIMESTAMP) >" << from_fecha <<
-		" AND vps.ID_SENSOR = sp.ID_SENSOR" <<
-		" AND sp.ID_SENSOR = psl.ID_SENSOR" <<
-		" AND psl.ID_PIPE = p.ID_PIPE" <<
-		" AND p.ID_PIPE = c.ID_PIPE" << 
-		" AND c.ID_SECTOR_IN = " << sector.get()->get_id() << std::endl << " ;";
+		" AND vss.ID_SENSOR = ss.ID_SENSOR" <<
+		" AND ss.ID_SENSOR = ssloc.ID_SENSOR" <<
+		" AND ssloc.ID_SECTOR = s.ID_SECTOR" <<
+		" AND s.ID_SECTOR = " << sector.get()->get_id() <<" ;" << std::endl;
 
 	try {
 		if (m_p_con != NULL) {
