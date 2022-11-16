@@ -6,9 +6,10 @@
 class CActuator
 {
 public: //prueba 
-    CActuator() {};
+    CActuator();
     CActuator(unsigned int i, CActType t) :m_ID(i), m_type(t) {};
-    ~CActuator() {};
+    ~CActuator();
+    int getId() { return m_ID; };
     void addValue(std::vector<CValue*> values);
     CActType& m_getType() { return m_type; };
 

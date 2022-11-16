@@ -318,9 +318,9 @@ bool CDatabaseBanana::getPipeActuators(std::vector<CActuator*> actuator_vector, 
 			res = p_stmt->executeQuery(query);
 			
 			while (res->next()) {
-				// CActType type = CActType(res->getInt64("IS_SWITCH"), res->getInt64("ID_TYPE"), res->getString("DESCRIPTION"), res->getString("LOCATION"));
-				// CActuator actuator = CActuator(res->getInt64("ID_ACTUATOR"), type);
-				// actuator_vector.push_back(&actuator);
+				CActType type((bool)res->getInt64("IS_SWITCH"), res->getInt64("ID_TYPE"), res->getString("DESCRIPTION"), res->getString("LOCATION"));
+				CActuator actuator(res->getInt64("ID_ACTUATOR"), type);
+				actuator_vector.push_back(&actuator);
 				result = true;
 			}
 			

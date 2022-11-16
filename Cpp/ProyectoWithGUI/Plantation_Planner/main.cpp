@@ -38,6 +38,8 @@
 #include "bananas/CSector.h"
 #include "bananas/CPipe.h"
 #include "bananas/CValue.h"
+#include "CActType.h"
+#include "CActuator.h"
 
 #include "./helpers/CTimeUtils.hpp"
 
@@ -190,6 +192,23 @@ int main()
                 // }
                 // dbObject.Desconectar();
 
+                std::vector<CActuator*> actuators;
+                auto it_v = v_Pipes.begin();
+                for (int i = 0; i < v_Pipes.size(); i++, it++) {
+                    int id = (*it)->get_id();
+                    if (id == 6) {
+                        std::cout << "Pipe ID: " << id << std::endl;
+                        dbObject.getPipeActuators(actuators, (*it_v));
+                        for ( int i = 0; i < actuators.size(); i++)
+                        {
+                            std::cout << "Actuator ID: " << actuators[i]->getId() << std::endl;
+                        }
+
+
+                    }
+                }
+
+                
 
                 
 

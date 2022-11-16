@@ -121,10 +121,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CActType.cpp">
-      <Filter>Source Files\bananas</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CActuator.cpp">
-      <Filter>Source Files\bananas</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,10 +213,10 @@
       <Filter>Header Files\bananas</Filter>
     </ClInclude>
     <ClInclude Include="CActType.h">
-      <Filter>Header Files\bananas</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CActuator.h">
-      <Filter>Header Files\bananas</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@ class CActType
 {
 public:
 	CActType();
-	CActType(bool sw, int m_id_type, std::string description, std::string location_type) : m_isSwitch(sw),  m_id_type(m_id_type), description(description), location_type(location_type) {};
+	CActType(bool sw, int id, std::string desc, std::string loc);
 	~CActType();
 	std::string getLoc() {
 		return location_type; // returns 0 if pipe type 1 if node type
