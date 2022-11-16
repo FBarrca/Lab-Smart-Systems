@@ -3,6 +3,7 @@
 #include <string>
 #include "../imgui.h"
 #include "../imnodes/imnodes.h"
+#include "CSensor.h"
 
 //#include "./CPipe.h"
 
@@ -28,11 +29,17 @@ public:
     void draw();
     void setPos(ImVec2 pos);
 
+    //getters and setters
+    void getSensors(std::list<CSensor*>& sensors_get);
+
+    void appendSensors(std::list<CSensor*>& sensors_append);
+
 private:
     unsigned int m_id;
     std::string m_description;
     CEstate m_estate;
     float m_water_demand;
+    std::list<CSensor*> sensors;
 
     // std::vector<CPipe> m_Pipes;
     //  std::vector<boost::shared_ptr<CPipe>> m_Pipes;		 // Pipes that arrive to that node

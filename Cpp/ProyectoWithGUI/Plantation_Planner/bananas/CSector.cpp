@@ -28,6 +28,7 @@ unsigned int CSector::get_id() const
 bool CSector::DropInPressure(float min_preass)
 {
     // Get all sensors of type pressure of the sector
+
     //  for (auto sensor : m_sensors)
     //  {
     //      if (sensor->get_type() == "Pressure")
@@ -47,6 +48,22 @@ bool CSector::DropInPressure(float min_preass)
 void CSector::setPos(ImVec2 pos)
 {
     m_gui_data.initialPos = pos;
+}
+void CSector::getSensors(std::list<CSensor*>& sensors_get)
+{
+    auto it = sensors.begin();
+    for (int i = 0; i < sensors.size(); i++, it++)
+    {
+        sensors_get.push_back(*it);
+    }
+}
+void CSector::appendSensors(std::list<CSensor*>& sensors_append)
+{
+    auto it = sensors_append.begin();
+    for (int i = 0; i < sensors_append.size(); i++, it++)
+    {
+        sensors.push_back(*it);
+    }
 }
 void CSector::draw()
 {

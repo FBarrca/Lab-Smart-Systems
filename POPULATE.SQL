@@ -4359,18 +4359,7 @@ FROM connection;
 -- Get all the pipes in the system and their connections
 
 -- @block
-SELECT * FROM value_pipe_sensor as vps,
-sensor_pipe as sp,
-pipe_sens_loc as psl,
-pipe as p,
-connection as c
-WHERE vps.ID_SENSOR IN (SELECT ID_SENSOR FROM
-                        sensor_pipe as sp,
-                        sensor_type as st
-                        WHERE sp.id_measurement_type = st.id_measurement_type
-                        AND sp.id_sensor_type = st.id_measurement_type
-                        AND st.ID_MEASUREMENT_TYPE = 5)
-AND vps.ID_SENSOR = sp.ID_SENSOR
-AND sp.ID_SENSOR = psl.ID_SENSOR
-AND psl.ID_PIPE = p.ID_PIPE
-AND p.ID_PIPE = c.ID_PIPE; 
+SELECT ss.ID_SENSOR, ssloc.ID_SECTOR, ss.ID_SENSOR_TYPE
+FROM sensor_sector as ss, sect_sens_loc as ssloc
+WHERE ss.ID_SENSOR = ssloc.ID_SENSOR;
+

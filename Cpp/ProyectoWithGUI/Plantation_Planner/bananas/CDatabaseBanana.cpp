@@ -6,6 +6,7 @@
 #include "CEstate.h"
 #include "CPipe.h"
 #include "../helpers/CTimeUtils.hpp"
+#include "CSensor.h"
 CDatabaseBanana::CDatabaseBanana()
 {
 }
@@ -239,26 +240,12 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 {
 	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
 	bool result = false;
-	helpers::CTimeUtils timeHelper;
-	std::string str_date;
 
 	std::ostringstream os;
-	os << "SELECT vss.ID_SENSOR, UNIX_TIMESTAMP(TIMESTAMP) AS udate, vss.VALUE FROM value_sector_sensor as vss," <<
-		" sensor_sector as ss," <<
-		" sect_sens_loc as ssloc," <<
-		" sector as s," <<
-		" WHERE vss.ID_SENSOR IN" << 
-		" (SELECT ID_SENSOR FROM sensor_sector as ss," <<
-		" sensor_type as st" <<
-		" WHERE ss.id_measurement_type = st.id_measurement_type" << 
-		" AND ss.id_sensor_type = st.id_measurement_type" << 
-		" AND st.ID_MEASUREMENT_TYPE = 3)" <<
-		" AND UNIX_TIMESTAMP(TIMESTAMP) <" << to_fecha <<
-		" AND UNIX_TIMESTAMP(TIMESTAMP) >" << from_fecha <<
-		" AND vss.ID_SENSOR = ss.ID_SENSOR" <<
-		" AND ss.ID_SENSOR = ssloc.ID_SENSOR" <<
-		" AND ssloc.ID_SECTOR = s.ID_SECTOR" <<
-		" AND s.ID_SECTOR = " << sector.get()->get_id() <<" ;" << std::endl;
+	os << "SELECT ss.ID_SENSOR, ssloc.ID_SECTOR, ss.ID_SENSOR_TYPE" <<
+		" FROM sensor_sector as ss, sect_sens_loc as ssloc" <<
+		" WHERE ss.ID_SENSOR = ssloc.ID_SENSOR;" <<
+		" AND ssloc.ID_SECTOR = " << sector.get()->get_id() << " ;" << std::endl;
 
 	try {
 		if (m_p_con != NULL) {
@@ -267,15 +254,20 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 			std::cout << query << std::endl;
 			p_stmt = m_p_con->createStatement();
 			res = p_stmt->executeQuery(query);
+			std::list<CSensor*> sensor_list_append;
 
 			while (res->next()) {
 
 				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
 				// sectors.push_back(CSector(res->getInt64("ID"), CEstate(res->getint64('LON'), CEstate(res->getint64('LAT')), res->getFloat("H20"))); // si no funciona usar getDouble
-				CValue pressure(res->getDouble("VALUE"), res->getInt64("udate"));
-				std::cout << pressure << std::endl;
+				//CValue pressure(res->getDouble("VALUE"), res->getInt64("udate"));
+				CSensor sensor_obj;
+				sensor_obj.setID(res->getInt64("ss.ID_SENSOR"));
+				sensor_list_append.push_back(&sensor_obj);
 				result = true;
 			}
+
+			sector.get()->appendSensors(sensor_list_append);
 
 			delete res;
 			delete p_stmt;
@@ -288,6 +280,57 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
 		return false;
 	}
+
+	//sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+	//bool result = false;
+
+	//std::ostringstream os;
+	//os << "SELECT vss.ID_SENSOR, UNIX_TIMESTAMP(TIMESTAMP) AS udate, vss.VALUE FROM value_sector_sensor as vss," <<
+	//	" sensor_sector as ss," <<
+	//	" sect_sens_loc as ssloc," <<
+	//	" sector as s" <<
+	//	" WHERE vss.ID_SENSOR IN" <<
+	//	" (SELECT ID_SENSOR FROM sensor_sector as ss," <<
+	//	" sensor_type as st" <<
+	//	" WHERE ss.id_measurement_type = st.id_measurement_type" <<
+	//	" AND ss.id_sensor_type = st.id_sensor_type" <<
+	//	" AND ss.id_measurement_type = st.id_measurement_type" <<
+	//	" AND st.ID_MEASUREMENT_TYPE = 3)" <<
+	//	" AND UNIX_TIMESTAMP(TIMESTAMP) <" << to_fecha <<
+	//	" AND UNIX_TIMESTAMP(TIMESTAMP) >" << from_fecha <<
+	//	" AND vss.ID_SENSOR = ss.ID_SENSOR" <<
+	//	" AND ss.ID_SENSOR = ssloc.ID_SENSOR" <<
+	//	" AND ssloc.ID_SECTOR = s.ID_SECTOR" <<
+	//	" AND s.ID_SECTOR = " << sector.get()->get_id() << ";" << std::endl;
+
+	//try {
+	//	if (m_p_con != NULL) {
+	//		std::string query;
+	//		query = os.str();
+	//		std::cout << query << std::endl;
+	//		p_stmt = m_p_con->createStatement();
+	//		res = p_stmt->executeQuery(query);
+
+	//		while (res->next()) {
+
+	//			// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
+	//			// sectors.push_back(CSector(res->getInt64("ID"), CEstate(res->getint64('LON'), CEstate(res->getint64('LAT')), res->getFloat("H20"))); // si no funciona usar getDouble
+	//			CValue pressure(res->getDouble("VALUE"), res->getInt64("udate"));
+	//			std::cout << pressure << std::endl;
+	//			result = true;
+	//		}
+
+	//		delete res;
+	//		delete p_stmt;
+	//		p_stmt = NULL;
+	//	}
+	//}
+	//catch (sql::SQLException& e) {
+	//	if (res != NULL) delete res;
+	//	if (p_stmt != NULL) delete p_stmt;
+	//	std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+	//	return false;
+	//}
 	return result;
 
 }
