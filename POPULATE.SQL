@@ -118,7 +118,7 @@ INSERT INTO sensor_type (
         UNIT,
         LOCATION
     )
-VALUES (5, 5, "PRESSURE", "PRESSURE", "bar", "SECTOR");
+VALUES (5, 5, "PRESSURE", "PRESSURE", "bar", "PIPE");
 INSERT INTO sensor_sector (id_sensor, id_measurement_type, id_sensor_type)
 VALUES (1, 3, 3);
 INSERT INTO sensor_sector (id_sensor, id_measurement_type, id_sensor_type)
@@ -141,10 +141,6 @@ INSERT INTO sensor_sector (id_sensor, id_measurement_type, id_sensor_type)
 VALUES (10, 1, 1);
 INSERT INTO sensor_sector (id_sensor, id_measurement_type, id_sensor_type)
 VALUES (11, 3, 3);
-INSERT INTO sensor_sector (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
-VALUES (14, 5, 5);
-INSERT INTO sensor_sector (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
-VALUES (15, 5, 5);
 INSERT INTO sect_sens_loc (id_sensor, id_sector)
 VALUES (1, 1);
 INSERT INTO sect_sens_loc (id_sensor, id_sector)
@@ -167,10 +163,6 @@ INSERT INTO sect_sens_loc (id_sensor, id_sector)
 VALUES (10, 2);
 INSERT INTO sect_sens_loc (id_sensor, id_sector)
 VALUES (11, 3);
-INSERT INTO sect_sens_loc (ID_SENSOR, ID_SECTOR)
-VALUES (14, 2);
-INSERT INTO sect_sens_loc (ID_SENSOR, ID_SECTOR)
-VALUES (15, 3);
 INSERT INTO value_sector_sensor (id_sensor, timestamp, id_measurement_type, value)
 VALUES (
         1,
@@ -248,13 +240,7 @@ VALUES (
         3,
         7.3064367452302195
     );
-INSERT INTO value_sector_sensor (ID_SENSOR, TIMESTAMP,ID_MEASUREMENT_TYPE, value)
-VALUES (
-        14,
-        FROM_UNIXTIME(1660489828),
-        5,
-        4.438330171083398
-    );
+
 INSERT INTO actuator_type (ID_TYPE, DESCRIPTION, IS_SWITCH, LOCATION)
 VALUES (1, "MINERAL VALVE", 1, "SECTOR");
 INSERT INTO actuator_type (ID_TYPE, DESCRIPTION, IS_SWITCH, LOCATION)
@@ -522,11 +508,19 @@ VALUES (2, 1, 5);
 INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
 VALUES (13, 4, 4);
 INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
+VALUES (14, 5, 5);
+INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
+VALUES (15, 5, 5);
+INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
 VALUES (16, 4, 4);
 INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
 VALUES (17, 4, 4);
 INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
 VALUES (13, 1);
+INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
+VALUES (14, 2);
+INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
+VALUES (15, 3);
 INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
 VALUES (16, 4);
 INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
@@ -537,6 +531,13 @@ VALUES (
         FROM_UNIXTIME(1661230761),
         4,
         2.103547531265436
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP,ID_MEASUREMENT_TYPE, value)
+VALUES (
+        14,
+        FROM_UNIXTIME(1660489828),
+        5,
+        4.438330171083398
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
