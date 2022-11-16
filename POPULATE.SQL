@@ -2135,7 +2135,6 @@ VALUES (80, 36);
 INSERT INTO pipe_act_loc (ID_ACTUATOR, ID_PIPE)
 VALUES (81, 36);
 
--- @block
 INSERT INTO value_pipe_actuator (ID_ACTUATOR, TIMESTAMP, VALUE)
 VALUES (10, FROM_UNIXTIME(1662789600), 12);
 INSERT INTO value_pipe_actuator (ID_ACTUATOR, TIMESTAMP, VALUE)
@@ -3083,1129 +3082,1275 @@ VALUES (72, 36);
 
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        1,
-        FROM_UNIXTIME(1000000000),
+        37,
+        FROM_UNIXTIME(1662789600),
         4,
         2.1
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        2,
-        FROM_UNIXTIME(1000000000),
+        38,
+        FROM_UNIXTIME(1662789600),
         4,
         3.2
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        3,
-        FROM_UNIXTIME(1000000000),
+        39,
+        FROM_UNIXTIME(1662789600),
         4,
         4.5
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        4,
-        FROM_UNIXTIME(1000000000),
+        40,
+        FROM_UNIXTIME(1662789600),
         4,
         2.3
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        5,
-        FROM_UNIXTIME(1000000000),
+        41,
+        FROM_UNIXTIME(1662789600),
         4,
         3.6
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        6,
-        FROM_UNIXTIME(1000000000),
+        42,
+        FROM_UNIXTIME(1662789600),
         4,
         4.8
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        7,
-        FROM_UNIXTIME(1000000000),
+        43,
+        FROM_UNIXTIME(1662789600),
         4,
         2.01
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        8,
-        FROM_UNIXTIME(1000000000),
+        44,
+        FROM_UNIXTIME(1662789600),
         4,
         2.74
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        9,
-        FROM_UNIXTIME(1000000000),
+        45,
+        FROM_UNIXTIME(1662789600),
         4,
         3.99
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        10,
-        FROM_UNIXTIME(1000000000),
+        46,
+        FROM_UNIXTIME(1662789600),
         4,
         2.55
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        11,
-        FROM_UNIXTIME(1000000000),
+        47,
+        FROM_UNIXTIME(1662789600),
         4,
        2.45
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        12,
-        FROM_UNIXTIME(1000000000),
+        48,
+        FROM_UNIXTIME(1662789600),
         4,
         2.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        13,
-        FROM_UNIXTIME(1000000000),
+        49,
+        FROM_UNIXTIME(1662789600),
         4,
         2.83
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        14,
-        FROM_UNIXTIME(1000000000),
+        50,
+        FROM_UNIXTIME(1662789600),
         4,
         2.708
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        15,
-        FROM_UNIXTIME(1000000000),
+        51,
+        FROM_UNIXTIME(1662789600),
         4,
        3.87
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        16,
-        FROM_UNIXTIME(1000000000),
+        52,
+        FROM_UNIXTIME(1662789600),
         4,
         3.22
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        17,
-        FROM_UNIXTIME(1000000000),
+        53,
+        FROM_UNIXTIME(1662789600),
         4,
         3.33
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        18,
-        FROM_UNIXTIME(1000000000),
+        54,
+        FROM_UNIXTIME(1662789600),
         4,
         3.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        19,
-        FROM_UNIXTIME(1000000000),
+        55,
+        FROM_UNIXTIME(1662789600),
         4,
         3.98
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        20,
-        FROM_UNIXTIME(1000000000),
+        56,
+        FROM_UNIXTIME(1662789600),
         4,
         3.12
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        21,
-        FROM_UNIXTIME(1000000000),
+        57,
+        FROM_UNIXTIME(1662789600),
         4,
         4.58
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        22,
-        FROM_UNIXTIME(1000000000),
+        58,
+        FROM_UNIXTIME(1662789600),
         4,
         4.79
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        23,
-        FROM_UNIXTIME(1000000000),
+        59,
+        FROM_UNIXTIME(1662789600),
         4,
         4.96
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        24,
-        FROM_UNIXTIME(1000000000),
+        60,
+        FROM_UNIXTIME(1662789600),
         4,
         4.22
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        25,
-        FROM_UNIXTIME(1000000000),
+        61,
+        FROM_UNIXTIME(1662789600),
         4,
        4.68
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        26,
-        FROM_UNIXTIME(1000000000),
+        62,
+        FROM_UNIXTIME(1662789600),
         4,
         4.78
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        27,
-        FROM_UNIXTIME(1000000000),
+        63,
+        FROM_UNIXTIME(1662789600),
         4,
         4.63
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        28,
-        FROM_UNIXTIME(1000000000),
+        64,
+        FROM_UNIXTIME(1662789600),
         4,
         2.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        29,
-        FROM_UNIXTIME(1000000000),
+        65,
+        FROM_UNIXTIME(1662789600),
         4,
         2.88
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        30,
-        FROM_UNIXTIME(1000000000),
+        66,
+        FROM_UNIXTIME(1662789600),
         4,
         2.69
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        31,
-        FROM_UNIXTIME(1000000000),
+        67,
+        FROM_UNIXTIME(1662789600),
         4,
         3.47
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        32,
-        FROM_UNIXTIME(1000000000),
+        68,
+        FROM_UNIXTIME(1662789600),
         4,
         4.13
     );
 
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        1,
-        FROM_UNIXTIME(1000000001),
+        69,
+        FROM_UNIXTIME(1662789600),
         4,
         2.1
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        2,
-        FROM_UNIXTIME(1000000001),
+        70,
+        FROM_UNIXTIME(1662789600),
         4,
         3.2
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        3,
-        FROM_UNIXTIME(1000000001),
+        71,
+        FROM_UNIXTIME(1662789600),
         4,
         4.5
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
+        72,
+        FROM_UNIXTIME(1662789600),
         4,
-        FROM_UNIXTIME(1000000001),
+        2.3
+    );
+
+
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        37,
+        FROM_UNIXTIME(1665036000),
+        4,
+        2.1
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        38,
+        FROM_UNIXTIME(1665036000),
+        4,
+        3.2
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        39,
+        FROM_UNIXTIME(1665036000),
+        4,
+        4.5
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        40,
+        FROM_UNIXTIME(1665036000),
         4,
         2.3
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        5,
-        FROM_UNIXTIME(1000000001),
+        41,
+        FROM_UNIXTIME(1665036000),
         4,
         3.6
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        6,
-        FROM_UNIXTIME(1000000001),
+        42,
+        FROM_UNIXTIME(1665036000),
         4,
         4.8
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        7,
-        FROM_UNIXTIME(1000000001),
+        43,
+        FROM_UNIXTIME(1665036000),
         4,
         2.01
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        8,
-        FROM_UNIXTIME(1000000001),
+        44,
+        FROM_UNIXTIME(1665036000),
         4,
         2.74
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        9,
-        FROM_UNIXTIME(1000000001),
+        45,
+        FROM_UNIXTIME(1665036000),
         4,
         3.99
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        10,
-        FROM_UNIXTIME(1000000001),
+        46,
+        FROM_UNIXTIME(1665036000),
         4,
         2.55
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        11,
-        FROM_UNIXTIME(1000000001),
+        47,
+        FROM_UNIXTIME(1665036000),
         4,
        2.45
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        12,
-        FROM_UNIXTIME(1000000001),
+        48,
+        FROM_UNIXTIME(1665036000),
         4,
         2.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        13,
-        FROM_UNIXTIME(1000000001),
+        49,
+        FROM_UNIXTIME(1665036000),
         4,
         2.83
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        14,
-        FROM_UNIXTIME(1000000001),
+        50,
+        FROM_UNIXTIME(1665036000),
         4,
         2.708
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        15,
-        FROM_UNIXTIME(1000000001),
+        51,
+        FROM_UNIXTIME(1665036000),
         4,
        3.87
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        16,
-        FROM_UNIXTIME(1000000001),
+        52,
+        FROM_UNIXTIME(1665036000),
         4,
         3.22
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        17,
-        FROM_UNIXTIME(1000000001),
+        53,
+        FROM_UNIXTIME(1665036000),
         4,
         3.33
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        18,
-        FROM_UNIXTIME(1000000001),
+        54,
+        FROM_UNIXTIME(1665036000),
         4,
         3.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        19,
-        FROM_UNIXTIME(1000000001),
+        55,
+        FROM_UNIXTIME(1665036000),
         4,
         3.98
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        20,
-        FROM_UNIXTIME(1000000001),
+        56,
+        FROM_UNIXTIME(1665036000),
         4,
         3.12
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        21,
-        FROM_UNIXTIME(1000000001),
+        57,
+        FROM_UNIXTIME(1665036000),
         4,
         4.58
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        22,
-        FROM_UNIXTIME(1000000001),
+        58,
+        FROM_UNIXTIME(1665036000),
         4,
         4.79
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        23,
-        FROM_UNIXTIME(1000000001),
+        59,
+        FROM_UNIXTIME(1665036000),
         4,
         4.96
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        24,
-        FROM_UNIXTIME(1000000001),
+        60,
+        FROM_UNIXTIME(1665036000),
         4,
         4.22
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        25,
-        FROM_UNIXTIME(1000000001),
+        61,
+        FROM_UNIXTIME(1665036000),
         4,
        4.68
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        26,
-        FROM_UNIXTIME(1000000001),
+        62,
+        FROM_UNIXTIME(1665036000),
         4,
         4.78
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        27,
-        FROM_UNIXTIME(1000000001),
+        63,
+        FROM_UNIXTIME(1665036000),
         4,
         4.63
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        28,
-        FROM_UNIXTIME(1000000001),
+        64,
+        FROM_UNIXTIME(1665036000),
         4,
         2.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        29,
-        FROM_UNIXTIME(1000000001),
+        65,
+        FROM_UNIXTIME(1665036000),
         4,
         2.88
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        30,
-        FROM_UNIXTIME(1000000001),
+        66,
+        FROM_UNIXTIME(1665036000),
         4,
         2.69
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        31,
-        FROM_UNIXTIME(1000000001),
+        67,
+        FROM_UNIXTIME(1665036000),
         4,
         3.47
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        32,
-        FROM_UNIXTIME(1000000001),
+        68,
+        FROM_UNIXTIME(1665036000),
         4,
         4.13
     );
 
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        1,
-        FROM_UNIXTIME(1000000002),
+        69,
+        FROM_UNIXTIME(1665036000),
         4,
         2.1
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        2,
-        FROM_UNIXTIME(1000000002),
+        70,
+        FROM_UNIXTIME(1665036000),
         4,
         3.2
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        3,
-        FROM_UNIXTIME(1000000002),
+        71,
+        FROM_UNIXTIME(1665036000),
         4,
         4.5
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
+        72,
+        FROM_UNIXTIME(1665036000),
         4,
-        FROM_UNIXTIME(1000000002),
+        2.3
+    );
+
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        37,
+        FROM_UNIXTIME(1665122400),
+        4,
+        2.1
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        38,
+        FROM_UNIXTIME(1665122400),
+        4,
+        3.2
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        39,
+        FROM_UNIXTIME(1665122400),
+        4,
+        4.5
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        40,
+        FROM_UNIXTIME(1665122400),
         4,
         2.3
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        5,
-        FROM_UNIXTIME(1000000002),
+        41,
+        FROM_UNIXTIME(1665122400),
         4,
         3.6
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        6,
-        FROM_UNIXTIME(1000000002),
+        42,
+        FROM_UNIXTIME(1665122400),
         4,
         4.8
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        7,
-        FROM_UNIXTIME(1000000002),
+        43,
+        FROM_UNIXTIME(1665122400),
         4,
         2.01
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        8,
-        FROM_UNIXTIME(1000000002),
+        44,
+        FROM_UNIXTIME(1665122400),
         4,
         2.74
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        9,
-        FROM_UNIXTIME(1000000002),
+        45,
+        FROM_UNIXTIME(1665122400),
         4,
         3.99
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        10,
-        FROM_UNIXTIME(1000000002),
+        46,
+        FROM_UNIXTIME(1665122400),
         4,
         2.55
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        11,
-        FROM_UNIXTIME(1000000002),
+        47,
+        FROM_UNIXTIME(1665122400),
         4,
        2.45
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        12,
-        FROM_UNIXTIME(1000000002),
+        48,
+        FROM_UNIXTIME(1665122400),
         4,
         2.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        13,
-        FROM_UNIXTIME(1000000002),
+        49,
+        FROM_UNIXTIME(1665122400),
         4,
         2.83
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        14,
-        FROM_UNIXTIME(1000000002),
+        50,
+        FROM_UNIXTIME(1665122400),
         4,
         2.708
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        15,
-        FROM_UNIXTIME(1000000002),
+        51,
+        FROM_UNIXTIME(1665122400),
         4,
        3.87
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        16,
-        FROM_UNIXTIME(1000000002),
+        52,
+        FROM_UNIXTIME(1665122400),
         4,
         3.22
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        17,
-        FROM_UNIXTIME(1000000002),
+        53,
+        FROM_UNIXTIME(1665122400),
         4,
         3.33
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        18,
-        FROM_UNIXTIME(1000000002),
+        54,
+        FROM_UNIXTIME(1665122400),
         4,
         3.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        19,
-        FROM_UNIXTIME(1000000002),
+        55,
+        FROM_UNIXTIME(1665122400),
         4,
         3.98
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        20,
-        FROM_UNIXTIME(1000000002),
+        56,
+        FROM_UNIXTIME(1665122400),
         4,
         3.12
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        21,
-        FROM_UNIXTIME(1000000002),
+        57,
+        FROM_UNIXTIME(1665122400),
         4,
         4.58
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        22,
-        FROM_UNIXTIME(1000000002),
+        58,
+        FROM_UNIXTIME(1665122400),
         4,
         4.79
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        23,
-        FROM_UNIXTIME(1000000002),
+        59,
+        FROM_UNIXTIME(1665122400),
         4,
         4.96
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        24,
-        FROM_UNIXTIME(1000000002),
+        60,
+        FROM_UNIXTIME(1665122400),
         4,
         4.22
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        25,
-        FROM_UNIXTIME(1000000002),
+        61,
+        FROM_UNIXTIME(1665122400),
         4,
        4.68
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        26,
-        FROM_UNIXTIME(1000000002),
+        62,
+        FROM_UNIXTIME(1665122400),
         4,
         4.78
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        27,
-        FROM_UNIXTIME(1000000002),
+        63,
+        FROM_UNIXTIME(1665122400),
         4,
         4.63
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        28,
-        FROM_UNIXTIME(1000000002),
+        64,
+        FROM_UNIXTIME(1665122400),
         4,
         2.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        29,
-        FROM_UNIXTIME(1000000002),
+        65,
+        FROM_UNIXTIME(1665122400),
         4,
         2.88
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        30,
-        FROM_UNIXTIME(1000000002),
+        66,
+        FROM_UNIXTIME(1665122400),
         4,
         2.69
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        31,
-        FROM_UNIXTIME(1000000002),
+        67,
+        FROM_UNIXTIME(1665122400),
         4,
         3.47
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        32,
-        FROM_UNIXTIME(1000000002),
+        68,
+        FROM_UNIXTIME(1665122400),
         4,
         4.13
     );
 
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        1,
-        FROM_UNIXTIME(1000000003),
+        69,
+        FROM_UNIXTIME(1665122400),
         4,
         2.1
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        2,
-        FROM_UNIXTIME(1000000003),
+        70,
+        FROM_UNIXTIME(1665122400),
         4,
         3.2
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        3,
-        FROM_UNIXTIME(1000000003),
+        71,
+        FROM_UNIXTIME(1665122400),
         4,
         4.5
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        4,
-        FROM_UNIXTIME(1000000003),
+        72,
+        FROM_UNIXTIME(1665122400),
         4,
         2.3
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        5,
-        FROM_UNIXTIME(1000000003),
+        37,
+        FROM_UNIXTIME(1665208800),
+        4,
+        2.1
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        38,
+        FROM_UNIXTIME(1665208800),
+        4,
+        3.2
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        39,
+        FROM_UNIXTIME(1665208800),
+        4,
+        4.5
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        40,
+        FROM_UNIXTIME(1665208800),
+        4,
+        2.3
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        41,
+        FROM_UNIXTIME(1665208800),
         4,
         3.6
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        6,
-        FROM_UNIXTIME(1000000003),
+        42,
+        FROM_UNIXTIME(1665208800),
         4,
         4.8
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        7,
-        FROM_UNIXTIME(1000000003),
+        43,
+        FROM_UNIXTIME(1665208800),
         4,
         2.01
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        8,
-        FROM_UNIXTIME(1000000003),
+        44,
+        FROM_UNIXTIME(1665208800),
         4,
         2.74
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        9,
-        FROM_UNIXTIME(1000000003),
+        45,
+        FROM_UNIXTIME(1665208800),
         4,
         3.99
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        10,
-        FROM_UNIXTIME(1000000003),
+        46,
+        FROM_UNIXTIME(1665208800),
         4,
         2.55
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        11,
-        FROM_UNIXTIME(1000000003),
+        47,
+        FROM_UNIXTIME(1665208800),
         4,
        2.45
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        12,
-        FROM_UNIXTIME(1000000003),
+        48,
+        FROM_UNIXTIME(1665208800),
         4,
         2.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        13,
-        FROM_UNIXTIME(1000000003),
+        49,
+        FROM_UNIXTIME(1665208800),
         4,
         2.83
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        14,
-        FROM_UNIXTIME(1000000003),
+        50,
+        FROM_UNIXTIME(1665208800),
         4,
         2.708
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        15,
-        FROM_UNIXTIME(1000000003),
+        51,
+        FROM_UNIXTIME(1665208800),
         4,
        3.87
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        16,
-        FROM_UNIXTIME(1000000003),
+        52,
+        FROM_UNIXTIME(1665208800),
         4,
         3.22
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        17,
-        FROM_UNIXTIME(1000000003),
+        53,
+        FROM_UNIXTIME(1665208800),
         4,
         3.33
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        18,
-        FROM_UNIXTIME(1000000003),
+        54,
+        FROM_UNIXTIME(1665208800),
         4,
         3.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        19,
-        FROM_UNIXTIME(1000000003),
+        55,
+        FROM_UNIXTIME(1665208800),
         4,
         3.98
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        20,
-        FROM_UNIXTIME(1000000003),
+        56,
+        FROM_UNIXTIME(1665208800),
         4,
         3.12
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        21,
-        FROM_UNIXTIME(1000000003),
+        57,
+        FROM_UNIXTIME(1665208800),
         4,
         4.58
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        22,
-        FROM_UNIXTIME(1000000003),
+        58,
+        FROM_UNIXTIME(1665208800),
         4,
         4.79
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        23,
-        FROM_UNIXTIME(1000000003),
+        59,
+        FROM_UNIXTIME(1665208800),
         4,
         4.96
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        24,
-        FROM_UNIXTIME(1000000003),
+        60,
+        FROM_UNIXTIME(1665208800),
         4,
         4.22
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        25,
-        FROM_UNIXTIME(1000000003),
+        61,
+        FROM_UNIXTIME(1665208800),
         4,
        4.68
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        26,
-        FROM_UNIXTIME(1000000003),
+        62,
+        FROM_UNIXTIME(1665208800),
         4,
         4.78
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        27,
-        FROM_UNIXTIME(1000000003),
+        63,
+        FROM_UNIXTIME(1665208800),
         4,
         4.63
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        28,
-        FROM_UNIXTIME(1000000003),
+        64,
+        FROM_UNIXTIME(1665208800),
         4,
         2.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        29,
-        FROM_UNIXTIME(1000000003),
+        65,
+        FROM_UNIXTIME(1665208800),
         4,
         2.88
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        30,
-        FROM_UNIXTIME(1000000003),
+        66,
+        FROM_UNIXTIME(1665208800),
         4,
         2.69
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        31,
-        FROM_UNIXTIME(1000000003),
+        67,
+        FROM_UNIXTIME(1665208800),
         4,
         3.47
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        32,
-        FROM_UNIXTIME(1000000003),
+        68,
+        FROM_UNIXTIME(1665208800),
         4,
         4.13
     );
 
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        1,
-        FROM_UNIXTIME(1000000004),
+        69,
+        FROM_UNIXTIME(1665208800),
         4,
         2.1
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        2,
-        FROM_UNIXTIME(1000000004),
+        70,
+        FROM_UNIXTIME(1665208800),
         4,
         3.2
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        3,
-        FROM_UNIXTIME(1000000004),
+        71,
+        FROM_UNIXTIME(1665208800),
         4,
         4.5
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
+        72,
+        FROM_UNIXTIME(1665208800),
         4,
-        FROM_UNIXTIME(1000000004),
+        2.3
+    );
+
+
+    
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        37,
+        FROM_UNIXTIME(1665295200),
+        4,
+        2.1
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        38,
+        FROM_UNIXTIME(1665295200),
+        4,
+        3.2
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        39,
+        FROM_UNIXTIME(1665295200),
+        4,
+        4.5
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        40,
+        FROM_UNIXTIME(1665295200),
         4,
         2.3
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        5,
-        FROM_UNIXTIME(1000000004),
+        41,
+        FROM_UNIXTIME(1665295200),
         4,
         3.6
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        6,
-        FROM_UNIXTIME(1000000004),
+        42,
+        FROM_UNIXTIME(1665295200),
         4,
         4.8
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        7,
-        FROM_UNIXTIME(1000000004),
+        43,
+        FROM_UNIXTIME(1665295200),
         4,
         2.01
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        8,
-        FROM_UNIXTIME(1000000004),
+        44,
+        FROM_UNIXTIME(1665295200),
         4,
         2.74
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        9,
-        FROM_UNIXTIME(1000000004),
+        45,
+        FROM_UNIXTIME(1665295200),
         4,
         3.99
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        10,
-        FROM_UNIXTIME(1000000004),
+        46,
+        FROM_UNIXTIME(1665295200),
         4,
         2.55
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        11,
-        FROM_UNIXTIME(1000000004),
+        47,
+        FROM_UNIXTIME(1665295200),
         4,
        2.45
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        12,
-        FROM_UNIXTIME(1000000004),
+        48,
+        FROM_UNIXTIME(1665295200),
         4,
         2.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        13,
-        FROM_UNIXTIME(1000000004),
+        49,
+        FROM_UNIXTIME(1665295200),
         4,
         2.83
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        14,
-        FROM_UNIXTIME(1000000004),
+        50,
+        FROM_UNIXTIME(1665295200),
         4,
         2.708
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        15,
-        FROM_UNIXTIME(1000000004),
+        51,
+        FROM_UNIXTIME(1665295200),
         4,
        3.87
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        16,
-        FROM_UNIXTIME(1000000004),
+        52,
+        FROM_UNIXTIME(1665295200),
         4,
         3.22
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        17,
-        FROM_UNIXTIME(1000000004),
+        53,
+        FROM_UNIXTIME(1665295200),
         4,
         3.33
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        18,
-        FROM_UNIXTIME(1000000004),
+        54,
+        FROM_UNIXTIME(1665295200),
         4,
         3.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        19,
-        FROM_UNIXTIME(1000000004),
+        55,
+        FROM_UNIXTIME(1665295200),
         4,
         3.98
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        20,
-        FROM_UNIXTIME(1000000004),
+        56,
+        FROM_UNIXTIME(1665295200),
         4,
         3.12
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        21,
-        FROM_UNIXTIME(1000000004),
+        57,
+        FROM_UNIXTIME(1665295200),
         4,
         4.58
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        22,
-        FROM_UNIXTIME(1000000004),
+        58,
+        FROM_UNIXTIME(1665295200),
         4,
         4.79
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        23,
-        FROM_UNIXTIME(1000000004),
+        59,
+        FROM_UNIXTIME(1665295200),
         4,
         4.96
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        24,
-        FROM_UNIXTIME(1000000004),
+        60,
+        FROM_UNIXTIME(1665295200),
         4,
         4.22
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        25,
-        FROM_UNIXTIME(1000000004),
+        61,
+        FROM_UNIXTIME(1665295200),
         4,
        4.68
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        26,
-        FROM_UNIXTIME(1000000004),
+        62,
+        FROM_UNIXTIME(1665295200),
         4,
         4.78
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        27,
-        FROM_UNIXTIME(1000000004),
+        63,
+        FROM_UNIXTIME(1665295200),
         4,
         4.63
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        28,
-        FROM_UNIXTIME(1000000004),
+        64,
+        FROM_UNIXTIME(1665295200),
         4,
         2.65
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        29,
-        FROM_UNIXTIME(1000000004),
+        65,
+        FROM_UNIXTIME(1665295200),
         4,
         2.88
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        30,
-        FROM_UNIXTIME(1000000004),
+        66,
+        FROM_UNIXTIME(1665295200),
         4,
         2.69
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        31,
-        FROM_UNIXTIME(1000000004),
+        67,
+        FROM_UNIXTIME(1665295200),
         4,
         3.47
     );
     INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
-        32,
-        FROM_UNIXTIME(1000000004),
+        68,
+        FROM_UNIXTIME(1665295200),
         4,
         4.13
     );
 
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        69,
+        FROM_UNIXTIME(1665295200),
+        4,
+        2.1
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        70,
+        FROM_UNIXTIME(1665295200),
+        4,
+        3.2
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        71,
+        FROM_UNIXTIME(1665295200),
+        4,
+        4.5
+    );
+INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
+VALUES (
+        72,
+        FROM_UNIXTIME(1665295200),
+        4,
+        2.3
+    );
 
 -- @block
 -- Get all the pipes in the system and their connections
