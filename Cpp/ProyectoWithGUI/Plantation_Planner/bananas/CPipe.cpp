@@ -37,6 +37,11 @@ ImVec2 CPipe::getInitialPos()
 {
     return m_gui_data.pos;
 }
+bool CPipe::addActuator(std::shared_ptr<CActuator> a)
+{
+    m_actuators.push_back(a);
+    return true;
+}
 void CPipe::draw()
 {
     ImNodes::PushColorStyle(
@@ -62,7 +67,7 @@ void CPipe::draw()
     char id_string[32];
     sprintf(id_string, "%d", m_id);
     char child_name[64] = "S&A Pipe";
-    ImGui::BeginChild(strcat(child_name, id_string), ImVec2(100, 80), false);
+    ImGui::BeginChild(strcat(child_name, id_string), ImVec2(150, 80), false);
     if (ImGui::TreeNode("Sensors"))
     {
 
@@ -73,7 +78,10 @@ void CPipe::draw()
     if (ImGui::TreeNode("Actuators"))
     {
 
-        ImGui::Text("ABOUT THIS DEMO:");
+        for(std::shared_ptr<CActuator> act : m_actuators)
+        {
+            ImGui::Text("Act id: %d", act.get()->getId());
+        }
         ImGui::TreePop();
     }
     ImGui::EndChild();

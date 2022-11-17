@@ -382,7 +382,9 @@ bool CDatabaseBanana::getPipeActuators(std::list<std::shared_ptr<CActuator>> act
 			while (res->next())
 			{
 				CActType type((bool)res->getInt64("IS_SWITCH"), res->getInt64("ID_TYPE"), res->getString("DESCRIPTION"), res->getString("LOCATION"));
-				actuator_vector.push_back(std::make_shared<CActuator>(res->getInt64("ID_ACTUATOR"), type));
+				std::shared_ptr<CActuator> actuator = std::make_shared<CActuator>(res->getInt64("ID_ACTUATOR"), type);
+				actuator_vector.push_back(actuator);
+				pipe.get()->addActuator(actuator);
 				_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_ACTUATOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");
 				result = true;
 			}

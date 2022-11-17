@@ -9,6 +9,8 @@
 #include <string>
 #include <boost/variant.hpp>
 
+#include "../CActuator.h"
+
 #include "CSector.h"
 
 #define OFFSETPIPEID = 10000
@@ -23,14 +25,13 @@ public:
 	~CPipe();
 	// bool addSensor(boost::shared_ptr<CSensor> s);
 
-	// bool addActuator(boost::shared_ptr<CActuator> a);
+	bool addActuator(std::shared_ptr<CActuator> a);
 	void draw();
 	unsigned int getId();
 	std::shared_ptr<CSector> otherSector(std::shared_ptr<CSector> sector);
 
 	// GUI Functions
 	unsigned int get_GUIPipeId();
-	int getId() { return m_id; };
 	ImVec2 getInitialPos();
 	void setPipeInGrid();
 
@@ -39,6 +40,8 @@ private:
 	std::string m_description;
 	std::shared_ptr<CSector> m_fromSector;
 	std::shared_ptr<CSector> m_toSector;
+
+	std::list<std::shared_ptr<CActuator>> m_actuators;
 	struct
 	{
 		bool hasLeak;
