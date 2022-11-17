@@ -130,6 +130,8 @@ int main()
         // List of shared pointers
         std::list<std::shared_ptr<CSector>> v_Sectors;
         std::list<std::shared_ptr<CPipe>> v_Pipes;
+        std::list<std::shared_ptr<CActuator>> v_Actuators;
+
 
         CEstate Tenerife_Estate(3, 4);
 
@@ -194,18 +196,14 @@ int main()
 
                 std::vector<CActuator*> actuators;
                 auto it_v = v_Pipes.begin();
-                for (int i = 0; i < v_Pipes.size(); i++, it++) {
-                    int id = (*it)->get_id();
-                    if (id == 6) {
-                        std::cout << "Pipe ID: " << id << std::endl;
-                        dbObject.getPipeActuators(actuators, (*it_v));
-                        for ( int i = 0; i < actuators.size(); i++)
-                        {
-                            std::cout << "Actuator ID: " << actuators[i]->getId() << std::endl;
-                        }
+                for (int i = 0; i < v_Pipes.size(); i++, it_v++) {
+                    int id = (*it_v)->getId();
+                    std::cout << "Pipe ID: " << id << std::endl;
+                    dbObject.getPipeActuators(v_Actuators, (*it_v));
 
 
-                    }
+
+                    
                 }
 
                 
