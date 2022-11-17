@@ -128,7 +128,7 @@ int main()
         // List of shared pointers
         std::list<std::shared_ptr<CSector>> v_Sectors;
         std::list<std::shared_ptr<CPipe>> v_Pipes;
-        std::list<std::shared_ptr<CActuator>> v_Actuators;
+        std::list<std::shared_ptr<CActuator>> v_Actuators; 
 
         bool firstrun = true; // Flag to see if it is the first Update
 
@@ -184,7 +184,8 @@ int main()
                 {
                     // dbObject.getSectorPressure(pipe, from_fecha, to_fecha);
                     // dbObject.getSectorPumps(sector, from_fecha, to_fecha);
-                    dbObject.getPipeActuators(v_Actuators, pipe);
+                    dbObject.getPipeActuators(v_Actuators, pipe);// <- dentro llama a dbObject.getValue(int ActID, from_fecha, to_fecha)
+
                 }
 
                 log.println(boost::log::trivial::trace, "Class structure syncronized");
@@ -215,6 +216,12 @@ int main()
                                 //
                                 log.println(boost::log::trivial::trace, "There is a leak at Pipe" + pipe.get()->getId());
                                 // Close valve
+                                
+                                //std::shared_pointer<CActuator> valve = getPipeActuatorbytype(Cpipe pipe, std::string description "valve")
+                                //new
+                                //valve.addValues(new CValue (0))
+                                //dbObject.addValue(CActuator valve)
+
                             }
                         }
                     }
