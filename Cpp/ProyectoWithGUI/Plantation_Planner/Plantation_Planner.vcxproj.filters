@@ -116,6 +116,11 @@
     </ClCompile>
     <ClCompile Include="bananas\CValue.cpp">
       <Filter>Source Files\bananas</Filter>
+    <ClCompile Include="CActType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CActuator.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +204,12 @@
     </ClInclude>
     <ClInclude Include="bananas\CSensor.h">
       <Filter>Header Files\bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="CActType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CActuator.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

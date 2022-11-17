@@ -63,6 +63,8 @@
     <ClCompile Include="bananas\CSector.cpp" />
     <ClCompile Include="bananas\CSensor.cpp" />
     <ClCompile Include="bananas\CValue.cpp" />
+    <ClCompile Include="CActType.cpp" />
+    <ClCompile Include="CActuator.cpp" />
     <ClCompile Include="dm-database\CDatabase.cpp" />
     <ClCompile Include="dm-database\CDatabaseExample.cpp" />
     <ClCompile Include="helpers\CError.cpp" />
@@ -89,6 +91,8 @@
     <ClInclude Include="bananas\CSector.h" />
     <ClInclude Include="bananas\CSensor.h" />
     <ClInclude Include="bananas\CValue.h" />
+    <ClInclude Include="CActType.h" />
+    <ClInclude Include="CActuator.h" />
     <ClInclude Include="dm-database\CDatabase.hpp" />
     <ClInclude Include="dm-database\CDatabaseExample.hpp" />
     <ClInclude Include="helpers\CError.h" />

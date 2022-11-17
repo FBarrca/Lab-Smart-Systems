@@ -38,6 +38,8 @@
 #include "bananas/CSector.h"
 #include "bananas/CPipe.h"
 #include "bananas/CValue.h"
+#include "CActType.h"
+#include "CActuator.h"
 
 #include "./helpers/CTimeUtils.hpp"
 
@@ -126,6 +128,7 @@ int main()
         // List of shared pointers
         std::list<std::shared_ptr<CSector>> v_Sectors;
         std::list<std::shared_ptr<CPipe>> v_Pipes;
+        std::list<std::shared_ptr<CActuator>> v_Actuators;
 
         bool firstrun = true; // Flag to see if it is the first Update
 
@@ -162,189 +165,194 @@ int main()
                 | Populate sensors and actuators
                 -----------------------*/
 
-                //Should be time(0) and time(0) - AMOUNT_TIME
+                // Should be time(0) and time(0) - AMOUNT_TIME
                 time_t from_fecha = helpers::CTimeUtils::getTimeTFromYMDHMS(2020, 1, 1, 0, 0, 0);
                 time_t to_fecha = helpers::CTimeUtils::getTimeTFromYMDHMS(2023, 1, 1, 0, 0, 0);
 
-                //Save the preassure also on a external object
-                std::list<CValue*> pressure_list;
+                // Save the preassure also on a external object
+                std::list<CValue *> pressure_list;
 
                 // Add the sensors and actuators to the Sector object (get just values between two dates)
-                for (std::shared_ptr<CSector> sector : v_Sectors) {
+                for (std::shared_ptr<CSector> sector : v_Sectors)
+                {
                     dbObject.getSectorPressure(sector, from_fecha, to_fecha);
-                    //dbObject.getSectorPumps(sector, from_fecha, to_fecha);
+                    // dbObject.getSectorPumps(sector, from_fecha, to_fecha);
                 }
 
                 // Add the sensors and actuators to the Pipe object (get just values between two dates)
-                for (std::shared_ptr<CPipe> pipe : v_Pipes) {
-                    //dbObject.getSectorPressure(pipe, from_fecha, to_fecha);
-                    //dbObject.getSectorPumps(sector, from_fecha, to_fecha);
+                for (std::shared_ptr<CPipe> pipe : v_Pipes)
+                {
+                    // dbObject.getSectorPressure(pipe, from_fecha, to_fecha);
+                    // dbObject.getSectorPumps(sector, from_fecha, to_fecha);
+                    dbObject.getPipeActuators(v_Actuators, pipe);
                 }
 
                 log.println(boost::log::trivial::trace, "Class structure syncronized");
                 dbObject.Desconectar();
             }
-                /*----------------------
-                |  PROCESS OF DATA & INTELLIGENCE
-                -----------------------*/
-                // For the intelligence we will close valves if there is a drop in pressure
+            /*----------------------
+            |  PROCESS OF DATA & INTELLIGENCE
+            -----------------------*/
+            // For the intelligence we will close valves if there is a drop in pressure
 
-                for (std::shared_ptr<CSector> sector : v_Sectors) {
-                    //See if sector has dropped in pressure
-                    if (sector.get()->DropInPressure(40.0)) {
-                        //Get the pipes that go to that sector
-                        std::list<std::shared_ptr<CPipe>> v_PipesToSector;
-                        if (findwithSector(sector, v_PipesToSector, v_Pipes))
+            for (std::shared_ptr<CSector> sector : v_Sectors)
+            {
+                // See if sector has dropped in pressure
+                if (sector.get()->DropInPressure(40.0))
+                {
+                    // Get the pipes that go to that sector
+                    std::list<std::shared_ptr<CPipe>> v_PipesToSector;
+                    if (findwithSector(sector, v_PipesToSector, v_Pipes))
+                    {
+                        // Get the other end of the pipe
+                        for (std::shared_ptr<CPipe> pipe : v_PipesToSector)
                         {
-                            //Get the other end of the pipe
-                            for (std::shared_ptr<CPipe> pipe : v_PipesToSector) {
 
-                                std::shared_ptr<CSector> otherSector = pipe.get()->otherSector(sector);
+                            std::shared_ptr<CSector> otherSector = pipe.get()->otherSector(sector);
 
-                                if (otherSector.get()->DropInPressure(40.0)) {
-                                    //
-                                    log.println(boost::log::trivial::trace, "There is a leak at Pipe" + pipe.get()->getId());
-                                    //Close valve
-                                }
+                            if (otherSector.get()->DropInPressure(40.0))
+                            {
+                                //
+                                log.println(boost::log::trivial::trace, "There is a leak at Pipe" + pipe.get()->getId());
+                                // Close valve
                             }
                         }
                     }
-
-
-                    // for (size_t i = 0; i < v_Sectors.size(); i++)
-                    //{
-                    //     ////look for drops in sector pressure
-                    //     if (DropinPressure(v_Sectors[i]))
-                    //     {
-                    //         //find Pipes that are in that node
-                    //         std::vector<boost::shared_ptr<CPipe>> v_PipesToSector;
-                    //         if (findPipesToSector(v_PipesToSector)) {
-                    //             for (size_t j = 0; j < v_PipesToSector.size(); j++)
-                    //             {
-                    //                 //check if other end has also lost preasssure
-                    //                 CSector otherSector = Pipedestination(v_PipesToSector[j], v_Sectors[i]);
-                    //                 if (DropinPressure(otherSector)) // if both have lost preasure problem si between
-                    //                 {
-                    //                     CloseValve(v_PipesToSector[j]);
-                    //                 }
-
-                    //            }
-
-                    //        }
-                    //    }
-
-                    /*----------------------
-                    |  UPDATE VALVE STATE
-                    -----------------------*/
-                    // DDBB connection
-                    // dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
-                    // log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer inserts de info");
-
-                    // CValue ins_val(60, time(0));
-                    ////Do inserts of data
-
-                    // for (size_t i = 0; i < v_Pipes.size(); i++)
-                    //{
-                    //     //Insert stuff in DB
-                    //     dbObject.ComienzaTransaccion();
-                    //     bool resultInsert = true;
-                    //     resultInsert = resultInsert && dbObject.insertValveState(v_Pipes[i]);
-
-                    //    if (resultInsert) {
-                    //        log.println(boost::log::trivial::trace, "Data insert OK");
-                    //        dbObject.ConfirmarTransaccion();
-                    //    }
-                    //    else {
-                    //        log.println(boost::log::trivial::trace, "Data insert ERROR");
-                    //        dbObject.DeshacerTransaccion();
-                    //    }
-
-                    //}
-                    // dbObject.Desconectar();
-
-                    lastExecution = helpers::CTimeUtils::seconds_from_epoch(execTime);
                 }
+
+                // for (size_t i = 0; i < v_Sectors.size(); i++)
+                //{
+                //     ////look for drops in sector pressure
+                //     if (DropinPressure(v_Sectors[i]))
+                //     {
+                //         //find Pipes that are in that node
+                //         std::vector<boost::shared_ptr<CPipe>> v_PipesToSector;
+                //         if (findPipesToSector(v_PipesToSector)) {
+                //             for (size_t j = 0; j < v_PipesToSector.size(); j++)
+                //             {
+                //                 //check if other end has also lost preasssure
+                //                 CSector otherSector = Pipedestination(v_PipesToSector[j], v_Sectors[i]);
+                //                 if (DropinPressure(otherSector)) // if both have lost preasure problem si between
+                //                 {
+                //                     CloseValve(v_PipesToSector[j]);
+                //                 }
+
+                //            }
+
+                //        }
+                //    }
 
                 /*----------------------
-                |  GUI INIT CODE
+                |  UPDATE VALVE STATE
                 -----------------------*/
-                if (::PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+                // DDBB connection
+                // dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+                // log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer inserts de info");
+
+                // CValue ins_val(60, time(0));
+                ////Do inserts of data
+
+                // for (size_t i = 0; i < v_Pipes.size(); i++)
+                //{
+                //     //Insert stuff in DB
+                //     dbObject.ComienzaTransaccion();
+                //     bool resultInsert = true;
+                //     resultInsert = resultInsert && dbObject.insertValveState(v_Pipes[i]);
+
+                //    if (resultInsert) {
+                //        log.println(boost::log::trivial::trace, "Data insert OK");
+                //        dbObject.ConfirmarTransaccion();
+                //    }
+                //    else {
+                //        log.println(boost::log::trivial::trace, "Data insert ERROR");
+                //        dbObject.DeshacerTransaccion();
+                //    }
+
+                //}
+                // dbObject.Desconectar();
+
+                lastExecution = helpers::CTimeUtils::seconds_from_epoch(execTime);
+            }
+
+            /*----------------------
+            |  GUI INIT CODE
+            -----------------------*/
+            if (::PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+            {
+                ::TranslateMessage(&msg);
+                ::DispatchMessage(&msg);
+                continue;
+            }
+
+            ImGui_ImplDX9_NewFrame();
+            ImGui_ImplWin32_NewFrame();
+
+            ImGuiIO &io = ImGui::GetIO();
+            ImVec2 whole_content_size = io.DisplaySize;
+            ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration;
+
+            ImGui::NewFrame();
+            ImGui::SetNextWindowPos({0, 0});
+            ImGui::SetNextWindowSize(whole_content_size);
+            ImGui::Begin("ImguiTemplate", 0, flags);
+            ImGui::Text("Estate Node Viewer");
+
+            /*----------------------
+            |  GUI DRAW CODE
+            -----------------------*/
+            ImNodes::BeginNodeEditor();
+            // DRAW FOR EACH SECTOR IN THE NETWORK (using iterators)
+            // log.println(boost::log::trivial::info, "Click X  " + std::to_string(click_pos.x) + "Click Y  " + std::to_string(click_pos.y));
+
+            for (auto it = v_Sectors.begin(); it != v_Sectors.end(); ++it)
+            {
+                (*it)->draw();
+                if (firstrun)
                 {
-                    ::TranslateMessage(&msg);
-                    ::DispatchMessage(&msg);
-                    continue;
-                }
-
-                ImGui_ImplDX9_NewFrame();
-                ImGui_ImplWin32_NewFrame();
-
-                ImGuiIO& io = ImGui::GetIO();
-                ImVec2 whole_content_size = io.DisplaySize;
-                ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration;
-
-                ImGui::NewFrame();
-                ImGui::SetNextWindowPos({ 0, 0 });
-                ImGui::SetNextWindowSize(whole_content_size);
-                ImGui::Begin("ImguiTemplate", 0, flags);
-                ImGui::Text("Estate Node Viewer");
-
-                /*----------------------
-                |  GUI DRAW CODE
-                -----------------------*/
-                ImNodes::BeginNodeEditor();
-                // DRAW FOR EACH SECTOR IN THE NETWORK (using iterators)
-                // log.println(boost::log::trivial::info, "Click X  " + std::to_string(click_pos.x) + "Click Y  " + std::to_string(click_pos.y));
-
-                for (auto it = v_Sectors.begin(); it != v_Sectors.end(); ++it)
-                {
-                    (*it)->draw();
-                    if (firstrun)
-                    {
-                        ImVec2 pos = setSectorInGrid((*it)->get_id(), std::ceil(std::sqrt(v_Sectors.size())));
-                        (*it)->setPos(pos);
-                        ImNodes::SetNodeScreenSpacePos((*it)->get_id(), pos);
-                    }
-                }
-
-                // DRAW FOR EACH PIPE IN THE NETWORK (using iterators)
-                for (auto it = v_Pipes.begin(); it != v_Pipes.end(); ++it)
-                {
-                    (*it)->draw();
-                    if (firstrun)
-                    {
-                        (*it)->setPipeInGrid();
-                        std::cout << "Pipe " << (*it)->getInitialPos().x << "     ,     " << (*it)->getInitialPos().y << std::endl;
-                        ImNodes::SetNodeScreenSpacePos((*it)->get_GUIPipeId(), ImVec2((*it)->getInitialPos().x, (*it)->getInitialPos().y));
-                        //  setSectorInGrid((*it)->get_id(),  std::ceil(std::sqrt(v_Sectors.size()))
-                    }
-                }
-                firstrun = false;
-                ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
-                ImNodes::EndNodeEditor();
-                ImGui::End();
-                //ImGui::ShowDemoWindow();
-                ImGui::EndFrame();
-
-                g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
-                g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-                g_pd3dDevice->SetRenderState(D3DRS_SCISSORTESTENABLE, FALSE);
-                D3DCOLOR clear_col_dx = D3DCOLOR_RGBA((int)(clear_color.x * 255.0f), (int)(clear_color.y * 255.0f), (int)(clear_color.z * 255.0f), (int)(clear_color.w * 255.0f));
-                g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, clear_col_dx, 1.0f, 0);
-                if (g_pd3dDevice->BeginScene() >= 0)
-                {
-                    ImGui::Render();
-                    ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
-                    g_pd3dDevice->EndScene();
-                }
-                HRESULT result = g_pd3dDevice->Present(NULL, NULL, NULL, NULL);
-
-                // Handle loss of D3D9 device
-                if (result == D3DERR_DEVICELOST && g_pd3dDevice->TestCooperativeLevel() == D3DERR_DEVICENOTRESET)
-                {
-                    ResetDevice();
+                    ImVec2 pos = setSectorInGrid((*it)->get_id(), std::ceil(std::sqrt(v_Sectors.size())));
+                    (*it)->setPos(pos);
+                    ImNodes::SetNodeScreenSpacePos((*it)->get_id(), pos);
                 }
             }
-        
+
+            // DRAW FOR EACH PIPE IN THE NETWORK (using iterators)
+            for (auto it = v_Pipes.begin(); it != v_Pipes.end(); ++it)
+            {
+                (*it)->draw();
+                if (firstrun)
+                {
+                    (*it)->setPipeInGrid();
+                    std::cout << "Pipe " << (*it)->getInitialPos().x << "     ,     " << (*it)->getInitialPos().y << std::endl;
+                    ImNodes::SetNodeScreenSpacePos((*it)->get_GUIPipeId(), ImVec2((*it)->getInitialPos().x, (*it)->getInitialPos().y));
+                    //  setSectorInGrid((*it)->get_id(),  std::ceil(std::sqrt(v_Sectors.size()))
+                }
+            }
+            firstrun = false;
+            ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
+            ImNodes::EndNodeEditor();
+            ImGui::End();
+            // ImGui::ShowDemoWindow();
+            ImGui::EndFrame();
+
+            g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
+            g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+            g_pd3dDevice->SetRenderState(D3DRS_SCISSORTESTENABLE, FALSE);
+            D3DCOLOR clear_col_dx = D3DCOLOR_RGBA((int)(clear_color.x * 255.0f), (int)(clear_color.y * 255.0f), (int)(clear_color.z * 255.0f), (int)(clear_color.w * 255.0f));
+            g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, clear_col_dx, 1.0f, 0);
+            if (g_pd3dDevice->BeginScene() >= 0)
+            {
+                ImGui::Render();
+                ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
+                g_pd3dDevice->EndScene();
+            }
+            HRESULT result = g_pd3dDevice->Present(NULL, NULL, NULL, NULL);
+
+            // Handle loss of D3D9 device
+            if (result == D3DERR_DEVICELOST && g_pd3dDevice->TestCooperativeLevel() == D3DERR_DEVICENOTRESET)
+            {
+                ResetDevice();
+            }
+        }
     }
     catch (std::exception &e)
     {

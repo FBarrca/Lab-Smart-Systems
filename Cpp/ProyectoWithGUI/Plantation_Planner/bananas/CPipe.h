@@ -30,6 +30,7 @@ public:
 
 	// GUI Functions
 	unsigned int get_GUIPipeId();
+	int getId() { return m_id; };
 	ImVec2 getInitialPos();
 	void setPipeInGrid();
 

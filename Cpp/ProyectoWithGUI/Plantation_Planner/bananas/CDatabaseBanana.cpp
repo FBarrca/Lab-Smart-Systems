@@ -7,6 +7,9 @@
 #include "CPipe.h"
 #include "../helpers/CTimeUtils.hpp"
 #include "CSensor.h"
+#include "../CActType.h"
+#include "../CActuator.h"
+
 CDatabaseBanana::CDatabaseBanana()
 {
 }
@@ -55,7 +58,7 @@ bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 	os << "SELECT ID_SECTOR AS ID, LON, LAT, WATER_DEMAND AS H20 FROM SECTOR;" << std::endl; // << prosumer_id;
 	try
 	{
-		 if (m_p_con != NULL)
+		if (m_p_con != NULL)
 		{
 			std::string query;
 			query = os.str();
@@ -92,45 +95,54 @@ bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 	return result;
 }
 
- bool CDatabaseBanana::getPipes(std::list<std::shared_ptr<CPipe>>& pipes, std::list<std::shared_ptr<CSector>>& sectors) {
+bool CDatabaseBanana::getPipes(std::list<std::shared_ptr<CPipe>> &pipes, std::list<std::shared_ptr<CSector>> &sectors)
+{
 
- 	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
- 	bool result = false;
+	sql::ResultSet *res = NULL;
+	sql::Statement *p_stmt = NULL;
+	bool result = false;
 
- 	std::ostringstream os;
- 	os << "SELECT *  FROM connection;" << std::endl;
- 	try {
- 		if (m_p_con != NULL) {
- 			std::string query;
- 			query = os.str();
- 			std::cout << query << std::endl;
- 			p_stmt = m_p_con->createStatement();
- 			res = p_stmt->executeQuery(query);
+	std::ostringstream os;
+	os << "SELECT *  FROM connection;" << std::endl;
+	try
+	{
+		if (m_p_con != NULL)
+		{
+			std::string query;
+			query = os.str();
+			std::cout << query << std::endl;
+			p_stmt = m_p_con->createStatement();
+			res = p_stmt->executeQuery(query);
 
- 			while (res->next()) {
+			while (res->next())
+			{
 
-				pipes.push_back(std::make_shared<CPipe>(res->getInt64("ID_PIPE"), getSectorById(res->getInt64("ID_SECTOR_IN"),sectors), getSectorById(res->getInt64("ID_SECTOR_OUT"), sectors)));
+				pipes.push_back(std::make_shared<CPipe>(res->getInt64("ID_PIPE"), getSectorById(res->getInt64("ID_SECTOR_IN"), sectors), getSectorById(res->getInt64("ID_SECTOR_OUT"), sectors)));
 				// Print ID string
 				_log.println(boost::log::trivial::info, "PIPE ID: " + std::to_string(res->getInt64("ID_PIPE")));
-// 				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
-// 				pipes.push_back(CPipe(res->getInt64("ID")));
- 				result = true;
- 			}
+				// 				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
+				// 				pipes.push_back(CPipe(res->getInt64("ID")));
+				result = true;
+			}
 
- 			delete res;
- 			delete p_stmt;
- 			p_stmt = NULL;
- 		}
- 	}
- 	catch (sql::SQLException& e) {
- 		if (res != NULL) delete res;
- 		if (p_stmt != NULL) delete p_stmt;
- 		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
- 		return false;
- 	}
- 	return result;
-
- }
+			delete res;
+			delete p_stmt;
+			p_stmt = NULL;
+		}
+	}
+	catch (sql::SQLException &e)
+	{
+		if (res != NULL)
+			delete res;
+		if (p_stmt != NULL)
+			delete p_stmt;
+		std::ostringstream os;
+		os << "ERROR:" << e.what();
+		_log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return result;
+}
 
 // bool getConnections(std::vector<boost::shared_ptr<CSector>>& sectors, std::vector<boost::shared_ptr<CPipe>>& pipes, std::vector<boost::shared_ptr<CConnection>>& connection s) {
 
@@ -238,29 +250,33 @@ bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 
 bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, time_t from_fecha, time_t to_fecha)
 {
-	sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+	sql::ResultSet *res = NULL;
+	sql::Statement *p_stmt = NULL;
 	bool result = false;
 
 	std::ostringstream os;
-	os << "SELECT ss.ID_SENSOR, ssloc.ID_SECTOR, ss.ID_SENSOR_TYPE" <<
-		" FROM sensor_sector as ss, sect_sens_loc as ssloc" <<
-		" WHERE ss.ID_SENSOR = ssloc.ID_SENSOR;" <<
-		" AND ssloc.ID_SECTOR = " << sector.get()->get_id() << " ;" << std::endl;
+	os << "SELECT ss.ID_SENSOR, ssloc.ID_SECTOR, ss.ID_SENSOR_TYPE"
+	   << " FROM sensor_sector as ss, sect_sens_loc as ssloc"
+	   << " WHERE ss.ID_SENSOR = ssloc.ID_SENSOR;"
+	   << " AND ssloc.ID_SECTOR = " << sector.get()->get_id() << " ;" << std::endl;
 
-	try {
-		if (m_p_con != NULL) {
+	try
+	{
+		if (m_p_con != NULL)
+		{
 			std::string query;
 			query = os.str();
 			std::cout << query << std::endl;
 			p_stmt = m_p_con->createStatement();
 			res = p_stmt->executeQuery(query);
-			std::list<CSensor*> sensor_list_append;
+			std::list<CSensor *> sensor_list_append;
 
-			while (res->next()) {
+			while (res->next())
+			{
 
 				// list_cvalues.push_back(CValue(res->getDouble("Value"), res->getInt64("udate")));
 				// sectors.push_back(CSector(res->getInt64("ID"), CEstate(res->getint64('LON'), CEstate(res->getint64('LAT')), res->getFloat("H20"))); // si no funciona usar getDouble
-				//CValue pressure(res->getDouble("VALUE"), res->getInt64("udate"));
+				// CValue pressure(res->getDouble("VALUE"), res->getInt64("udate"));
 				CSensor sensor_obj;
 				sensor_obj.setID(res->getInt64("ss.ID_SENSOR"));
 				sensor_list_append.push_back(&sensor_obj);
@@ -274,18 +290,23 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 			p_stmt = NULL;
 		}
 	}
-	catch (sql::SQLException& e) {
-		if (res != NULL) delete res;
-		if (p_stmt != NULL) delete p_stmt;
-		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+	catch (sql::SQLException &e)
+	{
+		if (res != NULL)
+			delete res;
+		if (p_stmt != NULL)
+			delete p_stmt;
+		std::ostringstream os;
+		os << "ERROR:" << e.what();
+		_log.println(boost::log::trivial::error, os.str());
 		return false;
 	}
 
-	//sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
-	//bool result = false;
+	// sql::ResultSet* res = NULL; sql::Statement* p_stmt = NULL;
+	// bool result = false;
 
-	//std::ostringstream os;
-	//os << "SELECT vss.ID_SENSOR, UNIX_TIMESTAMP(TIMESTAMP) AS udate, vss.VALUE FROM value_sector_sensor as vss," <<
+	// std::ostringstream os;
+	// os << "SELECT vss.ID_SENSOR, UNIX_TIMESTAMP(TIMESTAMP) AS udate, vss.VALUE FROM value_sector_sensor as vss," <<
 	//	" sensor_sector as ss," <<
 	//	" sect_sens_loc as ssloc," <<
 	//	" sector as s" <<
@@ -303,7 +324,7 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 	//	" AND ssloc.ID_SECTOR = s.ID_SECTOR" <<
 	//	" AND s.ID_SECTOR = " << sector.get()->get_id() << ";" << std::endl;
 
-	//try {
+	// try {
 	//	if (m_p_con != NULL) {
 	//		std::string query;
 	//		query = os.str();
@@ -325,12 +346,62 @@ bool CDatabaseBanana::getSectorPressure(const std::shared_ptr<CSector> sector, t
 	//		p_stmt = NULL;
 	//	}
 	//}
-	//catch (sql::SQLException& e) {
+	// catch (sql::SQLException& e) {
 	//	if (res != NULL) delete res;
 	//	if (p_stmt != NULL) delete p_stmt;
 	//	std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
 	//	return false;
 	//}
 	return result;
+}
 
+bool CDatabaseBanana::getPipeActuators(std::list<std::shared_ptr<CActuator>> actuator_vector, std::shared_ptr<CPipe> pipe)
+{
+	sql::ResultSet *res = NULL;
+	sql::Statement *p_stmt = NULL;
+	bool result = false;
+
+	std::ostringstream os;
+	os << "SELECT * FROM ACTUATOR_PIPE, ACTUATOR_TYPE, PIPE_ACT_LOC "
+	   << "WHERE ACTUATOR_PIPE.ID_TYPE = ACTUATOR_TYPE.ID_TYPE AND ACTUATOR_PIPE.ID_ACTUATOR = PIPE_ACT_LOC.ID_ACTUATOR"
+	   << " AND PIPE_ACT_LOC.ID_PIPE = " << pipe.get()->getId() << ";"
+	   << std::endl;
+
+	try
+	{
+		if (m_p_con != NULL)
+		{
+			std::string query;
+			query = os.str();
+			std::cout << query << std::endl;
+			p_stmt = m_p_con->createStatement();
+			res = p_stmt->executeQuery(query);
+
+			_log.println(boost::log::trivial::info, "Pipe ID: " + std::to_string(pipe.get()->getId()));
+
+			while (res->next())
+			{
+				CActType type((bool)res->getInt64("IS_SWITCH"), res->getInt64("ID_TYPE"), res->getString("DESCRIPTION"), res->getString("LOCATION"));
+				actuator_vector.push_back(std::make_shared<CActuator>(res->getInt64("ID_ACTUATOR"), type));
+				_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_ACTUATOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");
+				result = true;
+			}
+
+			delete res;
+			delete p_stmt;
+			p_stmt = NULL;
+		}
+	}
+	catch (sql::SQLException &e)
+	{
+		if (res != NULL)
+			delete res;
+		if (p_stmt != NULL)
+			delete p_stmt;
+		std::ostringstream os;
+		os << "ERROR:" << e.what();
+		_log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return result;
 }
