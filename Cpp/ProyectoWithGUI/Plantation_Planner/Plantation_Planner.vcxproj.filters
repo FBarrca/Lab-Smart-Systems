@@ -105,20 +105,23 @@
     <ClCompile Include="bananas\CDatabaseBanana.cpp">
       <Filter>Source Files\bananas</Filter>
     </ClCompile>
-    <ClCompile Include="CMeasurement.cpp">
-      <Filter>Source Files\bananas</Filter>
-    </ClCompile>
-    <ClCompile Include="CValue.cpp">
-      <Filter>Source Files\bananas</Filter>
-    </ClCompile>
     <ClCompile Include="main1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CSensor.cpp">
-      <Filter>Source Files\bananas</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CActuator.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CActType.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CSensor.cpp">
+      <Filter>Source Files\bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CValue.cpp">
+      <Filter>Source Files\bananas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,10 +203,13 @@
     <ClInclude Include="bananas\CDatabaseBanana.h">
       <Filter>Header Files\bananas</Filter>
     </ClInclude>
-    <ClInclude Include="CMeasurement.h">
+    <ClInclude Include="bananas\CActuator.h">
       <Filter>Header Files\bananas</Filter>
     </ClInclude>
-    <ClInclude Include="CSensor.h">
+    <ClInclude Include="bananas\CActType.h">
+      <Filter>Header Files\bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CSensor.h">
       <Filter>Header Files\bananas</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "bananas/CValue.h"
+#include "CValue.h"
 
 typedef enum {
 	SECTORTYPE,
