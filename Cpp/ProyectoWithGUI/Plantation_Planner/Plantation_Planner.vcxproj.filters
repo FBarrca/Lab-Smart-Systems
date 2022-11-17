@@ -111,12 +111,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bananas\CActuator.cpp">
-      <Filter>Source Files\bananas</Filter>
-    </ClCompile>
-    <ClCompile Include="bananas\CActType.cpp">
-      <Filter>Source Files\bananas</Filter>
-    </ClCompile>
     <ClCompile Include="bananas\CSensor.cpp">
       <Filter>Source Files\bananas</Filter>
     </ClCompile>
@@ -201,12 +195,6 @@
       <Filter>Header Files\bananas</Filter>
     </ClInclude>
     <ClInclude Include="bananas\CDatabaseBanana.h">
-      <Filter>Header Files\bananas</Filter>
-    </ClInclude>
-    <ClInclude Include="bananas\CActuator.h">
-      <Filter>Header Files\bananas</Filter>
-    </ClInclude>
-    <ClInclude Include="bananas\CActType.h">
       <Filter>Header Files\bananas</Filter>
     </ClInclude>
     <ClInclude Include="bananas\CSensor.h">
