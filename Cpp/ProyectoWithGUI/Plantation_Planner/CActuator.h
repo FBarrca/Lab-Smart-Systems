@@ -3,6 +3,8 @@
 #include <vector>
 #include "CActType.h"
 #include "bananas/CValue.h"
+#include "./imgui.h"
+
 class CActuator
 {
 public: //prueba 
@@ -12,6 +14,8 @@ public: //prueba
     int getId() { return m_ID; };
     void addValue(std::vector<CValue*> values);
     CActType& m_getType() { return m_type; };
+
+    void draw();
 
 protected:
     CActType m_type;

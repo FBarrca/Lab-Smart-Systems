@@ -67,7 +67,7 @@ void CPipe::draw()
     char id_string[32];
     sprintf(id_string, "%d", m_id);
     char child_name[64] = "S&A Pipe";
-    ImGui::BeginChild(strcat(child_name, id_string), ImVec2(150, 80), false);
+    ImGui::BeginChild(strcat(child_name, id_string), ImVec2(220, 80), false);
     if (ImGui::TreeNode("Sensors"))
     {
 
@@ -80,7 +80,7 @@ void CPipe::draw()
 
         for(std::shared_ptr<CActuator> act : m_actuators)
         {
-            ImGui::Text("Act id: %d", act.get()->getId());
+            act.get()->draw();
         }
         ImGui::TreePop();
     }

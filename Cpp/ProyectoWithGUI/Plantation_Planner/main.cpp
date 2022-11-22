@@ -128,7 +128,7 @@ int main()
         // List of shared pointers
         std::list<std::shared_ptr<CSector>> v_Sectors;
         std::list<std::shared_ptr<CPipe>> v_Pipes;
-        std::list<std::shared_ptr<CActuator>> v_Actuators; 
+        std::list<std::shared_ptr<CActuator>> v_Actuators;
 
         bool firstrun = true; // Flag to see if it is the first Update
 
@@ -175,8 +175,8 @@ int main()
                 // Add the sensors and actuators to the Sector object (get just values between two dates)
                 for (std::shared_ptr<CSector> sector : v_Sectors)
                 {
-                    //dbObject.getSectorPressure(sector, from_fecha, to_fecha);
-                    // dbObject.getSectorPumps(sector, from_fecha, to_fecha);
+                    // dbObject.getSectorPressure(sector, from_fecha, to_fecha);
+                    //  dbObject.getSectorPumps(sector, from_fecha, to_fecha);
                     dbObject.getSectorActuators(v_Actuators, sector);
                 }
 
@@ -185,8 +185,7 @@ int main()
                 {
                     // dbObject.getSectorPressure(pipe, from_fecha, to_fecha);
                     // dbObject.getSectorPumps(sector, from_fecha, to_fecha);
-                    dbObject.getPipeActuators(v_Actuators, pipe);// <- dentro llama a dbObject.getValue(int ActID, from_fecha, to_fecha)
-
+                    dbObject.getPipeActuators(v_Actuators, pipe); // <- dentro llama a dbObject.getValue(int ActID, from_fecha, to_fecha)
                 }
 
                 log.println(boost::log::trivial::trace, "Class structure syncronized");
@@ -217,38 +216,15 @@ int main()
                                 //
                                 log.println(boost::log::trivial::trace, "There is a leak at Pipe" + pipe.get()->getId());
                                 // Close valve
-                                
-                                //std::shared_pointer<CActuator> valve = getPipeActuatorbytype(Cpipe pipe, std::string description "valve")
-                                //new
-                                //valve.addValues(new CValue (0))
-                                //dbObject.addValue(CActuator valve)
 
+                                // std::shared_pointer<CActuator> valve = getPipeActuatorbytype(Cpipe pipe, std::string description "valve")
+                                // new
+                                // valve.addValues(new CValue (0))
+                                // dbObject.addValue(CActuator valve)
                             }
                         }
                     }
                 }
-
-                // for (size_t i = 0; i < v_Sectors.size(); i++)
-                //{
-                //     ////look for drops in sector pressure
-                //     if (DropinPressure(v_Sectors[i]))
-                //     {
-                //         //find Pipes that are in that node
-                //         std::vector<boost::shared_ptr<CPipe>> v_PipesToSector;
-                //         if (findPipesToSector(v_PipesToSector)) {
-                //             for (size_t j = 0; j < v_PipesToSector.size(); j++)
-                //             {
-                //                 //check if other end has also lost preasssure
-                //                 CSector otherSector = Pipedestination(v_PipesToSector[j], v_Sectors[i]);
-                //                 if (DropinPressure(otherSector)) // if both have lost preasure problem si between
-                //                 {
-                //                     CloseValve(v_PipesToSector[j]);
-                //                 }
-
-                //            }
-
-                //        }
-                //    }
 
                 /*----------------------
                 |  UPDATE VALVE STATE
@@ -339,7 +315,7 @@ int main()
             ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
             ImNodes::EndNodeEditor();
             ImGui::End();
-            // ImGui::ShowDemoWindow();
+            ImGui::ShowDemoWindow();
             ImGui::EndFrame();
 
             g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);

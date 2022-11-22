@@ -12,6 +12,9 @@ public:
 	std::string getLoc() {
 		return location_type; // returns 0 if pipe type 1 if node type
 	};
+	std::string getDesc() {
+		return description;
+	}
 
 private:
 	bool m_isSwitch;
