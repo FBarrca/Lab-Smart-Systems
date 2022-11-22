@@ -49,7 +49,7 @@ void CSector::setPos(ImVec2 pos)
 {
     m_gui_data.initialPos = pos;
 }
-void CSector::getSensors(std::list<CSensor*>& sensors_get)
+void CSector::getSensors(std::list<CSensor *> &sensors_get)
 {
     auto it = sensors.begin();
     for (int i = 0; i < sensors.size(); i++, it++)
@@ -57,7 +57,7 @@ void CSector::getSensors(std::list<CSensor*>& sensors_get)
         sensors_get.push_back(*it);
     }
 }
-void CSector::appendSensors(std::list<CSensor*>& sensors_append)
+void CSector::appendSensors(std::list<CSensor *> &sensors_append)
 {
     auto it = sensors_append.begin();
     for (int i = 0; i < sensors_append.size(); i++, it++)
@@ -65,6 +65,12 @@ void CSector::appendSensors(std::list<CSensor*>& sensors_append)
         sensors.push_back(*it);
     }
 }
+bool CSector::addActuator(std::shared_ptr<CActuator> a)
+{
+    m_actuators.push_back(a);
+    return true;
+}
+
 void CSector::draw()
 {
     ImNodes::PushColorStyle(
@@ -125,7 +131,10 @@ void CSector::draw()
     if (ImGui::TreeNode("Actuators"))
     {
 
-        ImGui::Text("ABOUT THIS DEMO:");
+        for (std::shared_ptr<CActuator> act : m_actuators)
+        {
+            ImGui::Text("Act id: %d", act.get()->getId());
+        }
         ImGui::TreePop();
     }
     ImGui::EndChild();

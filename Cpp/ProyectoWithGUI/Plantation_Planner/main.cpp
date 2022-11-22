@@ -175,8 +175,9 @@ int main()
                 // Add the sensors and actuators to the Sector object (get just values between two dates)
                 for (std::shared_ptr<CSector> sector : v_Sectors)
                 {
-                    dbObject.getSectorPressure(sector, from_fecha, to_fecha);
+                    //dbObject.getSectorPressure(sector, from_fecha, to_fecha);
                     // dbObject.getSectorPumps(sector, from_fecha, to_fecha);
+                    dbObject.getSectorActuators(v_Actuators, sector);
                 }
 
                 // Add the sensors and actuators to the Pipe object (get just values between two dates)

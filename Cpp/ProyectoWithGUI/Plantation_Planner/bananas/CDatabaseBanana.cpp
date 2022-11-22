@@ -407,3 +407,56 @@ bool CDatabaseBanana::getPipeActuators(std::list<std::shared_ptr<CActuator>> act
 	}
 	return result;
 }
+
+bool CDatabaseBanana::getSectorActuators(std::list<std::shared_ptr<CActuator>> actuator_vector, std::shared_ptr<CSector> sector)
+{
+	sql::ResultSet *res = NULL;
+	sql::Statement *p_stmt = NULL;
+	bool result = false;
+
+	std::ostringstream os;
+	os << "SELECT * FROM ACTUATOR_SECTOR, ACTUATOR_TYPE, SECT_ACT_LOC "
+	   << "WHERE ACTUATOR_SECTOR.ID_TYPE = ACTUATOR_TYPE.ID_TYPE AND ACTUATOR_SECTOR.ID_ACTUATOR = SECT_ACT_LOC.ID_ACTUATOR"
+	   << " AND SECT_ACT_LOC.ID_SECTOR = " << sector.get()->get_id() << ";"
+	   << std::endl;
+
+	try
+	{
+		if (m_p_con != NULL)
+		{
+			std::string query;
+			query = os.str();
+			std::cout << query << std::endl;
+			p_stmt = m_p_con->createStatement();
+			res = p_stmt->executeQuery(query);
+
+			_log.println(boost::log::trivial::info, "Sector ID: " + std::to_string(sector.get()->get_id()));
+
+			while (res->next())
+			{
+				CActType type((bool)res->getInt64("IS_SWITCH"), res->getInt64("ID_TYPE"), res->getString("DESCRIPTION"), res->getString("LOCATION"));
+				std::shared_ptr<CActuator> actuator = std::make_shared<CActuator>(res->getInt64("ID_ACTUATOR"), type);
+				actuator_vector.push_back(actuator);
+				sector.get()->addActuator(actuator);
+				_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_ACTUATOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");
+				result = true;
+			}
+
+			delete res;
+			delete p_stmt;
+			p_stmt = NULL;
+		}
+	}
+	catch (sql::SQLException &e)
+	{
+		if (res != NULL)
+			delete res;
+		if (p_stmt != NULL)
+			delete p_stmt;
+		std::ostringstream os;
+		os << "ERROR:" << e.what();
+		_log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return result;
+}

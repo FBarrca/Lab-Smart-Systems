@@ -86,17 +86,17 @@ public:
 
 	/*
 	 * tomar la presión de un sector y guardarla en el objeto de sector (lista de CSensors en sector)
-	 * 
-	 * 
-	*/
+	 *
+	 *
+	 */
 
 	bool getSectorPressure(const std::shared_ptr<CSector> sector, time_t from_fecha, time_t to_fecha);
 
 	// bool getPipeActuators(std::vector<CActuator> vector, const std::shared_ptr<CPipe> pipe);
 
 	bool getPipeActuators(std::list<std::shared_ptr<CActuator>> actuator_vector, std::shared_ptr<CPipe> pipe);
-	
-	
+	bool getSectorActuators(std::list<std::shared_ptr<CActuator>> actuator_vector, std::shared_ptr<CSector> sector);
+
 private:
 };
 
