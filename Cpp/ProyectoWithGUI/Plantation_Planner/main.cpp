@@ -229,31 +229,7 @@ int main()
                 /*----------------------
                 |  UPDATE VALVE STATE
                 -----------------------*/
-                // DDBB connection
-                // dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
-                // log.println(boost::log::trivial::trace, "Hemos conectado con la DB para hacer inserts de info");
-
-                // CValue ins_val(60, time(0));
-                ////Do inserts of data
-
-                // for (size_t i = 0; i < v_Pipes.size(); i++)
-                //{
-                //     //Insert stuff in DB
-                //     dbObject.ComienzaTransaccion();
-                //     bool resultInsert = true;
-                //     resultInsert = resultInsert && dbObject.insertValveState(v_Pipes[i]);
-
-                //    if (resultInsert) {
-                //        log.println(boost::log::trivial::trace, "Data insert OK");
-                //        dbObject.ConfirmarTransaccion();
-                //    }
-                //    else {
-                //        log.println(boost::log::trivial::trace, "Data insert ERROR");
-                //        dbObject.DeshacerTransaccion();
-                //    }
-
-                //}
-                // dbObject.Desconectar();
+                //TO DO
 
                 lastExecution = helpers::CTimeUtils::seconds_from_epoch(execTime);
             }
