@@ -466,7 +466,7 @@ bool CDatabaseBanana::getSectorActuators(std::list<std::shared_ptr<CActuator>> a
 
 
 
-bool CDatabaseBanana::getValuesActuator(std::vector<CValue> &vector,uint16_t ActID, std::string location, time_t from, time_t to)
+bool CDatabaseBanana::getValuesActuator(std::list<std::shared_ptr<CValue>> &vector, uint16_t ActID, std::string location, time_t from, time_t to)
 {
 	sql::ResultSet* res = NULL;
 	sql::Statement* p_stmt = NULL;
@@ -474,7 +474,7 @@ bool CDatabaseBanana::getValuesActuator(std::vector<CValue> &vector,uint16_t Act
 
 	std::ostringstream os;
 	os << "SELECT VALUE, UNIX_TIMESTAMP(TIMESTAMP) AS DATE FROM VALUE_"<< location <<"_ACTUATOR" <<
-		"WHERE ID_ACTUATOR = " << ActID << " AND TIMESTAMP BETWEEN FROM_UNIXTIME("<< from <<") AND FROM_UNIXTIME("<< to 
+		" WHERE ID_ACTUATOR = " << ActID << " AND TIMESTAMP BETWEEN FROM_UNIXTIME("<< from <<") AND FROM_UNIXTIME("<< to 
 		<<") ORDER BY TIMESTAMP; "
 		<< std::endl;
 
@@ -490,7 +490,11 @@ bool CDatabaseBanana::getValuesActuator(std::vector<CValue> &vector,uint16_t Act
 
 			while (res->next())
 			{
-				vector.push_back(CValue(res->getInt64("VALUE"), res->getInt64("DATE")));
+				std::shared_ptr<CValue> value = std::make_shared<CValue>(res->getInt64("VALUE"), res->getInt64("DATE"));
+				vector.push_back(value);
+
+				result = true;
+
 			}
 
 			delete res;

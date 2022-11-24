@@ -97,7 +97,9 @@ public:
 	bool getPipeActuators(std::list<std::shared_ptr<CActuator>> actuator_vector, std::shared_ptr<CPipe> pipe);
 	bool getSectorActuators(std::list<std::shared_ptr<CActuator>> actuator_vector, std::shared_ptr<CSector> sector);
 
-	bool getValuesActuator(std::vector<CValue>& vector, uint16_t ActID, std::string location, time_t from, time_t to);
+	bool getValuesActuator(std::list<std::shared_ptr<CValue>>& vector, uint16_t ActID, std::string location, time_t from, time_t to);
+
+	
 
 
 private:

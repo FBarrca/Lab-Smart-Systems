@@ -129,6 +129,7 @@ int main()
         std::list<std::shared_ptr<CSector>> v_Sectors;
         std::list<std::shared_ptr<CPipe>> v_Pipes;
         std::list<std::shared_ptr<CActuator>> v_Actuators; 
+        std::list<std::shared_ptr<CValue>> v_Values;
 
         bool firstrun = true; // Flag to see if it is the first Update
 
@@ -189,9 +190,28 @@ int main()
 
                 }
 
+                time_t to = time(0);
+                time_t from = to - 12 * 30 * 24 * 3600;
+
+                std::string location = "PIPE";
+                uint16_t pipe = 7;
+
+
+                dbObject.getValuesActuator(v_Values, pipe, location, from, to);
+
+
+                for (std::shared_ptr<CValue> value : v_Values) {
+                    std::cout << value->getValue() << std::endl;
+                }
+
+
                 log.println(boost::log::trivial::trace, "Class structure syncronized");
                 dbObject.Desconectar();
             }
+
+            
+
+
             /*----------------------
             |  PROCESS OF DATA & INTELLIGENCE
             -----------------------*/
