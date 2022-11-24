@@ -497,7 +497,7 @@ bool CDatabaseBanana::getSectorSensors(std::list<std::shared_ptr<CSensor>> & act
 				std::shared_ptr<CSensor> sensor = std::make_shared<CSensor>(res->getInt64("ID_SENSOR"), type);
 				actuator_vector.push_back(sensor);
 				sector.get()->addSensor(sensor);
-				_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_SENSOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");
+				/*_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_SENSOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");*/
 				result = true;
 			}
 
