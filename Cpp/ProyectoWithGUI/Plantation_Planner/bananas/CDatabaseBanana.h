@@ -104,6 +104,8 @@ public:
 
 	bool getValuesActuator(std::list<std::shared_ptr<CValue>>& vector, uint16_t ActID, std::string location, time_t from, time_t to);
 
+	bool getValuesSensor(std::list<std::shared_ptr<CValue>>& vector, uint16_t ActID, std::string location, time_t from, time_t to);
+
 	
 
 

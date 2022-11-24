@@ -2,6 +2,7 @@
 #include <vector>
 #include <list>
 #include "CValue.h"
+#include <list>
 #include "../imgui.h"
 
 typedef enum {
@@ -39,6 +40,7 @@ public:
 
 	// getters and setters
 	int getID() const;
+	void addValue(std::list<std::shared_ptr<CValue>>& v);
 	void draw();
 	void getValues(std::vector<CValue*>& values);
 	//void getLastnValue(int n, std::vector<CValue>& values);

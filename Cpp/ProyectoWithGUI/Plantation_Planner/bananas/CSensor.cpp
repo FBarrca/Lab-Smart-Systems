@@ -1,4 +1,5 @@
 #include "CSensor.h"
+#include "CValue.h"
 
 CSensor::CSensor()
 {
@@ -6,6 +7,13 @@ CSensor::CSensor()
 	id_sensor = 0;
 	sensor_values = values;*/
 
+}
+
+void CSensor::addValue(std::list<std::shared_ptr<CValue>>& v)
+{
+	for (std::shared_ptr<CValue> itr : v) {
+		m_vect_values.push_back(itr);
+	}
 }
 
 CSensor::CSensor(int id, std::vector<CValue*> values)
