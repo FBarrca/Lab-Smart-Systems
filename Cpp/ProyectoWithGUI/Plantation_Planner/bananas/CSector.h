@@ -30,6 +30,7 @@ public:
 
     // getters and setters
     void getSensors(std::list<CSensor *> &sensors_get);
+    bool addSensor(std::shared_ptr<CSensor> s);
 
     void appendSensors(std::list<CSensor *> &sensors_append);
     bool addActuator(std::shared_ptr<CActuator> a);
@@ -43,7 +44,7 @@ private:
 
     // std::vector<CPipe> m_Pipes;
     //  std::vector<boost::shared_ptr<CPipe>> m_Pipes;		 // Pipes that arrive to that node
-    // std::vector<boost::shared_ptr<CSensor>> m_Sensors;	 // Sensor at the node
+     std::vector<std::shared_ptr<CSensor>> m_sensors;	 // Sensor at the node
       std::vector<std::shared_ptr<CActuator>> m_actuators; // Sensor at the node
 
     // Structure with gui data

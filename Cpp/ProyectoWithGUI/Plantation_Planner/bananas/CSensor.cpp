@@ -14,6 +14,12 @@ CSensor::CSensor(int id, std::vector<CValue*> values)
 	sensor_values = values;
 }
 
+CSensor::CSensor(int id, SensorType t)
+{
+	id_sensor = id;
+	m_type = t;
+}
+
 CSensor::~CSensor()
 {
 }
@@ -84,10 +90,10 @@ SensorType::~SensorType()
 {
 }
 
-SensorType::SensorType(unsigned int id, std::string description, std::string unit, TypeOfLoc Loc)
+SensorType::SensorType(unsigned int id, std::string description, std::string unit, int Loc)
 {
 	m_id = id;
 	m_description = description;
 	m_unit = unit;
-	m_Loc = Loc;
+	m_Loc =(TypeOfLoc) Loc;
 }

@@ -12,7 +12,7 @@ class SensorType
 public:
 	SensorType();
 	~SensorType();
-	SensorType(unsigned int id, std::string description, std::string unit, TypeOfLoc Loc);
+	SensorType(unsigned int id, std::string description, std::string unit, int Loc);
 
 private:
 	unsigned int m_id;
@@ -32,6 +32,7 @@ public:
 	// constructor and destructor
 	CSensor();
 	CSensor(int id, std::vector<CValue*> values);
+	CSensor(int id, SensorType t);
 	~CSensor();
 
 	// getters and setters

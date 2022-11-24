@@ -128,7 +128,8 @@ int main()
         // List of shared pointers
         std::list<std::shared_ptr<CSector>> v_Sectors;
         std::list<std::shared_ptr<CPipe>> v_Pipes;
-        std::list<std::shared_ptr<CActuator>> v_Actuators; 
+        std::list<std::shared_ptr<CActuator>> v_Actuators;
+        std::list<std::shared_ptr<CSensor>> v_Sensors;
         std::list<std::shared_ptr<CValue>> v_Values;
 
         bool firstrun = true; // Flag to see if it is the first Update
@@ -178,6 +179,7 @@ int main()
                 {
                     // dbObject.getSectorPressure(sector, from_fecha, to_fecha);
                     //  dbObject.getSectorPumps(sector, from_fecha, to_fecha);
+                    dbObject.getSectorSensors(v_Sensors, sector);
                     dbObject.getSectorActuators(v_Actuators, sector);
                 }
 

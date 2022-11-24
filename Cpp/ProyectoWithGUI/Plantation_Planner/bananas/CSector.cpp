@@ -57,6 +57,11 @@ void CSector::getSensors(std::list<CSensor *> &sensors_get)
         sensors_get.push_back(*it);
     }
 }
+bool CSector::addSensor(std::shared_ptr<CSensor> s)
+{
+    m_sensors.push_back(s);
+    return true;
+}
 void CSector::appendSensors(std::list<CSensor *> &sensors_append)
 {
     auto it = sensors_append.begin();

@@ -17,7 +17,7 @@
 #include <string>
 #include "../dm-database/CDatabase.hpp"
 #include "CValue.h"
-//#include "CSensor.h"
+#include "CSensor.h"
 #include "CSector.h"
 #include "CPipe.h"
 #include "../CActuator.h"
@@ -95,7 +95,12 @@ public:
 	// bool getPipeActuators(std::vector<CActuator> vector, const std::shared_ptr<CPipe> pipe);
 
 	bool getPipeActuators(std::list<std::shared_ptr<CActuator>> actuator_vector, std::shared_ptr<CPipe> pipe);
-	bool getSectorActuators(std::list<std::shared_ptr<CActuator>> actuator_vector, std::shared_ptr<CSector> sector);
+	bool getSectorActuators(std::list<std::shared_ptr<CActuator>>& actuator_vector, std::shared_ptr<CSector>& sector);
+
+
+	bool getPipeSensors(std::list<std::shared_ptr<CSensor>> & actuator_vector, std::shared_ptr<CPipe>& pipe);
+	bool getSectorSensors(std::list<std::shared_ptr<CSensor>>& actuator_vector, std::shared_ptr<CSector>& sector);
+
 
 	bool getValuesActuator(std::list<std::shared_ptr<CValue>>& vector, uint16_t ActID, std::string location, time_t from, time_t to);
 

@@ -408,7 +408,7 @@ bool CDatabaseBanana::getPipeActuators(std::list<std::shared_ptr<CActuator>> act
 	return result;
 }
 
-bool CDatabaseBanana::getSectorActuators(std::list<std::shared_ptr<CActuator>> actuator_vector, std::shared_ptr<CSector> sector)
+bool CDatabaseBanana::getSectorActuators(std::list<std::shared_ptr<CActuator>> & actuator_vector, std::shared_ptr<CSector> & sector)
 {
 	sql::ResultSet *res = NULL;
 	sql::Statement *p_stmt = NULL;
@@ -461,21 +461,21 @@ bool CDatabaseBanana::getSectorActuators(std::list<std::shared_ptr<CActuator>> a
 	return result;
 }
 
+bool CDatabaseBanana::getPipeSensors(std::list<std::shared_ptr<CSensor>> & actuator_vector, std::shared_ptr<CPipe> & pipe) {
+	//SELECT * FROM SENSOR_SECTOR,SECT_SENS_LOC, SENSOR_TYPE WHERE SENSOR_SECTOR.ID_SENSOR= SECT_SENS_LOC.ID_SENSOR AND SENSOR_SECTOR.ID_SENSOR_TYPE = SENSOR_TYPE.ID_SENSOR_TYPE AND SECT_SENS_LOC.ID_SECTOR =1;
 
-
-
-
-
-bool CDatabaseBanana::getValuesActuator(std::list<std::shared_ptr<CValue>> &vector, uint16_t ActID, std::string location, time_t from, time_t to)
-{
+	return true;
+}
+bool CDatabaseBanana::getSectorSensors(std::list<std::shared_ptr<CSensor>> & actuator_vector, std::shared_ptr<CSector>& sector) {
+	//SELECT * FROM SENSOR_SECTOR,SECT_SENS_LOC, SENSOR_TYPE WHERE SENSOR_SECTOR.ID_SENSOR= SECT_SENS_LOC.ID_SENSOR AND SENSOR_SECTOR.ID_SENSOR_TYPE = SENSOR_TYPE.ID_SENSOR_TYPE AND SECT_SENS_LOC.ID_SECTOR =1;
 	sql::ResultSet* res = NULL;
 	sql::Statement* p_stmt = NULL;
 	bool result = false;
 
 	std::ostringstream os;
-	os << "SELECT VALUE, UNIX_TIMESTAMP(TIMESTAMP) AS DATE FROM VALUE_"<< location <<"_ACTUATOR" <<
-		" WHERE ID_ACTUATOR = " << ActID << " AND TIMESTAMP BETWEEN FROM_UNIXTIME("<< from <<") AND FROM_UNIXTIME("<< to 
-		<<") ORDER BY TIMESTAMP; "
+	os << "SELECT * FROM SENSOR_SECTOR,SECT_SENS_LOC, SENSOR_TYPE "
+		<< "WHERE SENSOR_SECTOR.ID_SENSOR= SECT_SENS_LOC.ID_SENSOR AND SENSOR_SECTOR.ID_SENSOR_TYPE = SENSOR_TYPE.ID_SENSOR_TYPE "
+		<< " AND SECT_SENS_LOC.ID_SECTOR  = " << sector.get()->get_id() << ";"
 		<< std::endl;
 
 	try
@@ -488,13 +488,17 @@ bool CDatabaseBanana::getValuesActuator(std::list<std::shared_ptr<CValue>> &vect
 			p_stmt = m_p_con->createStatement();
 			res = p_stmt->executeQuery(query);
 
+			_log.println(boost::log::trivial::info, "Sector ID: " + std::to_string(sector.get()->get_id()));
+
 			while (res->next())
 			{
-				std::shared_ptr<CValue> value = std::make_shared<CValue>(res->getInt64("VALUE"), res->getInt64("DATE"));
-				vector.push_back(value);
-
+				SensorType type((unsigned int)res->getInt64("ID_SENSOR_TYPE"), (std::string) res->getString("SENSOR_DESCRIPTION"), (std::string) res->getString("UNIT"), 0);
+				
+				std::shared_ptr<CSensor> sensor = std::make_shared<CSensor>(res->getInt64("ID_SENSOR"), type);
+				actuator_vector.push_back(sensor);
+				sector.get()->addSensor(sensor);
+				_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_SENSOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");
 				result = true;
-
 			}
 
 			delete res;

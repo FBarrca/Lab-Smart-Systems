@@ -68,9 +68,9 @@
             "port": 3306,
             "driver": "MySQL",
             "name": "P2",
-            "database": "P2",
+            "database": "banana",
             "username": "root",
-            "password": "nbaacb10"
+            "password": "root"
         }
     ]
 }
