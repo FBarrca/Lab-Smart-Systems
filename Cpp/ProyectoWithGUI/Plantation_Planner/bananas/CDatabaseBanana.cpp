@@ -460,3 +460,58 @@ bool CDatabaseBanana::getSectorActuators(std::list<std::shared_ptr<CActuator>> a
 	}
 	return result;
 }
+
+
+
+
+
+
+bool CDatabaseBanana::getValuesActuator(std::list<std::shared_ptr<CValue>> &vector, uint16_t ActID, std::string location, time_t from, time_t to)
+{
+	sql::ResultSet* res = NULL;
+	sql::Statement* p_stmt = NULL;
+	bool result = false;
+
+	std::ostringstream os;
+	os << "SELECT VALUE, UNIX_TIMESTAMP(TIMESTAMP) AS DATE FROM VALUE_"<< location <<"_ACTUATOR" <<
+		" WHERE ID_ACTUATOR = " << ActID << " AND TIMESTAMP BETWEEN FROM_UNIXTIME("<< from <<") AND FROM_UNIXTIME("<< to 
+		<<") ORDER BY TIMESTAMP; "
+		<< std::endl;
+
+	try
+	{
+		if (m_p_con != NULL)
+		{
+			std::string query;
+			query = os.str();
+			std::cout << query << std::endl;
+			p_stmt = m_p_con->createStatement();
+			res = p_stmt->executeQuery(query);
+
+			while (res->next())
+			{
+				std::shared_ptr<CValue> value = std::make_shared<CValue>(res->getInt64("VALUE"), res->getInt64("DATE"));
+				vector.push_back(value);
+
+				result = true;
+
+			}
+
+			delete res;
+			delete p_stmt;
+			p_stmt = NULL;
+		}
+	}
+	catch (sql::SQLException& e)
+	{
+		if (res != NULL)
+			delete res;
+		if (p_stmt != NULL)
+			delete p_stmt;
+		std::ostringstream os;
+		os << "ERROR:" << e.what();
+		_log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return result;
+}
