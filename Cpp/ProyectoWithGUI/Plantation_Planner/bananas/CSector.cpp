@@ -129,7 +129,10 @@ void CSector::draw()
     if (ImGui::TreeNode("Sensors"))
     {
 
-        ImGui::Text("ABOUT THIS DEMO:");
+        for (std::shared_ptr<CSensor> sensor : m_sensors)
+        {
+            sensor.get()->draw();
+        }
         ImGui::TreePop();
     }
 
