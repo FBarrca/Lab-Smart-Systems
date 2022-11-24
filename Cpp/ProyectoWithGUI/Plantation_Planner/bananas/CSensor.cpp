@@ -2,16 +2,16 @@
 
 CSensor::CSensor()
 {
-	std::vector<CValue*> values;
+	/*std::vector<CValue*> values;
 	id_sensor = 0;
-	sensor_values = values;
+	sensor_values = values;*/
 
 }
 
 CSensor::CSensor(int id, std::vector<CValue*> values)
 {
 	id_sensor = id;
-	sensor_values = values;
+	//sensor_values = values;
 }
 
 CSensor::CSensor(int id, SensorType t)
@@ -31,12 +31,12 @@ int CSensor::getID() const
 
 void CSensor::getValues(std::vector<CValue*>& values)
 {
-	std::vector<CValue*>::iterator it;
-	it = sensor_values.begin();
-	for (int i = 0; i < sensor_values.size(); i++, it++)
+	/*std::vector<CValue*>::iterator it;
+	it = m_vect_values.begin();
+	for (int i = 0; i < m_vect_values.size(); i++, it++)
 	{
 		values.push_back(*it);
-	}
+	}*/
 }
 
 //void CSensor::getLastnValue(int n, std::vector<CValue>& values)
@@ -46,21 +46,21 @@ void CSensor::getValues(std::vector<CValue*>& values)
 
 CValue CSensor::getLastValue()
 {
-	std::vector<CValue*>::iterator it;
-	it = sensor_values.begin();
+	/*std::vector<std::shared_ptr<CValue>>::iterator it;
+	it = m_vect_values.begin();
 	time_t min_t = 0;
 	CValue lastValue((*it)->getValue(), (*it)->getDate());
-	for (int i = 0; i < sensor_values.size(); i++, it++)
+	for (int i = 0; i < m_vect_values.size(); i++, it++)
 	{
 		if ((lastValue.getDate()) < ((*it)->getDate()))
 		{
 			lastValue.setDate((*it)->getDate());
 			lastValue.setValue((*it)->getValue());
 		}
-	}
+	}*/
 
-	return lastValue;
-
+	//return lastValue;
+	return CValue(2, 3);
 }
 
 void CSensor::setID(int id)
@@ -70,12 +70,12 @@ void CSensor::setID(int id)
 
 void CSensor::setValues(std::vector<CValue*> Values)
 {
-	std::vector<CValue*>::iterator it;
+	/*std::vector<CValue*>::iterator it;
 	it = Values.begin();
 	for (int i = 0; i < Values.size(); i++, it++)
 	{
 		sensor_values.push_back(*it);
-	}
+	}*/
 }
 
 SensorType::SensorType()

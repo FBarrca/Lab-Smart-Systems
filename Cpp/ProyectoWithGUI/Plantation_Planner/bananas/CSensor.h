@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <list>
 #include "CValue.h"
 #include "../imgui.h"
 
