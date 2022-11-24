@@ -506,6 +506,7 @@ bool CDatabaseBanana::getSectorSensors(std::list<std::shared_ptr<CSensor>> & act
 
 			while (res->next())
 			{
+				try {
 				SensorType type((unsigned int)res->getInt64("ID_SENSOR_TYPE"), (std::string) res->getString("SENSOR_DESCRIPTION"), (std::string) res->getString("UNIT"), 0);
 				std::shared_ptr<CSensor> sensor = std::make_shared<CSensor>(res->getInt64("ID_SENSOR"), type);
 				
@@ -519,6 +520,10 @@ bool CDatabaseBanana::getSectorSensors(std::list<std::shared_ptr<CSensor>> & act
 				sector.get()->addSensor(sensor);
 				/*_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_SENSOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");*/
 				result = true;
+				}
+				catch (sql::SQLException& e) {
+					std::cout << "Error en la query " << query << std::endl;
+				}
 			}
 
 			delete res;
