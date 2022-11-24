@@ -177,8 +177,6 @@ int main()
                 // Add the sensors and actuators to the Sector object (get just values between two dates)
                 for (std::shared_ptr<CSector> sector : v_Sectors)
                 {
-                    // dbObject.getSectorPressure(sector, from_fecha, to_fecha);
-                    //  dbObject.getSectorPumps(sector, from_fecha, to_fecha);
                     dbObject.getSectorSensors(v_Sensors, sector);
                     dbObject.getSectorActuators(v_Actuators, sector);
                 }
@@ -186,25 +184,11 @@ int main()
                 // Add the sensors and actuators to the Pipe object (get just values between two dates)
                 for (std::shared_ptr<CPipe> pipe : v_Pipes)
                 {
-                    // dbObject.getSectorPressure(pipe, from_fecha, to_fecha);
-                    // dbObject.getSectorPumps(sector, from_fecha, to_fecha);
                     dbObject.getPipeActuators(v_Actuators, pipe); // <- dentro llama a dbObject.getValue(int ActID, from_fecha, to_fecha)
                 }
 
                 time_t to = time(0);
                 time_t from = to - 12 * 30 * 24 * 3600;
-
-                std::string location = "PIPE";
-                uint16_t pipe = 7;
-
-
-                dbObject.getValuesActuator(v_Values, pipe, location, from, to);
-
-
-                for (std::shared_ptr<CValue> value : v_Values) {
-                    std::cout << value->getValue() << std::endl;
-                }
-
 
                 log.println(boost::log::trivial::trace, "Class structure syncronized");
                 dbObject.Desconectar();
