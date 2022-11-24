@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "CValue.h"
+#include "../imgui.h"
 
 typedef enum {
 	SECTORTYPE,
@@ -13,7 +14,7 @@ public:
 	SensorType();
 	~SensorType();
 	SensorType(unsigned int id, std::string description, std::string unit, int Loc);
-
+	std::string getDesc();
 private:
 	unsigned int m_id;
 	std::string m_description;
@@ -37,6 +38,7 @@ public:
 
 	// getters and setters
 	int getID() const;
+	void draw();
 	void getValues(std::vector<CValue*>& values);
 	//void getLastnValue(int n, std::vector<CValue>& values);
 	CValue getLastValue();
