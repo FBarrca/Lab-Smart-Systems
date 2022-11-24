@@ -50,34 +50,37 @@ void CPipe::draw()
         ImNodesCol_TitleBarSelected, IM_COL32(17, 149, 17, 255));
     ImNodes::BeginNode(m_id * PIPE_OFFSET);
     ImNodes::BeginNodeTitleBar();
-    ImGui::Text("Pipe %d", this->m_id);
+    //ImGui::Text("Pipe %d", this->m_id);
+    ImGui::Text("%s  (ID %d)", this->m_description.c_str(), m_id);
+
     ImNodes::EndNodeTitleBar();
-
-    ImGui::Text("Desc: %s", this->m_description.c_str());
-
     ImNodes::BeginInputAttribute(m_gui_data.leftId);
-    ImGui::Text("Connections");
     ImGui::SameLine();
     ImNodes::EndInputAttribute();
 
     ImNodes::BeginOutputAttribute(m_gui_data.rightId);
     ImGui::SameLine();
-    // ImGui::Text("To");
     ImNodes::EndOutputAttribute();
-    char id_string[32];
-    sprintf(id_string, "%d", m_id);
-    char child_name[64] = "S&A Pipe";
-    ImGui::BeginChild(strcat(child_name, id_string), ImVec2(220, 80), false);
+    int openSize = 35;
+    openSize = m_gui_data.treeOpenSensors ? openSize + 2 * 20 * m_sensors.size() : openSize;
+    openSize = m_gui_data.treeOpenActuators ? openSize + 2 * 20 * m_actuators.size() : openSize;
+    openSize = openSize > 300 ? 300 : openSize;
+    
+    ImGui::BeginChild(("S&A Pipe" + std::to_string(m_id)).c_str(), ImVec2(200, openSize), true);
+    m_gui_data.treeOpenSensors =false;
     if (ImGui::TreeNode("Sensors"))
     {
-
-        ImGui::Text("ABOUT THIS DEMO:");
+        m_gui_data.treeOpenSensors = true;
+        for (std::shared_ptr<CSensor> sens : m_sensors)
+        {
+            sens.get()->draw();
+        }
         ImGui::TreePop();
     }
-
+    m_gui_data.treeOpenActuators = false;
     if (ImGui::TreeNode("Actuators"))
     {
-
+        m_gui_data.treeOpenActuators = true;
         for(std::shared_ptr<CActuator> act : m_actuators)
         {
             act.get()->draw();
@@ -130,7 +133,13 @@ std::shared_ptr<CSector> CPipe::otherSector(std::shared_ptr<CSector> sector)
         return m_fromSector;
     else
         return nullptr;
-};
+}
+bool CPipe::addSensor(std::shared_ptr<CSensor> s)
+{
+    m_sensors.push_back(s);
+    return true;
+}
+;
 void CPipe::setPipeInGrid()
 {
     // Small random offset to avoid overlapping between -50 and 50

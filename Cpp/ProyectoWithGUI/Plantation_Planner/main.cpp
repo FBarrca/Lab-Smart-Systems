@@ -118,6 +118,9 @@ int main()
 
         ImGui_ImplWin32_Init(hwnd);
         ImGui_ImplDX9_Init(g_pd3dDevice);
+      
+
+
         ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
 
         ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
@@ -184,6 +187,7 @@ int main()
                 // Add the sensors and actuators to the Pipe object (get just values between two dates)
                 for (std::shared_ptr<CPipe> pipe : v_Pipes)
                 {
+                    dbObject.getPipeSensors(v_Sensors, pipe);
                     dbObject.getPipeActuators(v_Actuators, pipe); // <- dentro llama a dbObject.getValue(int ActID, from_fecha, to_fecha)
                 }
 
@@ -266,7 +270,16 @@ int main()
             /*----------------------
             |  GUI DRAW CODE
             -----------------------*/
+            
+            // Make Node editor scale smaller
+            // ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+            //ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0);
             ImNodes::BeginNodeEditor();
+            // change ImNodesStyle
+            //ImNodes::PushStyleVar(ImNodesStyleVar_GridSpacing, 200.0f);	// change grid spacing
+
+
+
             // DRAW FOR EACH SECTOR IN THE NETWORK (using iterators)
             // log.println(boost::log::trivial::info, "Click X  " + std::to_string(click_pos.x) + "Click Y  " + std::to_string(click_pos.y));
 

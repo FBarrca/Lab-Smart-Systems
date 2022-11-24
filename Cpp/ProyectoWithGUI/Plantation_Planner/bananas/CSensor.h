@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <list>
+#include <string>
 #include "CValue.h"
 #include <list>
 #include "../imgui.h"
@@ -17,6 +18,7 @@ public:
 	~SensorType();
 	SensorType(unsigned int id, std::string description, std::string unit, int Loc);
 	std::string getDesc();
+	std::string getUnit();
 private:
 	unsigned int m_id;
 	std::string m_description;

@@ -476,9 +476,63 @@ bool CDatabaseBanana::getSectorActuators(std::list<std::shared_ptr<CActuator>> &
 }
 
 bool CDatabaseBanana::getPipeSensors(std::list<std::shared_ptr<CSensor>> & actuator_vector, std::shared_ptr<CPipe> & pipe) {
-	//SELECT * FROM SENSOR_SECTOR,SECT_SENS_LOC, SENSOR_TYPE WHERE SENSOR_SECTOR.ID_SENSOR= SECT_SENS_LOC.ID_SENSOR AND SENSOR_SECTOR.ID_SENSOR_TYPE = SENSOR_TYPE.ID_SENSOR_TYPE AND SECT_SENS_LOC.ID_SECTOR =1;
+	// SELECT * FROM SENSOR_pipe,pipe_SENS_LOC, SENSOR_TYPE WHERE SENSOR_pipe.ID_SENSOR= pipe_SENS_LOC.ID_SENSOR AND SENSOR_pipe.ID_SENSOR_TYPE = SENSOR_TYPE.ID_SENSOR_TYPE AND pipe_SENS_LOC.ID_pipe =1;
+	sql::ResultSet* res = NULL;
+	sql::Statement* p_stmt = NULL;
+	bool result = false;
 
-	return true;
+	std::ostringstream os;
+	os << "SELECT * FROM SENSOR_pipe,pipe_SENS_LOC, SENSOR_TYPE "
+		<< "WHERE SENSOR_pipe.ID_SENSOR= pipe_SENS_LOC.ID_SENSOR AND SENSOR_pipe.ID_SENSOR_TYPE = SENSOR_TYPE.ID_SENSOR_TYPE "
+		<< "AND pipe_SENS_LOC.ID_pipe = " << pipe.get()->getId() << ";"
+		<< std::endl;
+
+	try
+	{
+		if (m_p_con != NULL)
+		{
+			std::string query;
+			query = os.str();
+			std::cout << query << std::endl;
+			p_stmt = m_p_con->createStatement();
+			res = p_stmt->executeQuery(query);
+
+			_log.println(boost::log::trivial::info, "Pipe ID: " + std::to_string(pipe.get()->getId()));
+
+			while (res->next())
+			{
+				SensorType type((unsigned int)res->getInt64("ID_SENSOR_TYPE"), (std::string)res->getString("SENSOR_DESCRIPTION"), (std::string)res->getString("UNIT"), 0);
+				std::shared_ptr<CSensor> sensor = std::make_shared<CSensor>(res->getInt64("ID_SENSOR"), type);
+
+				std::list<std::shared_ptr<CValue>> values;
+				time_t to = time(0);
+				time_t from = to - 12 * 30 * 24 * 3600;
+				getValuesActuator(values, res->getInt64("ID_SENSOR"), "PIPE", from, to);
+				sensor->addValue(values);
+
+				actuator_vector.push_back(sensor);
+				pipe.get()->addSensor(sensor);
+				/*_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_SENSOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");*/
+				result = true;
+			}
+
+			delete res;
+			delete p_stmt;
+			p_stmt = NULL;
+		}
+	}
+	catch (sql::SQLException& e)
+	{
+		if (res != NULL)
+			delete res;
+		if (p_stmt != NULL)
+			delete p_stmt;
+		std::ostringstream os;
+		os << "ERROR:" << e.what();
+		_log.println(boost::log::trivial::error, os.str());
+		return false;
+	}
+	return result;
 }
 bool CDatabaseBanana::getSectorSensors(std::list<std::shared_ptr<CSensor>> & actuator_vector, std::shared_ptr<CSector>& sector) {
 	//SELECT * FROM SENSOR_SECTOR,SECT_SENS_LOC, SENSOR_TYPE WHERE SENSOR_SECTOR.ID_SENSOR= SECT_SENS_LOC.ID_SENSOR AND SENSOR_SECTOR.ID_SENSOR_TYPE = SENSOR_TYPE.ID_SENSOR_TYPE AND SECT_SENS_LOC.ID_SECTOR =1;

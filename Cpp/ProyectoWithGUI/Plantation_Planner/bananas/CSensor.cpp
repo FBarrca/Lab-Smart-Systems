@@ -1,4 +1,4 @@
-#include "CSensor.h"
+﻿#include "CSensor.h"
 #include "CValue.h"
 
 CSensor::CSensor()
@@ -111,29 +111,27 @@ std::string SensorType::getDesc()
 	return m_description;
 }
 
+std::string SensorType::getUnit()
+{
+	return m_unit;
+}
+
 void CSensor::draw()
 {
-	char child_name[64] = "GraphView ";
-	char button_name[64] = "Button Sens";
-	char id_string[32];
-	sprintf(id_string, "%d", id_sensor);
-
 	ImGui::Text("%s %d", m_type.getDesc(), id_sensor);
 	ImGui::SameLine();
-	if (ImGui::Button(strcat(button_name, id_string))) {
-		ImGui::OpenPopup(strcat(child_name, id_string));
+	if (ImGui::Button(("Graph##GraphSensor" + std::to_string(id_sensor)).c_str())) {
+
+		ImGui::OpenPopup(("Historical Graph View Sensor " + std::to_string(id_sensor)).c_str());
 	}
 	if (m_vect_values.empty()) {
-		ImGui::Text("--> State: No data");
+		ImGui::Text("⇒ Value: No data");
 	}
 	else {
-		// ImGui::Text("--> State:", m_vect_values[0]->getValue());
+		ImGui::Text(u8"╚⇒ Value: %.2f", m_vect_values.front().get()->getValue());
 	}
-	ImGui::SameLine();
-	if (ImGui::Button("Close"))
-	{
-	}
-	if (ImGui::BeginPopupModal(strcat(child_name, id_string), NULL, NULL))
+	//Make a not resizable Modal
+	if (ImGui::BeginPopupModal(("Historical Graph View Sensor " + std::to_string(id_sensor)).c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize)) 
 	{
 		static float arr[9999];
 		int i = 0;
@@ -146,11 +144,20 @@ void CSensor::draw()
 			i++;
 
 		}
-		char cadena[10];
-		itoa(id_sensor, cadena, 10);
-		ImGui::PlotHistogram(cadena, arr, m_vect_values.size(), 0, NULL, 0.0f, max, ImVec2(200, 380));
-		if (ImGui::Button("OK", ImVec2(120, 0))) { ImGui::CloseCurrentPopup(); }
-		//ImGui::SetItemDefaultFocus();
+		//Give vertical axis title of BAR
+		ImGui::Text("    ");
+		ImGui::Text(" %s", m_type.getUnit());
+		ImGui::SameLine();
+		ImGui::PlotHistogram(("##SensorHist" + std::to_string(id_sensor)).c_str(), arr, m_vect_values.size(), 0, NULL, 0.0f, max, ImVec2(600, 480));
+		ImGui::SameLine();
+		ImGui::Text("    ");
+		//ImGui::Text("Sensor %d", id_sensor);
+		
+		
+		//Centered close button
+		ImGui::SetCursorPosX((ImGui::GetWindowSize().x - 80) / 2);
+		if (ImGui::Button("Close", ImVec2(80, 0))) { ImGui::CloseCurrentPopup(); }
+		
 		i = m_vect_values.size();
 		ImGui::EndPopup();
 	}
