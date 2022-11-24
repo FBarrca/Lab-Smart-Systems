@@ -383,6 +383,13 @@ bool CDatabaseBanana::getPipeActuators(std::list<std::shared_ptr<CActuator>> act
 			{
 				CActType type((bool)res->getInt64("IS_SWITCH"), res->getInt64("ID_TYPE"), res->getString("DESCRIPTION"), res->getString("LOCATION"));
 				std::shared_ptr<CActuator> actuator = std::make_shared<CActuator>(res->getInt64("ID_ACTUATOR"), type);
+
+				std::list<std::shared_ptr<CValue>> values;
+				time_t to = time(0);
+				time_t from = to - 12 * 30 * 24 * 3600;
+				getValuesActuator(values, res->getInt64("ID_ACTUATOR"), "PIPE", from, to);
+				actuator->addValue(values);
+
 				actuator_vector.push_back(actuator);
 				pipe.get()->addActuator(actuator);
 				_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_ACTUATOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");
@@ -436,6 +443,13 @@ bool CDatabaseBanana::getSectorActuators(std::list<std::shared_ptr<CActuator>> &
 			{
 				CActType type((bool)res->getInt64("IS_SWITCH"), res->getInt64("ID_TYPE"), res->getString("DESCRIPTION"), res->getString("LOCATION"));
 				std::shared_ptr<CActuator> actuator = std::make_shared<CActuator>(res->getInt64("ID_ACTUATOR"), type);
+				
+				std::list<std::shared_ptr<CValue>> values;
+				time_t to = time(0);
+				time_t from = to - 12 * 30 * 24 * 3600;
+				getValuesActuator(values, res->getInt64("ID_ACTUATOR"), "SECTOR", from, to);
+				actuator->addValue(values);
+				
 				actuator_vector.push_back(actuator);
 				sector.get()->addActuator(actuator);
 				_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_ACTUATOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");

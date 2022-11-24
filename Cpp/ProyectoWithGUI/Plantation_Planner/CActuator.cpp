@@ -5,11 +5,11 @@ CActuator::CActuator()
 {
 }
 
-void CActuator::addValue(std::vector<CValue*> values)
+void CActuator::addValue(std::list<std::shared_ptr<CValue>> &v)
 {
-	for (auto &value : values) {
-		(this->m_vect_values).push_back(value);
-	}
+    for (std::shared_ptr<CValue> itr : v) {
+        m_vect_values.push_back(itr);
+    }
 }
 
 void CActuator::draw()
@@ -28,7 +28,7 @@ void CActuator::draw()
         ImGui::Text("--> State: No data");
     }
     else {
-        ImGui::Text("--> State:", m_vect_values[0]->getValue());
+       // ImGui::Text("--> State:", m_vect_values[0]->getValue());
     }
     ImGui::SameLine();
     if (ImGui::Button("Close"))
@@ -36,12 +36,23 @@ void CActuator::draw()
     }
     if (ImGui::BeginPopupModal(strcat(child_name, id_string), NULL, NULL))
     {
-        static float arr[] = { 0.6f, 0.1f, 1.0f, 0.5f, 0.92f, 0.1f, 0.2f };
+        static float arr[9999];
+        int i = 0;
+        float max = 0;
+      
+        for (auto value : m_vect_values) {
+            
+            arr[i] = value.get()->getValue();
+            if (arr[i] > max) { max = arr[i]; }
+            i++;
+
+        }
         char cadena[10];
         itoa(m_ID, cadena, 10);
-        ImGui::PlotHistogram(cadena, arr, IM_ARRAYSIZE(arr), 0, NULL, 0.0f, 1.0f, ImVec2(0, 80));
+        ImGui::PlotHistogram(cadena, arr, m_vect_values.size(), 0, NULL, 0.0f, max, ImVec2(200, 380));
         if (ImGui::Button("OK", ImVec2(120, 0))) { ImGui::CloseCurrentPopup(); }
         //ImGui::SetItemDefaultFocus();
+        i = m_vect_values.size();
         ImGui::EndPopup();
     }
 }

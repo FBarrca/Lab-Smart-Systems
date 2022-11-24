@@ -138,7 +138,7 @@ void CSector::draw()
 
         for (std::shared_ptr<CActuator> act : m_actuators)
         {
-            ImGui::Text("Act id: %d", act.get()->getId());
+           act.get()->draw();
         }
         ImGui::TreePop();
     }
