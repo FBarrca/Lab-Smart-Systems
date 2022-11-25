@@ -152,8 +152,25 @@ void CSensor::draw()
 		ImGui::SameLine();
 		ImGui::Text("    ");
 		//ImGui::Text("Sensor %d", id_sensor);
+		int j = 0;
+		static time_t arr2[9999];
+		for (auto value : m_vect_values) {
+			arr2[j] = value.get()->getDate();
+			j++;
+		}
+		for (int i = 0; i < m_vect_values.size(); i++) {
+			ImGui::SetCursorPosX(45+(ImGui::GetWindowSize().x - 80) / (j )* i);
+			// Convert time_t to string Day/Month/Year Hour:Minutes:Seconds
+			char buffer[80];
+			struct tm* timeinfo;
+			timeinfo = localtime(&arr2[i]);
+			strftime(buffer, 80, "%d/%m/%Y %H:%M:%S", timeinfo);			
+			ImGui::Text("%s", buffer);
+			ImGui::SameLine();
+
+		}
 		
-		
+		ImGui::Text("    ");
 		//Centered close button
 		ImGui::SetCursorPosX((ImGui::GetWindowSize().x - 80) / 2);
 		if (ImGui::Button("Close", ImVec2(80, 0))) { ImGui::CloseCurrentPopup(); }
