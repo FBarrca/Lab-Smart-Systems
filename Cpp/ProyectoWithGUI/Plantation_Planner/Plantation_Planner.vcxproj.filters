@@ -75,21 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dm-database\CDatabaseExample.hpp" />
-    <ClInclude Include="bananas\CActType.h">
-      <Filter>bananas</Filter>
-    </ClInclude>
-    <ClInclude Include="bananas\CActuator.h">
-      <Filter>bananas</Filter>
-    </ClInclude>
-    <ClInclude Include="dm-database\CDatabase.hpp">
-      <Filter>bananas</Filter>
-    </ClInclude>
-    <ClInclude Include="bananas\CDatabase4.h">
-      <Filter>bananas</Filter>
-    </ClInclude>
-    <ClInclude Include="bananas\CDatabaseBanana.h">
-      <Filter>bananas</Filter>
-    </ClInclude>
     <ClInclude Include="helpers\CError.h">
       <Filter>helpers</Filter>
     </ClInclude>
@@ -102,32 +87,17 @@
     <ClInclude Include="helpers\CLogListenerConsole.hpp">
       <Filter>helpers</Filter>
     </ClInclude>
-    <ClInclude Include="bananas\CEstate.h">
-      <Filter>bananas</Filter>
-    </ClInclude>
     <ClInclude Include="helpers\CLogListenerFile.hpp">
       <Filter>helpers</Filter>
     </ClInclude>
     <ClInclude Include="helpers\CLogUtils.hpp">
       <Filter>helpers</Filter>
     </ClInclude>
-    <ClInclude Include="bananas\CPipe.h">
-      <Filter>bananas</Filter>
-    </ClInclude>
-    <ClInclude Include="bananas\CSector.h">
-      <Filter>bananas</Filter>
-    </ClInclude>
-    <ClInclude Include="bananas\CSensor.h">
-      <Filter>bananas</Filter>
-    </ClInclude>
     <ClInclude Include="helpers\CSingleton.hpp">
       <Filter>helpers</Filter>
     </ClInclude>
     <ClInclude Include="helpers\CTimeUtils.hpp">
       <Filter>helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="bananas\CValue.h">
-      <Filter>bananas</Filter>
     </ClInclude>
     <ClInclude Include="imconfig.h">
       <Filter>imgui</Filter>
@@ -159,6 +129,36 @@
     <ClInclude Include="imstb_truetype.h">
       <Filter>imgui</Filter>
     </ClInclude>
+    <ClInclude Include="bananas\CActType.h">
+      <Filter>bananas\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CActuator.h">
+      <Filter>bananas\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dm-database\CDatabase.hpp">
+      <Filter>bananas\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CDatabase4.h">
+      <Filter>bananas\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CDatabaseBanana.h">
+      <Filter>bananas\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CEstate.h">
+      <Filter>bananas\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CPipe.h">
+      <Filter>bananas\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CSector.h">
+      <Filter>bananas\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CSensor.h">
+      <Filter>bananas\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CValue.h">
+      <Filter>bananas\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bananas">
@@ -169,6 +169,9 @@
     </Filter>
     <Filter Include="imgui">
       <UniqueIdentifier>{c264591a-c462-4082-9de7-938179dc894b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bananas\Header Files">
+      <UniqueIdentifier>{27ec0a42-bee3-4d28-8856-b0948b51525b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
