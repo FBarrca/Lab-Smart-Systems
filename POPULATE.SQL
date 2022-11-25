@@ -568,3 +568,23 @@ VALUES (
         4,
         3.425335317172855
     );
+-- @block
+-- HACE LOS IS SWITCH BOOLEANOS
+UPDATE banana.value_pipe_actuator
+SET VALUE = floor(rand() * 10) % 2
+WHERE ID_ACTUATOR IN (
+        SELECT ID_ACTUATOR
+        FROM banana.actuator_pipe,
+            banana.actuator_type
+        WHERE banana.actuator_pipe.ID_TYPE = banana.actuator_type.ID_TYPE
+            AND banana.actuator_type.IS_SWITCH = 1
+    );
+UPDATE banana.value_sector_actuator
+SET VALUE = floor(rand() * 10) % 2
+WHERE ID_ACTUATOR IN (
+        SELECT ID_ACTUATOR
+        FROM banana.actuator_sector,
+            banana.actuator_type
+        WHERE banana.actuator_sector.ID_TYPE = banana.actuator_type.ID_TYPE
+            AND banana.actuator_type.IS_SWITCH = 1
+    );
