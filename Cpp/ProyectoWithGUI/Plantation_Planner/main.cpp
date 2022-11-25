@@ -46,10 +46,7 @@
 #define CONFIG_PATH "config"
 #define LOGS_PROPERTIES_FILE "logs.ini"
 
-#define SCHEMA_NAME "banana"
-#define HOST_NAME "127.0.0.1:3306"
-#define USER_NAME "root"
-#define PASSWORD_USER "root"
+
 
 #define TIME_SCAN_CYCLE_S 900 // 15 min
 
@@ -198,14 +195,10 @@ int main()
                 dbObject.Desconectar();
             }
 
-            
-
-
             /*----------------------
             |  PROCESS OF DATA & INTELLIGENCE
             -----------------------*/
             // For the intelligence we will close valves if there is a drop in pressure
-
             for (std::shared_ptr<CSector> sector : v_Sectors)
             {
                 // See if sector has dropped in pressure
@@ -218,30 +211,33 @@ int main()
                         // Get the other end of the pipe
                         for (std::shared_ptr<CPipe> pipe : v_PipesToSector)
                         {
-
                             std::shared_ptr<CSector> otherSector = pipe.get()->otherSector(sector);
-
                             if (otherSector.get()->DropInPressure(40.0))
                             {
-                                //
                                 log.println(boost::log::trivial::trace, "There is a leak at Pipe" + pipe.get()->getId());
-                                // Close valve
-
-                                // std::shared_pointer<CActuator> valve = getPipeActuatorbytype(Cpipe pipe, std::string description "valve")
-                                // new
-                                // valve.addValues(new CValue (0))
-                                // dbObject.addValue(CActuator valve)
+                                //Update GUI
+                                pipe.get()->hasLeak(true);
+                                //Close valve (vector in strangecase there are multiple valves)
+                                std::list<std::shared_ptr<CActuator>> valves = pipe.get()->getActuatorbyType("Valve");
+                                for (std::shared_ptr<CActuator> valve : valves) {
+                                    dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+                                    dbObject.ComienzaTransaccion();
+                                    dbObject.setActuator(0, valve.get());
+                                    dbObject.ConfirmarTransaccion();
+                                    dbObject.Desconectar();
+                                }
                             }
                         }
                     }
                 }
-
-                /*----------------------
-                |  UPDATE VALVE STATE
-                -----------------------*/
-                //TO DO
-
+                
                 lastExecution = helpers::CTimeUtils::seconds_from_epoch(execTime);
+            }
+            // Actuate binary actuators
+            for (std::shared_ptr<CSector> sector : v_Sectors)
+            {
+
+
             }
 
             /*----------------------
@@ -266,23 +262,11 @@ int main()
             ImGui::SetNextWindowSize(whole_content_size);
             ImGui::Begin("ImguiTemplate", 0, flags);
             ImGui::Text("Estate Node Viewer");
-
             /*----------------------
             |  GUI DRAW CODE
             -----------------------*/
-            
-            // Make Node editor scale smaller
-            // ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-            //ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0);
             ImNodes::BeginNodeEditor();
-            // change ImNodesStyle
-            //ImNodes::PushStyleVar(ImNodesStyleVar_GridSpacing, 200.0f);	// change grid spacing
-
-
-
             // DRAW FOR EACH SECTOR IN THE NETWORK (using iterators)
-            // log.println(boost::log::trivial::info, "Click X  " + std::to_string(click_pos.x) + "Click Y  " + std::to_string(click_pos.y));
-
             for (auto it = v_Sectors.begin(); it != v_Sectors.end(); ++it)
             {
                 (*it)->draw();
@@ -293,7 +277,6 @@ int main()
                     ImNodes::SetNodeScreenSpacePos((*it)->get_id(), pos);
                 }
             }
-
             // DRAW FOR EACH PIPE IN THE NETWORK (using iterators)
             for (auto it = v_Pipes.begin(); it != v_Pipes.end(); ++it)
             {

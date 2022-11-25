@@ -25,51 +25,42 @@ unsigned int CSector::get_id() const
 {
     return m_id;
 }
-bool CSector::DropInPressure(float min_preass)
+bool CSector::DropInPressure(float min_preass) //Slope of the decay
 {
     // Get all sensors of type pressure of the sector
 
-    //  for (auto sensor : m_sensors)
-    //  {
-    //      if (sensor->get_type() == "Pressure")
-    //      {
-    //          //Get the value of the sensor
-    //          float value = sensor->get_value();
-    //          //If the value is lower than the minimum pressure
-    //          if (value < min_preass)
-    //          {
-    //              //Return true
-    //              return true;
-    //          }
-    //      }
-    //  }
+      for (std::shared_ptr<CSensor> sensor : m_sensors)
+      {
+          if (sensor.get()->getType() == "Pressure")
+          {
+              //Get the value of the sensor
+              std::list<std::shared_ptr<CValue>> last_values = sensor.get()->getLastnValue(4);
+              std::shared_ptr<CValue> lastValue = last_values.front();
+              std::shared_ptr<CValue> baseValue = last_values.back();
+               
+              int min_slope = -5;
+
+               int slope = (lastValue.get()->getValue() - baseValue.get()->getValue()) / (lastValue.get()->getDate() - baseValue.get()->getDate());
+
+                if (slope < min_preass)
+                {
+                    return true;
+                }
+          }
+      }
     return false;
 }
 void CSector::setPos(ImVec2 pos)
 {
     m_gui_data.initialPos = pos;
 }
-void CSector::getSensors(std::list<CSensor *> &sensors_get)
-{
-    auto it = sensors.begin();
-    for (int i = 0; i < sensors.size(); i++, it++)
-    {
-        sensors_get.push_back(*it);
-    }
-}
+
 bool CSector::addSensor(std::shared_ptr<CSensor> s)
 {
     m_sensors.push_back(s);
     return true;
 }
-void CSector::appendSensors(std::list<CSensor *> &sensors_append)
-{
-    auto it = sensors_append.begin();
-    for (int i = 0; i < sensors_append.size(); i++, it++)
-    {
-        sensors.push_back(*it);
-    }
-}
+
 bool CSector::addActuator(std::shared_ptr<CActuator> a)
 {
     m_actuators.push_back(a);

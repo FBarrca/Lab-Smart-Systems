@@ -16,6 +16,11 @@ void CSensor::addValue(std::list<std::shared_ptr<CValue>>& v)
 	}
 }
 
+std::string CSensor::getType()
+{
+	return m_type.getDesc();
+}
+
 CSensor::CSensor(int id, std::vector<CValue*> values)
 {
 	id_sensor = id;
@@ -47,6 +52,19 @@ void CSensor::getValues(std::vector<CValue*>& values)
 	}*/
 }
 
+std::list<std::shared_ptr<CValue>> CSensor::getLastnValue(int n)
+{
+	int last_n = n > m_vect_values.size() ? m_vect_values.size(): n;
+	// return the last n values of m_vect_values
+	std::list<std::shared_ptr<CValue>> last_n_values;
+	std::list<std::shared_ptr<CValue>>::iterator it = m_vect_values.end();
+	for (int i = 0; i < last_n; i++, it--)
+	{
+		last_n_values.push_front(*it);
+	}
+	return last_n_values;
+}
+
 //void CSensor::getLastnValue(int n, std::vector<CValue>& values)
 //{
 //	
@@ -76,15 +94,6 @@ void CSensor::setID(int id)
 	id_sensor = id;
 }
 
-void CSensor::setValues(std::vector<CValue*> Values)
-{
-	/*std::vector<CValue*>::iterator it;
-	it = Values.begin();
-	for (int i = 0; i < Values.size(); i++, it++)
-	{
-		sensor_values.push_back(*it);
-	}*/
-}
 
 SensorType::SensorType()
 {
@@ -128,7 +137,7 @@ void CSensor::draw()
 		ImGui::Text("==> Value: No data");
 	}
 	else {
-		ImGui::Text("==> Value: %.2f", m_vect_values.front().get()->getValue());
+		ImGui::Text("==> Value: %.2f", m_vect_values.back().get()->getValue());
 	}
 	//Make a not resizable Modal
 	if (ImGui::BeginPopupModal(("Historical Graph View Sensor " + std::to_string(id_sensor)).c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize)) 
@@ -148,7 +157,7 @@ void CSensor::draw()
 		ImGui::Text("    ");
 		ImGui::Text(" %s", m_type.getUnit());
 		ImGui::SameLine();
-		ImGui::PlotHistogram(("##SensorHist" + std::to_string(id_sensor)).c_str(), arr, m_vect_values.size(), 0, NULL, 0.0f, max, ImVec2(600, 480));
+		ImGui::PlotHistogram(("##SensorHist" + std::to_string(id_sensor)).c_str(), arr, m_vect_values.size(), 0, NULL, 0.0f, max, ImVec2(800, 480));
 		ImGui::SameLine();
 		ImGui::Text("    ");
 		//ImGui::Text("Sensor %d", id_sensor);

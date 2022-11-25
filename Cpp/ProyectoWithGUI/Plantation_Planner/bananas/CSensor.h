@@ -43,12 +43,14 @@ public:
 	// getters and setters
 	int getID() const;
 	void addValue(std::list<std::shared_ptr<CValue>>& v);
+	std::string getType();
+
+
 	void draw();
 	void getValues(std::vector<CValue*>& values);
-	//void getLastnValue(int n, std::vector<CValue>& values);
+	std::list<std::shared_ptr<CValue>> getLastnValue(int n );
 	CValue getLastValue();
 	void setID(int id);
-	void setValues(std::vector<CValue*> values);
 
 };
 

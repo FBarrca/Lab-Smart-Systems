@@ -37,6 +37,20 @@ ImVec2 CPipe::getInitialPos()
 {
     return m_gui_data.pos;
 }
+
+std::list<std::shared_ptr<CActuator>> CPipe::getActuatorbyType(std::string type)
+{
+    std::list<std::shared_ptr<CActuator>> act_of_type;
+    for (std::shared_ptr<CActuator> act : m_actuators) {
+
+        if (act.get()->m_getType().getDesc() == type)
+            act_of_type.push_back(act);
+    }
+    return act_of_type;
+}
+
+
+
 bool CPipe::addActuator(std::shared_ptr<CActuator> a)
 {
     m_actuators.push_back(a);
@@ -120,6 +134,10 @@ void CPipe::draw()
         ImNodes::Link(i + m_id * PIPE_OFFSET, p.first, p.second);
     }
     links.clear();
+}
+void CPipe::hasLeak(bool s)
+{
+    m_gui_data.hasLeak = s;
 }
 unsigned int CPipe::getId()
 {

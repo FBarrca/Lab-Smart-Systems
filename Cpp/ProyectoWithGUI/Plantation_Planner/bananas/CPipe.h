@@ -1,6 +1,7 @@
 #pragma once
 #include "../imgui.h"
 
+//#include "CDatabaseBanana.h"
 #include "CSector.h"
 #include "CPipe.h"
 #include "CSensor.h"
@@ -27,7 +28,11 @@ public:
 
 	bool addActuator(std::shared_ptr<CActuator> a);
 	bool addSensor(std::shared_ptr<CSensor> s);
+
+
+	std::list<std::shared_ptr<CActuator>> getActuatorbyType(std::string type);
 	void draw();
+	void hasLeak(bool s);
 	unsigned int getId();
 	std::shared_ptr<CSector> otherSector(std::shared_ptr<CSector> sector);
 
@@ -54,7 +59,6 @@ private:
 		bool treeOpenSensors;
 		bool treeOpenActuators;
 	} m_gui_data;
-
 	friend bool findwithSector(std::shared_ptr<CSector> s, std::list<std::shared_ptr<CPipe>> v_PipesToSector, std::list<std::shared_ptr<CPipe>> v_Pipes);
 };
 

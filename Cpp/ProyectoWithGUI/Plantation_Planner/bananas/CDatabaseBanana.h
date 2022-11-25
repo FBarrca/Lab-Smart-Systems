@@ -25,93 +25,41 @@
 #include <list>
 #include <vector>
 
-class CDatabaseBanana : public CDatabase
+#define SCHEMA_NAME "banana"
+#define HOST_NAME "127.0.0.1:3306"
+#define USER_NAME "root"
+#define PASSWORD_USER "root"
+
+static class CDatabaseBanana : public CDatabase
 {
 public:
-	enum class prediction_type : int32_t
-	{
-		default_prediction = 0,
-		consumption_kWh = 1,
-		temeperature_ref = 2
-	};
 
 	CDatabaseBanana();
 	~CDatabaseBanana();
 
-	// static bool insertWeather(const time_t& tm, const time_t& tm_p, const int& r, const int& t);
-
-	// bool getPressure(std::vector<CSensor>& sensor_list);
-
-	/*
-	 * Inserts all flow rate sensors instances into the sensor list
-	 *
-	 * @param[in] sensor_list     list that will get all the flow rate values
-	 *
-	 * @return Success or failure
-	 */
-
-	// bool getFlowRates(std::vector<CSensors>& sensor_list);
-
-	/*
-	 * Inserts all mineral sensors instances into the sensor list
-	 *
-	 * @param[in] sensor_list     list that will get all the mineral values
-	 *
-	 * @return Success or failure
-	 */
-
-	// bool getMineral(std::vector<CSensor>& sensor_list);
-
-	/*
-	 * Changes the state of the valve in the specified pump
-	 *
-	 * @param[in] id_actuator     id of the pump
-	 *
-	 * @return Success or failure
-	 */
-
-	// bool changeValve(int id_actuator);
-
-	/*
-	 * Changes the fertilizer value in the specified pump
-	 *
-	 * @param[in] id_actuator     id of the pump
-	 *
-	 * @return Success or failure
-	 */
-
+	// GET SECTORS
 	bool getSectors(std::list<std::shared_ptr<CSector>> &sectors);
-
+	// GET PIPES
 	bool getPipes(std::list<std::shared_ptr<CPipe>> &pipes, std::list<std::shared_ptr<CSector>> &sectors);
 
-	/*
-	 * tomar la presión de un sector y guardarla en el objeto de sector (lista de CSensors en sector)
-	 *
-	 *
-	 */
-
-	bool getSectorPressure(const std::shared_ptr<CSector> sector, time_t from_fecha, time_t to_fecha);
-
-	// bool getPipeActuators(std::vector<CActuator> vector, const std::shared_ptr<CPipe> pipe);
-
+	// GET ACTUATORS
 	bool getPipeActuators(std::list<std::shared_ptr<CActuator>> actuator_vector, std::shared_ptr<CPipe> pipe);
 	bool getSectorActuators(std::list<std::shared_ptr<CActuator>>& actuator_vector, std::shared_ptr<CSector>& sector);
 
-
+	// GET SENSORS
 	bool getPipeSensors(std::list<std::shared_ptr<CSensor>> & actuator_vector, std::shared_ptr<CPipe>& pipe);
 	bool getSectorSensors(std::list<std::shared_ptr<CSensor>>& actuator_vector, std::shared_ptr<CSector>& sector);
 
 
+	// GET VALUES
 	bool getValuesActuator(std::list<std::shared_ptr<CValue>>& vector, uint16_t ActID, std::string location, time_t from, time_t to);
-
 	bool getValuesSensor(std::list<std::shared_ptr<CValue>>& vector, uint16_t ActID, std::string location, time_t from, time_t to);
-
 	
-
+	// CLOSE VALVE 
+	bool setActuator(double state,CActuator * act); // Pasamos puntero para poder usarlo dentro de la Clase CActuator con this.
+	//INSERT INTO value_sector_actuator (ID_ACTUATOR, TIMESTAMP, VALUE) VALUES (1,now(),3);
 
 private:
+
+
 };
-
-// bool findCValueOnVectorByDate(std::vector<CValue>& vCValue, CValue& findValue, time_t date);
-
-// bool findCValueOnVector(std::vector<CValue>& vCValue,const CValue& findValue);

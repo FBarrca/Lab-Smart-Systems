@@ -15,6 +15,9 @@ public:
 	std::string getDesc() {
 		return description;
 	}
+	bool getIsSwitch() {
+		return m_isSwitch;
+	}
 
 private:
 	bool m_isSwitch;

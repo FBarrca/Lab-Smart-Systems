@@ -10,7 +10,9 @@ class CActuator
 {
 public: //prueba 
     CActuator();
-    void addValue(std::list<std::shared_ptr<CValue>> &v);
+    void addValue(std::shared_ptr<CValue>& v);
+    void addValue(std::list<std::shared_ptr<CValue>>& v);
+
     CActuator(unsigned int i, CActType t) :m_ID(i), m_type(t) {};
     ~CActuator();
     int getId() { return m_ID; };

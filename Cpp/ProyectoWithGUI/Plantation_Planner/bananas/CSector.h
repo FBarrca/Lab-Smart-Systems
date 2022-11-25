@@ -19,8 +19,10 @@ public:
     // CSector(unsigned int i, CEstate e, float w) : m_id(i), m_estate(e), m_water_demand(w), m_description("Hola"){};
     CSector(unsigned int i, CEstate e, float w);
 
+    // GETTERS
     unsigned int get_id() const;
 
+    // INTELLIGENCE
     // Finds if the pressure of the sector is too low
     bool DropInPressure(float min_preass);
 
@@ -28,11 +30,8 @@ public:
     void draw();
     void setPos(ImVec2 pos);
 
-    // getters and setters
-    void getSensors(std::list<CSensor *> &sensors_get);
+    // SENSORS ANDACTUATORS
     bool addSensor(std::shared_ptr<CSensor> s);
-
-    void appendSensors(std::list<CSensor *> &sensors_append);
     bool addActuator(std::shared_ptr<CActuator> a);
 
 private:
@@ -40,12 +39,10 @@ private:
     std::string m_description;
     CEstate m_estate;
     float m_water_demand;
-    std::list<CSensor *> sensors;
 
-    // std::vector<CPipe> m_Pipes;
-    //  std::vector<boost::shared_ptr<CPipe>> m_Pipes;		 // Pipes that arrive to that node
-     std::vector<std::shared_ptr<CSensor>> m_sensors;	 // Sensor at the node
-      std::vector<std::shared_ptr<CActuator>> m_actuators; // Sensor at the node
+
+    std::vector<std::shared_ptr<CSensor>> m_sensors;	 // Sensor at the node
+    std::vector<std::shared_ptr<CActuator>> m_actuators; // Sensor at the node
 
     // Structure with gui data
     struct
@@ -56,6 +53,7 @@ private:
         ImVec2 initialPos = ImVec2(0, 0);
         bool treeOpenSensors;
         bool treeOpenActuators;
+
     } m_gui_data;
 
     friend class CPipe; // To access m_id
