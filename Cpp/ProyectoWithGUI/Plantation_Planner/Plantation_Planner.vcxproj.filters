@@ -72,6 +72,9 @@
     <ClCompile Include="imnodes\imnodes.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
+    <ClCompile Include="bananas\CNode.cpp">
+      <Filter>bananas\parents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dm-database\CDatabaseExample.hpp" />
@@ -159,6 +162,9 @@
     <ClInclude Include="bananas\CValue.h">
       <Filter>bananas\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="bananas\CNode.h">
+      <Filter>bananas\parents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bananas">
@@ -172,6 +178,9 @@
     </Filter>
     <Filter Include="bananas\Header Files">
       <UniqueIdentifier>{27ec0a42-bee3-4d28-8856-b0948b51525b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bananas\parents">
+      <UniqueIdentifier>{1c5b6cc1-d511-4011-9345-fcfbec962b9d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

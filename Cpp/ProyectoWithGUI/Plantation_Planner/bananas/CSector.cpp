@@ -52,7 +52,7 @@ bool CSector::DropInPressure(float min_preass) //Slope of the decay
 }
 void CSector::setPos(ImVec2 pos)
 {
-    m_gui_data.initialPos = pos;
+    m_gui_data.pos = pos;
 }
 
 bool CSector::addSensor(std::shared_ptr<CSensor> s)

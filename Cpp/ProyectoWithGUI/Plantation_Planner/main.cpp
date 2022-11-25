@@ -41,6 +41,8 @@
 #include "bananas/CActType.h"
 #include "bananas/CActuator.h"
 
+#include "bananas/CNode.h"
+
 #include "./helpers/CTimeUtils.hpp"
 
 #define CONFIG_PATH "config"
@@ -118,7 +120,7 @@ int main()
       
 
 
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
+        //ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
 
         ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
@@ -131,6 +133,9 @@ int main()
         std::list<std::shared_ptr<CActuator>> v_Actuators;
         std::list<std::shared_ptr<CSensor>> v_Sensors;
         std::list<std::shared_ptr<CValue>> v_Values;
+
+        CNode nodetest = CNode(1213213432, 1213213432, "Test");
+
 
         bool firstrun = true; // Flag to see if it is the first Update
         bool refreshFlag = false;
@@ -296,11 +301,13 @@ int main()
                 if (firstrun)
                 {
                     (*it)->setPipeInGrid();
-                    std::cout << "Pipe " << (*it)->getInitialPos().x << "     ,     " << (*it)->getInitialPos().y << std::endl;
-                    ImNodes::SetNodeScreenSpacePos((*it)->get_GUIPipeId(), ImVec2((*it)->getInitialPos().x, (*it)->getInitialPos().y));
+                    std::cout << "Pipe " << (*it)->getPos().x << "     ,     " << (*it)->getPos().y << std::endl;
+                    ImNodes::SetNodeScreenSpacePos((*it)->getGUIId(), ImVec2((*it)->getPos().x, (*it)->getPos().y));
                     //  setSectorInGrid((*it)->get_id(),  std::ceil(std::sqrt(v_Sectors.size()))
                 }
             }
+            
+            nodetest.draw();
             firstrun = false;
             ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
             ImNodes::EndNodeEditor();

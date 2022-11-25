@@ -61,6 +61,7 @@
     <ClCompile Include="bananas\CDatabase4.cpp" />
     <ClCompile Include="bananas\CDatabaseBanana.cpp" />
     <ClCompile Include="bananas\CEstate.cpp" />
+    <ClCompile Include="bananas\CNode.cpp" />
     <ClCompile Include="bananas\CPipe.cpp" />
     <ClCompile Include="bananas\CSector.cpp" />
     <ClCompile Include="bananas\CSensor.cpp" />
@@ -88,6 +89,7 @@
     <ClInclude Include="bananas\CDatabase4.h" />
     <ClInclude Include="bananas\CDatabaseBanana.h" />
     <ClInclude Include="bananas\CEstate.h" />
+    <ClInclude Include="bananas\CNode.h" />
     <ClInclude Include="bananas\CPipe.h" />
     <ClInclude Include="bananas\CSector.h" />
     <ClInclude Include="bananas\CSensor.h" />

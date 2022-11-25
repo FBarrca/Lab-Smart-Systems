@@ -6,7 +6,7 @@
 #include "CSensor.h"
 #include "./CActuator.h"
 //#include "./CPipe.h"
-
+#include "CNode.h"
 #include <iostream>
 #include <list>
 
@@ -50,13 +50,14 @@ private:
         bool m_editing_water_demand = false;
         int leftId;  // id of input at imnodes
         int rightId; // id of output at imnodes
-        ImVec2 initialPos = ImVec2(0, 0);
+        ImVec2 pos = ImVec2(0, 0);
         bool treeOpenSensors;
         bool treeOpenActuators;
 
     } m_gui_data;
 
-    friend class CPipe; // To access m_id
+    friend class CNode; // To access m_id
+    friend class CPipe;
     // Friend funtion to get a Sector by an id
     friend std::shared_ptr<CSector> getSectorById(unsigned int id, std::list<std::shared_ptr<CSector>> &sectors);
 };
