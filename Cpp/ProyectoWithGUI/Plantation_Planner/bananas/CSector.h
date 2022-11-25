@@ -54,6 +54,8 @@ private:
         int leftId;  // id of input at imnodes
         int rightId; // id of output at imnodes
         ImVec2 initialPos = ImVec2(0, 0);
+        bool treeOpenSensors;
+        bool treeOpenActuators;
     } m_gui_data;
 
     friend class CPipe; // To access m_id

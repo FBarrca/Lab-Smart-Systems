@@ -125,10 +125,10 @@ void CSensor::draw()
 		ImGui::OpenPopup(("Historical Graph View Sensor " + std::to_string(id_sensor)).c_str());
 	}
 	if (m_vect_values.empty()) {
-		ImGui::Text("⇒ Value: No data");
+		ImGui::Text("==> Value: No data");
 	}
 	else {
-		ImGui::Text(u8"╚⇒ Value: %.2f", m_vect_values.front().get()->getValue());
+		ImGui::Text("==> Value: %.2f", m_vect_values.front().get()->getValue());
 	}
 	//Make a not resizable Modal
 	if (ImGui::BeginPopupModal(("Historical Graph View Sensor " + std::to_string(id_sensor)).c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize)) 

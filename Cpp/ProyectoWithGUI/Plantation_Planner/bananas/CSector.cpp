@@ -82,10 +82,8 @@ void CSector::draw()
         ImNodesCol_TitleBar, IM_COL32(202, 81, 0, 255));
     ImNodes::BeginNode(this->m_id);
     ImNodes::BeginNodeTitleBar();
-    ImGui::Text("Sector %d", this->m_id);
+    ImGui::Text("%s  (ID %d)", m_description.c_str(), m_id);
     ImNodes::EndNodeTitleBar();
-
-    ImGui::Text("Desc: %s", this->m_description.c_str());
     // Water Demand
     if (this->m_gui_data.m_editing_water_demand)
     {
@@ -113,35 +111,35 @@ void CSector::draw()
     }
 
     ImNodes::BeginInputAttribute(m_gui_data.leftId);
-    ImGui::Text("Connections");
     ImGui::SameLine();
     ImNodes::EndInputAttribute();
-
     ImNodes::BeginOutputAttribute(m_gui_data.rightId);
     ImGui::SameLine();
-    // ImGui::Text("To");
     ImNodes::EndOutputAttribute();
 
-    char id_string[32];
-    sprintf(id_string, "%d", m_id);
-    char child_name[64] = "S&A Sector";
-    ImGui::BeginChild(strcat(child_name, id_string), ImVec2(200, 80), false);
+    int openSize = 35;
+    openSize = m_gui_data.treeOpenSensors ? openSize + 2 * 20 * m_sensors.size() : openSize;
+    openSize = m_gui_data.treeOpenActuators ? openSize + 2 * 20 * m_actuators.size() : openSize;
+    openSize = openSize > 250 ? 250 : openSize;
+
+    ImGui::BeginChild(("S&A Sector" + std::to_string(m_id)).c_str(), ImVec2(220, openSize), true);
+    m_gui_data.treeOpenSensors = false;
     if (ImGui::TreeNode("Sensors"))
     {
-
-        for (std::shared_ptr<CSensor> sensor : m_sensors)
+        m_gui_data.treeOpenSensors = true;
+        for (std::shared_ptr<CSensor> sens : m_sensors)
         {
-            sensor.get()->draw();
+            sens.get()->draw();
         }
         ImGui::TreePop();
     }
-
+    m_gui_data.treeOpenActuators = false;
     if (ImGui::TreeNode("Actuators"))
     {
-
+        m_gui_data.treeOpenActuators = true;
         for (std::shared_ptr<CActuator> act : m_actuators)
         {
-           act.get()->draw();
+            act.get()->draw();
         }
         ImGui::TreePop();
     }

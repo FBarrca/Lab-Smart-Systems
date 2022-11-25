@@ -23,11 +23,11 @@ void CActuator::draw()
         ImGui::OpenPopup(("GraphViewAct" + std::to_string(m_ID)).c_str());
     }
     if (m_vect_values.empty()) {
-        ImGui::Text("⇒ Value: No data");
+        ImGui::Text("==> Value: No data");
     }
     else {
 
-        ImGui::Text(u8"╚⇒ Value: %.2f", m_vect_values.front().get()->getValue());
+        ImGui::Text(u8"==> Value: %.2f", m_vect_values.front().get()->getValue());
     }
     ImGui::SameLine();
     if (ImGui::Button("Close"))
