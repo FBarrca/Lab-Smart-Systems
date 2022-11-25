@@ -133,7 +133,7 @@ int main()
         std::list<std::shared_ptr<CValue>> v_Values;
 
         bool firstrun = true; // Flag to see if it is the first Update
-
+        bool refreshFlag = false;
         /*----------------------
         |  SQL REQUESTS
          -----------------------*/
@@ -144,9 +144,14 @@ int main()
 
             boost::posix_time::ptime execTime = boost::posix_time::second_clock::local_time();
 
-            if ((helpers::CTimeUtils::seconds_from_epoch(execTime) - lastExecution) >= TIME_SCAN_CYCLE_S)
+            if (((helpers::CTimeUtils::seconds_from_epoch(execTime) - lastExecution) >= TIME_SCAN_CYCLE_S)|| refreshFlag)
             {
-
+                v_Sectors.clear();
+                v_Pipes.clear();
+                v_Actuators.clear();
+                v_Sensors.clear();
+                v_Values.clear();
+                refreshFlag = false;
                 log.println(boost::log::trivial::trace, "Starting intelligence execution cycle");
 
                 // ---------------------------- GET DATA FROM DB  ----------------------------
@@ -265,6 +270,13 @@ int main()
             /*----------------------
             |  GUI DRAW CODE
             -----------------------*/
+            ImGui::SameLine();
+            refreshFlag = ImGui::Button("Refresh with database");
+
+
+           
+            
+            //Esquema de Nodos
             ImNodes::BeginNodeEditor();
             // DRAW FOR EACH SECTOR IN THE NETWORK (using iterators)
             for (auto it = v_Sectors.begin(); it != v_Sectors.end(); ++it)
