@@ -1,62 +1,174 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="bananas\CDatabase4.cpp" />
-    <ClCompile Include="bananas\CDatabaseBanana.cpp" />
-    <ClCompile Include="bananas\CEstate.cpp" />
-    <ClCompile Include="bananas\CPipe.cpp" />
-    <ClCompile Include="bananas\CSector.cpp" />
-    <ClCompile Include="bananas\CSensor.cpp" />
-    <ClCompile Include="bananas\CValue.cpp" />
-    <ClCompile Include="dm-database\CDatabase.cpp" />
     <ClCompile Include="dm-database\CDatabaseExample.cpp" />
-    <ClCompile Include="helpers\CError.cpp" />
-    <ClCompile Include="helpers\CLog.cpp" />
-    <ClCompile Include="helpers\CLogListenerConsole.cpp" />
-    <ClCompile Include="helpers\CLogListenerFile.cpp" />
-    <ClCompile Include="helpers\CLogUtils.cpp" />
-    <ClCompile Include="helpers\CTimeUtils.cpp" />
-    <ClCompile Include="imgui.cpp" />
-    <ClCompile Include="main1.cpp" />
-    <ClCompile Include="imgui_demo.cpp" />
-    <ClCompile Include="imgui_draw.cpp" />
-    <ClCompile Include="imgui_impl_dx9.cpp" />
-    <ClCompile Include="imgui_impl_win32.cpp" />
-    <ClCompile Include="imgui_widgets.cpp" />
-    <ClCompile Include="imnodes\imnodes.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="bananas\CActType.cpp" />
-    <ClCompile Include="bananas\CActuator.cpp" />
+    <ClCompile Include="bananas\CActType.cpp">
+      <Filter>bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CActuator.cpp">
+      <Filter>bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="dm-database\CDatabase.cpp">
+      <Filter>bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CDatabase4.cpp">
+      <Filter>bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CDatabaseBanana.cpp">
+      <Filter>bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CError.cpp">
+      <Filter>helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CLog.cpp">
+      <Filter>helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CLogListenerConsole.cpp">
+      <Filter>helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CLogListenerFile.cpp">
+      <Filter>helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CEstate.cpp">
+      <Filter>bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CLogUtils.cpp">
+      <Filter>helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CPipe.cpp">
+      <Filter>bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CSensor.cpp">
+      <Filter>bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CSector.cpp">
+      <Filter>bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="helpers\CTimeUtils.cpp">
+      <Filter>helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="bananas\CValue.cpp">
+      <Filter>bananas</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_dx9.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_win32.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imnodes\imnodes.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bananas\CDatabase4.h" />
-    <ClInclude Include="bananas\CDatabaseBanana.h" />
-    <ClInclude Include="bananas\CEstate.h" />
-    <ClInclude Include="bananas\CPipe.h" />
-    <ClInclude Include="bananas\CSector.h" />
-    <ClInclude Include="bananas\CSensor.h" />
-    <ClInclude Include="bananas\CValue.h" />
-    <ClInclude Include="dm-database\CDatabase.hpp" />
     <ClInclude Include="dm-database\CDatabaseExample.hpp" />
-    <ClInclude Include="helpers\CError.h" />
-    <ClInclude Include="helpers\CLog.hpp" />
-    <ClInclude Include="helpers\CLogListener.hpp" />
-    <ClInclude Include="helpers\CLogListenerConsole.hpp" />
-    <ClInclude Include="helpers\CLogListenerFile.hpp" />
-    <ClInclude Include="helpers\CLogUtils.hpp" />
-    <ClInclude Include="helpers\CSingleton.hpp" />
-    <ClInclude Include="helpers\CTimeUtils.hpp" />
-    <ClInclude Include="imconfig.h" />
-    <ClInclude Include="imgui.h" />
-    <ClInclude Include="imgui_impl_dx9.h" />
-    <ClInclude Include="imgui_impl_win32.h" />
-    <ClInclude Include="imgui_internal.h" />
-    <ClInclude Include="imnodes\imnodes.h" />
-    <ClInclude Include="imnodes\imnodes_internal.h" />
-    <ClInclude Include="imstb_rectpack.h" />
-    <ClInclude Include="imstb_textedit.h" />
-    <ClInclude Include="imstb_truetype.h" />
-    <ClInclude Include="bananas\CActType.h" />
-    <ClInclude Include="bananas\CActuator.h" />
+    <ClInclude Include="bananas\CActType.h">
+      <Filter>bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CActuator.h">
+      <Filter>bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="dm-database\CDatabase.hpp">
+      <Filter>bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CDatabase4.h">
+      <Filter>bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CDatabaseBanana.h">
+      <Filter>bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CError.h">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CLog.hpp">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CLogListener.hpp">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CLogListenerConsole.hpp">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CEstate.h">
+      <Filter>bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CLogListenerFile.hpp">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CLogUtils.hpp">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CPipe.h">
+      <Filter>bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CSector.h">
+      <Filter>bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CSensor.h">
+      <Filter>bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CSingleton.hpp">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers\CTimeUtils.hpp">
+      <Filter>helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="bananas\CValue.h">
+      <Filter>bananas</Filter>
+    </ClInclude>
+    <ClInclude Include="imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_dx9.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_win32.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imnodes\imnodes.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imnodes\imnodes_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imstb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="bananas">
+      <UniqueIdentifier>{6a25c29d-8983-4a84-a044-a01f7c9467d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="helpers">
+      <UniqueIdentifier>{88ee4834-10c3-46fc-b7cb-18900d3f04ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{c264591a-c462-4082-9de7-938179dc894b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
