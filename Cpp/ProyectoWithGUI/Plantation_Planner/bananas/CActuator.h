@@ -3,8 +3,8 @@
 #include <vector>
 #include <list>
 #include "CActType.h"
-#include "bananas/CValue.h"
-#include "./imgui.h"
+#include "CValue.h"
+#include "../imgui.h"
 
 class CActuator
 {

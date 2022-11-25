@@ -20,7 +20,7 @@
 #include "CSensor.h"
 #include "CSector.h"
 #include "CPipe.h"
-#include "../CActuator.h"
+#include "./CActuator.h"
 
 #include <list>
 #include <vector>

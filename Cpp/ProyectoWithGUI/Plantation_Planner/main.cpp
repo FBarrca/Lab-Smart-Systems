@@ -38,8 +38,8 @@
 #include "bananas/CSector.h"
 #include "bananas/CPipe.h"
 #include "bananas/CValue.h"
-#include "CActType.h"
-#include "CActuator.h"
+#include "bananas/CActType.h"
+#include "bananas/CActuator.h"
 
 #include "./helpers/CTimeUtils.hpp"
 

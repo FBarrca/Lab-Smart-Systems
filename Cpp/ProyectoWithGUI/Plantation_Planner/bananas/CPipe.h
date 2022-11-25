@@ -10,7 +10,7 @@
 #include <string>
 #include <boost/variant.hpp>
 
-#include "../CActuator.h"
+#include "./CActuator.h"
 
 #include "CSector.h"
 

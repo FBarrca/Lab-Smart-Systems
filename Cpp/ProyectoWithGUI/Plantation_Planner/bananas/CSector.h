@@ -4,7 +4,7 @@
 #include "../imgui.h"
 #include "../imnodes/imnodes.h"
 #include "CSensor.h"
-#include "../CActuator.h"
+#include "./CActuator.h"
 //#include "./CPipe.h"
 
 #include <iostream>

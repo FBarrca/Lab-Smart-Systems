@@ -1,6 +1,6 @@
 ﻿#include "CActuator.h"
-#include "bananas/CValue.h"
-#include "bananas/CDatabaseBanana.h"
+#include "CValue.h"
+#include "CDatabaseBanana.h"
 
 CActuator::CActuator()
 {

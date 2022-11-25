@@ -7,8 +7,8 @@
 #include "CPipe.h"
 #include "../helpers/CTimeUtils.hpp"
 #include "CSensor.h"
-#include "../CActType.h"
-#include "../CActuator.h"
+#include "./CActType.h"
+#include "./CActuator.h"
 
 CDatabaseBanana::CDatabaseBanana()
 {
