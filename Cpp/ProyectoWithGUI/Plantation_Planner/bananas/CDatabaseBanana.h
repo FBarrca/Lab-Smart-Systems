@@ -59,6 +59,8 @@ public:
 	bool setActuator(double state,CActuator * act); // Pasamos puntero para poder usarlo dentro de la Clase CActuator con this.
 	//INSERT INTO value_sector_actuator (ID_ACTUATOR, TIMESTAMP, VALUE) VALUES (1,now(),3);
 
+	//UPDATE WATER DEMAND
+	bool updateWaterdemand(float dem, CSector* sect);
 private:
 
 

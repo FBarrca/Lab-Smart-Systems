@@ -66,6 +66,32 @@ bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 	return result;
 }
 
+bool CDatabaseBanana::updateWaterdemand(float dem, CSector* sect)
+{
+	bool error = 0;
+	try {
+		//This condition checks that there is a connection active
+		if (m_p_con != NULL) {
+			std::string query = "UPDATE Sector SET Water_demand = " + std::to_string(dem) + " where id_sector =" + std::to_string(sect->get_id());
+			std::ostringstream os;
+			os << ";";
+			query += os.str();
+			_log.println(boost::log::trivial::info, query);
+			bool result = EjecutaQuery(query);
+			return result;
+		}
+		else {
+			error = 1;
+		}
+	}
+	catch (sql::SQLException& e) {
+		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+		error = 1;
+	}
+	if (error) return 0;
+	return 1;
+}
+
 bool CDatabaseBanana::getPipes(std::list<std::shared_ptr<CPipe>> &pipes, std::list<std::shared_ptr<CSector>> &sectors)
 {
 

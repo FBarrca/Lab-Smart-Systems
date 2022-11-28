@@ -34,6 +34,7 @@ public:
     bool addSensor(std::shared_ptr<CSensor> s);
     bool addActuator(std::shared_ptr<CActuator> a);
 
+
 private:
     unsigned int m_id;
     std::string m_description;
@@ -51,9 +52,9 @@ private:
         int leftId;  // id of input at imnodes
         int rightId; // id of output at imnodes
         ImVec2 initialPos = ImVec2(0, 0);
-        bool treeOpenSensors;
-        bool treeOpenActuators;
-
+        bool treeOpenSensors = false;
+        bool treeOpenActuators = false;
+        bool hasDropPress = false;
     } m_gui_data;
 
     friend class CPipe; // To access m_id

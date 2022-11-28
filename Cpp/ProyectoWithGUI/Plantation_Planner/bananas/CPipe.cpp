@@ -58,8 +58,10 @@ bool CPipe::addActuator(std::shared_ptr<CActuator> a)
 }
 void CPipe::draw()
 {
+
+    //rgb(255, 178, 47)
     ImNodes::PushColorStyle(
-        ImNodesCol_TitleBar, IM_COL32(16, 124, 16, 255));
+        ImNodesCol_TitleBar, m_gui_data.hasLeak ? IM_COL32(255, 178, 47, 255)  : IM_COL32(16, 124, 16, 255));
     ImNodes::PushColorStyle(
         ImNodesCol_TitleBarSelected, IM_COL32(17, 149, 17, 255));
     ImNodes::BeginNode(m_id * PIPE_OFFSET);

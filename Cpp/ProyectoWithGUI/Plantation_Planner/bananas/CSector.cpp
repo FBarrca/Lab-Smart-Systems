@@ -1,5 +1,5 @@
 #include "CSector.h"
-
+#include "CDatabaseBanana.h"
 #include <iostream>
 
 #define OFFSETCONNECTION 1000
@@ -44,10 +44,12 @@ bool CSector::DropInPressure(float min_preass) //Slope of the decay
 
                 if (slope < min_preass)
                 {
+                    m_gui_data.hasDropPress = true;
                     return true;
                 }
           }
       }
+      m_gui_data.hasDropPress = false;
     return false;
 }
 void CSector::setPos(ImVec2 pos)
@@ -69,8 +71,9 @@ bool CSector::addActuator(std::shared_ptr<CActuator> a)
 
 void CSector::draw()
 {
+    
     ImNodes::PushColorStyle(
-        ImNodesCol_TitleBar, IM_COL32(202, 81, 0, 255));
+        ImNodesCol_TitleBar, m_gui_data.hasDropPress ? IM_COL32(255, 178, 47, 255) : IM_COL32(202, 81, 0, 255));
     ImNodes::BeginNode(this->m_id);
     ImNodes::BeginNodeTitleBar();
     ImGui::Text("%s  (ID %d)", m_description.c_str(), m_id);
@@ -87,6 +90,13 @@ void CSector::draw()
         if (ImGui::Button("Done"))
         {
             this->m_gui_data.m_editing_water_demand = false;
+            CDatabaseBanana dbObject;
+            dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+            dbObject.ComienzaTransaccion();
+            //UPDATE WATERDEMAND
+            dbObject.updateWaterdemand(m_water_demand, this);
+            dbObject.ConfirmarTransaccion();
+            dbObject.Desconectar();
         }
     }
     else

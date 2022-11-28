@@ -159,6 +159,9 @@
     <ClInclude Include="bananas\CValue.h">
       <Filter>bananas\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IconsFontAwesome5.h">
+      <Filter>bananas</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bananas">

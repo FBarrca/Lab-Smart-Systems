@@ -3,6 +3,7 @@
 #include "imgui.h"
 #include "imgui_impl_dx9.h"
 #include "imgui_impl_win32.h"
+#include "IconsFontAwesome5.h"
 
 #include "imnodes/imnodes.h"
 #include <d3d9.h>
@@ -59,6 +60,7 @@ void CleanupDeviceD3D();
 void ResetDevice();
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+
 int main()
 {
     /*----------------------
@@ -109,6 +111,12 @@ int main()
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGuiIO &io = ImGui::GetIO();
+        io.Fonts->AddFontDefault();
+        // merge in icons from Font Awesome
+        static const ImWchar icons_ranges[] = { ICON_MIN_MDI, ICON_MAX_MDI, 0 };
+        ImFontConfig icons_config; icons_config.MergeMode = true; icons_config.PixelSnapH = true;
+        io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_MDI, 16.0f, &icons_config, icons_ranges);
+        // use FONT_ICON_FILE_NAME_FAR if you want regular instead of solid
         ImGui::StyleColorsDark();
 
         ImNodes::CreateContext();
@@ -273,7 +281,7 @@ int main()
             ImGui::SameLine();
             refreshFlag = ImGui::Button("Refresh with database");
 
-
+            ImGui::Text(ICON_MDI_ZODIAC_CANCER);    // use string literal concatenation
            
             
             //Esquema de Nodos
@@ -296,7 +304,7 @@ int main()
                 if (firstrun)
                 {
                     (*it)->setPipeInGrid();
-                    std::cout << "Pipe " << (*it)->getInitialPos().x << "     ,     " << (*it)->getInitialPos().y << std::endl;
+                    //std::cout << "Pipe " << (*it)->getInitialPos().x << "     ,     " << (*it)->getInitialPos().y << std::endl;
                     ImNodes::SetNodeScreenSpacePos((*it)->get_GUIPipeId(), ImVec2((*it)->getInitialPos().x, (*it)->getInitialPos().y));
                     //  setSectorInGrid((*it)->get_id(),  std::ceil(std::sqrt(v_Sectors.size()))
                 }
