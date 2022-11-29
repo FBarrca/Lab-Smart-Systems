@@ -23,18 +23,5 @@ public: //prueba
 protected:
     CActType m_type;
     unsigned int m_ID;
-    //float m_value; // might be good to have a historic of values 
-    std::list<std::shared_ptr<CValue>> m_vect_values; //ERROR si shared_ptr???
+    std::list<std::shared_ptr<CValue>> m_vect_values;
 };
-
-/*
-class CWaterValve : public CActuator {
-    CWaterValve(unsigned int id) : CActuator(id, "Water Valve " + id, CActType(WATER_VALVE, "Water Valve", true)) {};
-};
-class CPump : public CActuator {
-    CPump(unsigned int id) : CActuator(id, "Pump " + id, CActType(PUMP, "Pump", true)) {};
-};
-class CNutritionValve : public CActuator {
-    CNutritionValve(unsigned int id) : CActuator(id, "Nutrition_valve " + id, CActType(NUTRITION_VALVE, "Nutrition_valve", false)) {};
-};
-*/
