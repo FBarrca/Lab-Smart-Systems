@@ -58,7 +58,6 @@
   <ItemGroup>
     <ClCompile Include="bananas\CActType.cpp" />
     <ClCompile Include="bananas\CActuator.cpp" />
-    <ClCompile Include="bananas\CDatabase4.cpp" />
     <ClCompile Include="bananas\CDatabaseBanana.cpp" />
     <ClCompile Include="bananas\CEstate.cpp" />
     <ClCompile Include="bananas\CPipe.cpp" />
@@ -85,7 +84,6 @@
   <ItemGroup>
     <ClInclude Include="bananas\CActType.h" />
     <ClInclude Include="bananas\CActuator.h" />
-    <ClInclude Include="bananas\CDatabase4.h" />
     <ClInclude Include="bananas\CDatabaseBanana.h" />
     <ClInclude Include="bananas\CEstate.h" />
     <ClInclude Include="bananas\CPipe.h" />

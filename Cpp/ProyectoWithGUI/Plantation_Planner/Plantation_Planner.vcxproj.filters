@@ -12,9 +12,6 @@
     <ClCompile Include="dm-database\CDatabase.cpp">
       <Filter>bananas</Filter>
     </ClCompile>
-    <ClCompile Include="bananas\CDatabase4.cpp">
-      <Filter>bananas</Filter>
-    </ClCompile>
     <ClCompile Include="bananas\CDatabaseBanana.cpp">
       <Filter>bananas</Filter>
     </ClCompile>
@@ -136,9 +133,6 @@
       <Filter>bananas\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dm-database\CDatabase.hpp">
-      <Filter>bananas\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bananas\CDatabase4.h">
       <Filter>bananas\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bananas\CDatabaseBanana.h">

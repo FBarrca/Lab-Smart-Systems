@@ -4,8 +4,7 @@
 #include "../imgui.h"
 #include "../imnodes/imnodes.h"
 #include "CSensor.h"
-#include "./CActuator.h"
-//#include "./CPipe.h"
+#include "CActuator.h"
 
 #include <iostream>
 #include <list>
@@ -14,9 +13,7 @@ class CSector
 {
 public:
     CSector();
-    //~CSector();
     virtual ~CSector(void){};
-    // CSector(unsigned int i, CEstate e, float w) : m_id(i), m_estate(e), m_water_demand(w), m_description("Hola"){};
     CSector(unsigned int i, CEstate e, float w);
 
     // GETTERS

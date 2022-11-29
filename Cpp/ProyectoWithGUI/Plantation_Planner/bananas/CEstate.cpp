@@ -6,10 +6,6 @@
 
 CEstate::CEstate(int lon, int lat, std::string desc)
 {
-
-    /* m_Address.lon = lon;
-     m_Address.lat = lat;
-     m_Address.m_description = desc;*/
     m_lat = lat;
     m_lon = lon;
 }

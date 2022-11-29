@@ -1,18 +1,17 @@
 #pragma once
 #include "../imgui.h"
 
-//#include "CDatabaseBanana.h"
 #include "CSector.h"
 #include "CPipe.h"
 #include "CSensor.h"
-//#include "CActuator.h"
+#include "CActuator.h"
+#include "CSector.h"
+
+
 #include <vector>
 #include <string>
 #include <boost/variant.hpp>
 
-#include "./CActuator.h"
-
-#include "CSector.h"
 
 #define OFFSETPIPEID = 10000
 #define OFFSETPIPEFROM = 100000
