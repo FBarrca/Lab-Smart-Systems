@@ -260,28 +260,28 @@ INSERT INTO value_sector_sensor (id_sensor, timestamp, id_measurement_type, valu
 VALUES (
         12,
         FROM_UNIXTIME(11669731884),
-        3,
+        5,
         8.3064367452302195
     );
 INSERT INTO value_sector_sensor (id_sensor, timestamp, id_measurement_type, value)
 VALUES (
         13,
         FROM_UNIXTIME(11669731884),
-        3,
+        5,
         13.3064367452302195
     );
 INSERT INTO value_sector_sensor (id_sensor, timestamp, id_measurement_type, value)
 VALUES (
         14,
         FROM_UNIXTIME(11669731884),
-        3,
+        5,
         4.3064367452302195
     );
 INSERT INTO value_sector_sensor (id_sensor, timestamp, id_measurement_type, value)
 VALUES (
         15,
         FROM_UNIXTIME(11669731884),
-        3,
+        5,
         6.3064367452302195
     );
 INSERT INTO actuator_type (ID_TYPE, DESCRIPTION, IS_SWITCH, LOCATION)
@@ -559,15 +559,15 @@ VALUES (19, 4, 4);
 INSERT INTO sensor_pipe (ID_SENSOR, ID_MEASUREMENT_TYPE, ID_SENSOR_TYPE)
 VALUES (20, 4, 4);
 INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
-VALUES (13, 1);
+VALUES (16, 1);
 INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
-VALUES (14, 2);
+VALUES (17, 2);
 INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
-VALUES (15, 3);
+VALUES (18, 3);
 INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
-VALUES (16, 4);
+VALUES (19, 4);
 INSERT INTO pipe_sens_loc (ID_SENSOR, ID_PIPE)
-VALUES (17, 5);
+VALUES (20, 5);
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
         16,
@@ -586,7 +586,7 @@ INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
 VALUES (
         18,
         FROM_UNIXTIME(1669731884),
-        4,
+        5,
         9.703135648750909
     );
 INSERT INTO value_pipe_sensor (ID_SENSOR, TIMESTAMP, ID_MEASUREMENT_TYPE, VALUE)
