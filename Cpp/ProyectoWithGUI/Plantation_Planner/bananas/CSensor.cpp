@@ -3,10 +3,6 @@
 
 CSensor::CSensor()
 {
-	/*std::vector<CValue*> values;
-	id_sensor = 0;
-	sensor_values = values;*/
-
 }
 
 void CSensor::addValue(std::list<std::shared_ptr<CValue>>& v)

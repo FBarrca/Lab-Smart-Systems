@@ -66,7 +66,6 @@ void CPipe::draw()
         ImNodesCol_TitleBarSelected, IM_COL32(17, 149, 17, 255));
     ImNodes::BeginNode(m_id * PIPE_OFFSET);
     ImNodes::BeginNodeTitleBar();
-    //ImGui::Text("Pipe %d", this->m_id);
     ImGui::Text("%s  (ID %d)", this->m_description.c_str(), m_id);
 
     ImNodes::EndNodeTitleBar();

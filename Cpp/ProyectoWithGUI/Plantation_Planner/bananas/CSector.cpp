@@ -145,8 +145,6 @@ void CSector::draw()
         ImGui::TreePop();
     }
     ImGui::EndChild();
-    // ImGui::PopClipRect();
-
     ImNodes::EndNode();
 };
 
