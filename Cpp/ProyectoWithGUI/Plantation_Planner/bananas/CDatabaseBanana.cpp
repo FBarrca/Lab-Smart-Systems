@@ -27,7 +27,7 @@ bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 	* Iterates that table and stores each row as a Sector.
 	* Stores the data on a shared_ptr class CSector
 	* 
-	* @param $sectors dirección de memoria de la lista de shared_ptr sobre la que iterar.
+	* @param $sectors direcciï¿½n de memoria de la lista de shared_ptr sobre la que iterar.
 	* 
 	*/
 
@@ -123,8 +123,8 @@ bool CDatabaseBanana::getPipes(std::list<std::shared_ptr<CPipe>> &pipes, std::li
 	* Iterates that table and stores each row as a Pipe.
 	* Stores the data on a shared_ptr class CPipe
 	*
-	* @param $pipes dirección de memoria de la lista de shared_ptr sobre la que iterar.
-	* @param $sectors dirección de memoria de la lista de shared_ptr sobre la que iterar
+	* @param $pipes direcciï¿½n de memoria de la lista de shared_ptr sobre la que iterar.
+	* @param $sectors direcciï¿½n de memoria de la lista de shared_ptr sobre la que iterar
 	*
 	*/
 
@@ -272,7 +272,7 @@ bool CDatabaseBanana::getSectorActuators(std::list<std::shared_ptr<CActuator>> &
 	   << "WHERE ACTUATOR_SECTOR.ID_TYPE = ACTUATOR_TYPE.ID_TYPE AND ACTUATOR_SECTOR.ID_ACTUATOR = SECT_ACT_LOC.ID_ACTUATOR"
 	   << " AND SECT_ACT_LOC.ID_SECTOR = " << sector.get()->get_id() << ";"
 	   << std::endl;
-
+	
 	try
 	{
 		if (m_p_con != NULL)
@@ -368,9 +368,9 @@ bool CDatabaseBanana::getPipeSensors(std::list<std::shared_ptr<CSensor>> & senso
 				std::list<std::shared_ptr<CValue>> values;
 				time_t to = time(0);
 				time_t from = to - 12 * 30 * 24 * 3600;
-				getValuesActuator(values, res->getInt64("ID_SENSOR"), "PIPE", from, to);
-				sensor->addValue(values);
+				getValuesSensor(values, res->getInt64("ID_SENSOR"), "PIPE", from, to);
 
+				sensor->addValue(values);
 				sensor_vector.push_back(sensor);
 				pipe.get()->addSensor(sensor);
 				/*_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_SENSOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");*/
@@ -441,7 +441,7 @@ bool CDatabaseBanana::getSectorSensors(std::list<std::shared_ptr<CSensor>> & sen
 				std::list<std::shared_ptr<CValue>> values;
 				time_t to = time(0);
 				time_t from = to - 12 * 30 * 24 * 3600;
-				getValuesActuator(values, res->getInt64("ID_SENSOR"), "SECTOR", from, to);
+				getValuesSensor(values, res->getInt64("ID_SENSOR"), "SECTOR", from, to);
 				sensor->addValue(values);
 
 				sensor_vector.push_back(sensor);
@@ -553,7 +553,7 @@ bool CDatabaseBanana::getValuesSensor(std::list<std::shared_ptr<CValue>>& vector
 
 	std::ostringstream os;
 	os << "SELECT VALUE, UNIX_TIMESTAMP(TIMESTAMP) AS DATE FROM VALUE_" << location << "_SENSOR" <<
-		" WHERE ID_ACTUATOR = " << ActID << " AND TIMESTAMP BETWEEN FROM_UNIXTIME(" << from << ") AND FROM_UNIXTIME(" << to
+		" WHERE ID_SENSOR = " << ActID << " AND TIMESTAMP BETWEEN FROM_UNIXTIME(" << from << ") AND FROM_UNIXTIME(" << to
 		<< ") ORDER BY TIMESTAMP; "
 		<< std::endl;
 
