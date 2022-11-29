@@ -28,7 +28,7 @@ private:
 };
 
 class CSensor
-{*
+{
 private:
 	std::list<std::shared_ptr<CValue>> m_vect_values;
 	int id_sensor;
