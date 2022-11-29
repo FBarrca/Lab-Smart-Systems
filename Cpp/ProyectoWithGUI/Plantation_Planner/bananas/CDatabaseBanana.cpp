@@ -20,6 +20,18 @@ CDatabaseBanana::~CDatabaseBanana()
 
 bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 {
+	/*
+	* get information of every SECTOR:
+	* 
+	* This function submits a query to the database to get the parameters of the table SECTOR.
+	* Iterates that table and stores each row as a Sector.
+	* Stores the data on a shared_ptr class CSector
+	* 
+	* @param $sectors dirección de memoria de la lista de shared_ptr sobre la que iterar.
+	* 
+	*/
+
+
 
 	sql::ResultSet *res = NULL;
 	sql::Statement *p_stmt = NULL;
@@ -68,6 +80,16 @@ bool CDatabaseBanana::getSectors(std::list<std::shared_ptr<CSector>> &sectors)
 
 bool CDatabaseBanana::updateWaterdemand(float dem, CSector* sect)
 {
+
+	/*
+	* function vinculated to the gui.
+	* 
+	* executes a query to update a value of water demand on a sector 
+	*
+	* @param dem Demand value to be updated
+	*
+	*/
+
 	bool error = 0;
 	try {
 		//This condition checks that there is a connection active
@@ -94,6 +116,18 @@ bool CDatabaseBanana::updateWaterdemand(float dem, CSector* sect)
 
 bool CDatabaseBanana::getPipes(std::list<std::shared_ptr<CPipe>> &pipes, std::list<std::shared_ptr<CSector>> &sectors)
 {
+	/*
+	* get information of every PIPE:
+	*
+	* This function submits a query to the database to get the parameters of the table PIPE.
+	* Iterates that table and stores each row as a Pipe.
+	* Stores the data on a shared_ptr class CPipe
+	*
+	* @param $pipes dirección de memoria de la lista de shared_ptr sobre la que iterar.
+	* @param $sectors dirección de memoria de la lista de shared_ptr sobre la que iterar
+	*
+	*/
+
 
 	sql::ResultSet *res = NULL;
 	sql::Statement *p_stmt = NULL;
@@ -143,6 +177,19 @@ bool CDatabaseBanana::getPipes(std::list<std::shared_ptr<CPipe>> &pipes, std::li
 
 bool CDatabaseBanana::getPipeActuators(std::list<std::shared_ptr<CActuator>> actuator_vector, std::shared_ptr<CPipe> pipe)
 {
+	/*
+	* get information of every PIPE ACTUATOR from a single PIPE:
+	*
+	* This function submits a query to the database to get the parameters of the table PIPE_ACTUATOR
+	* Iterates that table and stores each row as an actuator in the vector actuator_vector.
+	* Stores the data on a shared_ptr class CActuator
+	*
+	* @param actuator_vector memory address of the pointer list through which to iterate
+	* @param pipe Pointer to the associated Pipe where all of these actuators are present 
+	*
+	*/
+
+
 	sql::ResultSet *res = NULL;
 	sql::Statement *p_stmt = NULL;
 	bool result = false;
@@ -203,6 +250,19 @@ bool CDatabaseBanana::getPipeActuators(std::list<std::shared_ptr<CActuator>> act
 
 bool CDatabaseBanana::getSectorActuators(std::list<std::shared_ptr<CActuator>> & actuator_vector, std::shared_ptr<CSector> & sector)
 {
+	/*
+	* get information of every SECTOR ACTUATOR from a single SECTOR:
+	*
+	* This function submits a query to the database to get the parameters of the table SECTOR_ACTUATOR
+	* Iterates that table and stores each row as an actuator in the vector actuator_vector.
+	* Stores the data on a shared_ptr class CActuator
+	*
+	* @param actuator_vector memory address of the pointer list through which to iterate
+	* @param sector Pointer to the associated Sector where all of these actuators are present
+	*
+	*/
+
+
 	sql::ResultSet *res = NULL;
 	sql::Statement *p_stmt = NULL;
 	bool result = false;
@@ -261,7 +321,22 @@ bool CDatabaseBanana::getSectorActuators(std::list<std::shared_ptr<CActuator>> &
 	return result;
 }
 
-bool CDatabaseBanana::getPipeSensors(std::list<std::shared_ptr<CSensor>> & actuator_vector, std::shared_ptr<CPipe> & pipe) {
+bool CDatabaseBanana::getPipeSensors(std::list<std::shared_ptr<CSensor>> & sensor_vector, std::shared_ptr<CPipe> & pipe) {
+	
+	/*
+	* get information of every PIPE SENSORS from a single PIPE:
+	*
+	* This function submits a query to the database to get the parameters of the table PIPE_SENSOR
+	* Iterates that table and stores each row as an actuator in the vector sensor_vector.
+	* Stores the data on a shared_ptr class CSensor
+	*
+	* @param sensor_vector memory address of the pointer list through which to iterate
+	* @param pipe Pointer to the associated Pipe where all of these sensors are present
+	*
+	*/
+	
+	
+	
 	// SELECT * FROM SENSOR_pipe,pipe_SENS_LOC, SENSOR_TYPE WHERE SENSOR_pipe.ID_SENSOR= pipe_SENS_LOC.ID_SENSOR AND SENSOR_pipe.ID_SENSOR_TYPE = SENSOR_TYPE.ID_SENSOR_TYPE AND pipe_SENS_LOC.ID_pipe =1;
 	sql::ResultSet* res = NULL;
 	sql::Statement* p_stmt = NULL;
@@ -296,7 +371,7 @@ bool CDatabaseBanana::getPipeSensors(std::list<std::shared_ptr<CSensor>> & actua
 				getValuesActuator(values, res->getInt64("ID_SENSOR"), "PIPE", from, to);
 				sensor->addValue(values);
 
-				actuator_vector.push_back(sensor);
+				sensor_vector.push_back(sensor);
 				pipe.get()->addSensor(sensor);
 				/*_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_SENSOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");*/
 				result = true;
@@ -321,7 +396,20 @@ bool CDatabaseBanana::getPipeSensors(std::list<std::shared_ptr<CSensor>> & actua
 	return result;
 }
 
-bool CDatabaseBanana::getSectorSensors(std::list<std::shared_ptr<CSensor>> & actuator_vector, std::shared_ptr<CSector>& sector) {
+bool CDatabaseBanana::getSectorSensors(std::list<std::shared_ptr<CSensor>> & sensor_vector, std::shared_ptr<CSector>& sector) {
+	
+	/*
+	* get information of every SECTOR SENSORS from a single SECTOR:
+	*
+	* This function submits a query to the database to get the parameters of the table SECTOR_SENSOR
+	* Iterates that table and stores each row as a sensor in the vector sensor_vector.
+	* Stores the data on a shared_ptr class CSensor
+	*
+	* @param sensor_vector memory address of the pointer list through which to iterate
+	* @param sector Sector to the associated Pipe where all of these sensors are present
+	*
+	*/
+	
 	//SELECT * FROM SENSOR_SECTOR,SECT_SENS_LOC, SENSOR_TYPE WHERE SENSOR_SECTOR.ID_SENSOR= SECT_SENS_LOC.ID_SENSOR AND SENSOR_SECTOR.ID_SENSOR_TYPE = SENSOR_TYPE.ID_SENSOR_TYPE AND SECT_SENS_LOC.ID_SECTOR =1;
 	sql::ResultSet* res = NULL;
 	sql::Statement* p_stmt = NULL;
@@ -356,7 +444,7 @@ bool CDatabaseBanana::getSectorSensors(std::list<std::shared_ptr<CSensor>> & act
 				getValuesActuator(values, res->getInt64("ID_SENSOR"), "SECTOR", from, to);
 				sensor->addValue(values);
 
-				actuator_vector.push_back(sensor);
+				sensor_vector.push_back(sensor);
 				sector.get()->addSensor(sensor);
 				/*_log.println(boost::log::trivial::info, "Actuator ID: " + std::to_string(res->getInt64("ID_SENSOR")) + ", Actuator TYPE: " + res->getString("DESCRIPTION") + "/n");*/
 				result = true;
@@ -383,6 +471,19 @@ bool CDatabaseBanana::getSectorSensors(std::list<std::shared_ptr<CSensor>> & act
 
 bool CDatabaseBanana::getValuesActuator(std::list<std::shared_ptr<CValue>>& vector, uint16_t ActID, std::string location, time_t from, time_t to)
 {
+	/*
+	* getter for the Values in an actuator.
+	* 
+	* extracts all the values from an actuator with the conditions established in the arguments of the function.
+	* 
+	* @args vector: Shared pointer vector which stores the set of data
+	* @args ActID: Id of the actuator which data we want
+	* @args location: String with the description of the location as stored in the database to facilitate where to look for the data and the object
+	* @args from, to: time_t variables storing the time period to extract
+	*
+	*/
+
+
 	sql::ResultSet* res = NULL;
 	sql::Statement* p_stmt = NULL;
 	bool result = false;
@@ -433,6 +534,19 @@ bool CDatabaseBanana::getValuesActuator(std::list<std::shared_ptr<CValue>>& vect
 
 bool CDatabaseBanana::getValuesSensor(std::list<std::shared_ptr<CValue>>& vector, uint16_t ActID, std::string location, time_t from, time_t to)
 {
+	/*
+	* getter for the Values in a sensor.
+	*
+	* extracts all the values from a sensor with the conditions established in the arguments of the function.
+	*
+	* @args vector: Shared pointer vector which stores the set of data
+	* @args ActID: Id of the sensor which data we want
+	* @args location: String with the description of the location as stored in the database to facilitate where to look for the data and the object
+	* @args from, to: time_t variables storing the time period to extract
+	*
+	*/
+
+
 	sql::ResultSet* res = NULL;
 	sql::Statement* p_stmt = NULL;
 	bool result = false;
@@ -480,9 +594,22 @@ bool CDatabaseBanana::getValuesSensor(std::list<std::shared_ptr<CValue>>& vector
 	}
 	return result;
 }
+	
+
 
 bool CDatabaseBanana::setActuator(double state, CActuator * act)
 {
+
+	/*
+	* inserts a new value on an actuator.
+	* 
+	* sends a query which varies depending on the location of the actuator
+	* 
+	* @arg state: new value to update
+	* @arg act: CActuator class object to modify
+	*
+	*/
+
 	bool error = 0;
 	try{
 		//This condition checks that there is a connection active
@@ -510,6 +637,6 @@ bool CDatabaseBanana::setActuator(double state, CActuator * act)
 		std::shared_ptr<CValue> value = std::make_shared<CValue>((double)state, time(0));
 		act->addValue(value);
 
-
+		
 	return 1;
 }
