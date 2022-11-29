@@ -3,6 +3,9 @@
 #include <iostream>
 
 #define OFFSETCONNECTION 1000
+#define DISTANCE_X 700
+#define DISTANCE_Y 400
+
 
 CSector::CSector() : m_id(99), m_estate(CEstate(0, 0)), m_water_demand(0)
 {
@@ -76,7 +79,7 @@ void CSector::draw()
         ImNodesCol_TitleBar, m_gui_data.hasDropPress ? IM_COL32(255, 178, 47, 255) : IM_COL32(202, 81, 0, 255));
     ImNodes::BeginNode(this->m_id);
     ImNodes::BeginNodeTitleBar();
-    ImGui::Text("%s  (ID %d)", m_description.c_str(), m_id);
+    ImGui::Text("Sector %d", m_description.c_str(), m_id);
     ImNodes::EndNodeTitleBar();
     // Water Demand
     if (this->m_gui_data.m_editing_water_demand)
@@ -163,8 +166,7 @@ std::shared_ptr<CSector> getSectorById(unsigned int id, std::list<std::shared_pt
 ImVec2 setSectorInGrid(unsigned int id, unsigned int w)
 {
     int j = id - 1;
-    int distance = 500;
-    int x = (j % w) * distance;
-    int y = (j / w) * distance;
+    int x = (j % w) * DISTANCE_X;
+    int y = (j / w) * DISTANCE_Y;
     return ImVec2(x, y);
 }
