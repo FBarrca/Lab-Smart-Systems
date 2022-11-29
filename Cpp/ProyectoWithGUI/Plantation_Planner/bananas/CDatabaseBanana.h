@@ -47,13 +47,16 @@ public:
 	bool getSectorActuators(std::list<std::shared_ptr<CActuator>>& actuator_vector, std::shared_ptr<CSector>& sector);
 
 	// GET SENSORS
-	bool getPipeSensors(std::list<std::shared_ptr<CSensor>> & actuator_vector, std::shared_ptr<CPipe>& pipe);
-	bool getSectorSensors(std::list<std::shared_ptr<CSensor>>& actuator_vector, std::shared_ptr<CSector>& sector);
+	bool getPipeSensors(std::list<std::shared_ptr<CSensor>> & sensor_vector, std::shared_ptr<CPipe>& pipe);
+	bool getSectorSensors(std::list<std::shared_ptr<CSensor>>& sensor_vector, std::shared_ptr<CSector>& sector);
 
 
 	// GET VALUES
 	bool getValuesActuator(std::list<std::shared_ptr<CValue>>& vector, uint16_t ActID, std::string location, time_t from, time_t to);
 	bool getValuesSensor(std::list<std::shared_ptr<CValue>>& vector, uint16_t ActID, std::string location, time_t from, time_t to);
+
+	bool getValuesNew(CActuator* act, time_t from, time_t to);
+
 	
 	// CLOSE VALVE 
 	bool setActuator(double state,CActuator * act); // Pasamos puntero para poder usarlo dentro de la Clase CActuator con this.
