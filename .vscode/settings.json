@@ -71,6 +71,19 @@
             "database": "banana",
             "username": "root",
             "password": "root"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "BANANA",
+            "database": "BANANA",
+            "username": "root",
+            "password": "nbaacb10"
         }
     ]
 }
