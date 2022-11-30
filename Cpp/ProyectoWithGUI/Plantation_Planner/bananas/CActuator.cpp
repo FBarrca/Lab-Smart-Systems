@@ -27,7 +27,7 @@ void CActuator::draw()
 	//if (ImGui::Button(strcat(button_name, id_string))) {
 	if (ImGui::Button(("Graph##GraphAct" + std::to_string(m_ID)).c_str())) {
 
-		ImGui::OpenPopup(("GraphViewAct" + std::to_string(m_ID)).c_str());
+		ImGui::OpenPopup(("Graph View Actuator " + m_type.getDesc() + " " + std::to_string(m_ID) + "##GraphViewAct" + std::to_string(m_ID)).c_str());
 	}
 	if (m_vect_values.empty()) {
 		ImGui::Text("==> Value: No data");
@@ -61,13 +61,13 @@ void CActuator::draw()
 			//Isnt a switch (not yet implemented or tested )
 			static float act, ant;
 			ImGui::InputFloat("Water Demand", &act, 0.1f, 1.0f, "%.1f", ImGuiInputTextFlags_EnterReturnsTrue);
-			if (act = !ant) {
+			if (act != ant) {
 				//Update database
 				CDatabaseBanana dbObject;
 				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
 				dbObject.ComienzaTransaccion();
 				if (dbObject.setActuator(act, this)) {
-					std::shared_ptr<CValue> value = std::make_shared<CValue>(act, time(0));
+					std::shared_ptr<CValue> value = std::make_shared<CValue>(act,(float)ImGui::GetTime());
 					m_vect_values.push_back(value);
 				};
 				dbObject.ConfirmarTransaccion();
@@ -77,8 +77,9 @@ void CActuator::draw()
 		}
 	}
 	// PopUp of Actuator
-	if (ImGui::BeginPopupModal(("GraphViewAct" + std::to_string(m_ID)).c_str(), NULL, NULL))
+	if (ImGui::BeginPopupModal(("Graph View Actuator " + m_type.getDesc() + " " + std::to_string(m_ID) + "##GraphViewAct" + std::to_string(m_ID)).c_str(), NULL, NULL))
 	{
+		ImGui::SetWindowSize(ImVec2(ImGui::GetIO().DisplaySize.x * 0.8f, ImGui::GetIO().DisplaySize.y * 0.55f));
 		static float x[9999];
 		static float y[9999];
 		int i = 0;
@@ -88,42 +89,24 @@ void CActuator::draw()
 		float ymin = 9999999999999999999;
 		for (auto value : m_vect_values) {
 
-			x[i] = value.get()->getValue();
-			y[i] = value.get()->getDate();
+			y[i] = value.get()->getValue();
+			x[i] = value.get()->getDate();
 			if (x[i] > xmax) { xmax = x[i]; }
 			if (y[i] > ymax) { ymax = y[i]; }
 			if (x[i] < xmin) { xmin = x[i]; }
 			if (y[i] < ymin) { ymin = y[i]; }
 			i++;
-
 		}
 		//Give vertical axis title of BAR
-		ImPlot::BeginPlot("Stem Plots");
-		ImPlot::SetupAxisLimits(ImAxis_X1, xmin, xmax);
-		ImPlot::SetupAxisLimits(ImAxis_Y1, ymin, ymax);
-		ImPlot::PlotStems("Stems 1", x, y, 51);
-		ImPlot::SetNextMarkerStyle(ImPlotMarker_Circle);
-		//ImPlot::PlotStems("Stems 2", xs, ys2, 51);
+		ImPlot::BeginPlot(("Actuator " + m_type.getDesc() + " " + std::to_string(m_ID) + "##GraphViewAct" + std::to_string(m_ID)).c_str());
+		ImPlot::SetupAxisScale(ImAxis_X1, ImPlotScale_Time ); 
+		ImPlot::SetupAxisLimits(ImAxis_X1, xmax-300,xmax+10);
+		// ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 1);
+		// ImPlot::SetNextMarkerStyle(ImPlotMarker_Circle);
+		// ImPlot::PlotStems("", x, y, i-1);
+		//ImPlot::PlotBars("", x, y,i,1);
+		ImPlot::PlotDigital("", x, y, i);
 		ImPlot::EndPlot();
-		//ImGui::Text("Sensor %d", id_sensor);
-		int j = 0;
-		static time_t arr2[9999];
-		for (auto value : m_vect_values) {
-			arr2[j] = value.get()->getDate();
-			j++;
-		}
-		for (int i = 0; i < m_vect_values.size(); i++) {
-			ImGui::SetCursorPosX(45 + (ImGui::GetWindowSize().x - 80) / (j)*i);
-			// Convert time_t to string Day/Month/Year Hour:Minutes:Seconds
-			char buffer[80];
-			struct tm* timeinfo;
-			timeinfo = localtime(&arr2[i]);
-			strftime(buffer, 80, "%d/%m/%Y %H:%M:%S", timeinfo);
-			ImGui::Text("%s", buffer);
-			ImGui::SameLine();
-
-		}
-		ImGui::Text("    ");
 		//Centered close button
 		ImGui::SetCursorPosX((ImGui::GetWindowSize().x - 80) / 2);
 		if (ImGui::Button("Close", ImVec2(80, 0))) { ImGui::CloseCurrentPopup(); }
