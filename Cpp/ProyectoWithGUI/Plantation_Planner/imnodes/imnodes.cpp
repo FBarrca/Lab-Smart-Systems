@@ -10,9 +10,7 @@
 #include "imnodes_internal.h"
 
 #define IMGUI_DEFINE_MATH_OPERATORS
-//#include <imgui_internal.h>
 #include "../imgui_internal.h"
-
 
 // Check minimum ImGui version
 #define MINIMUM_COMPATIBLE_IMGUI_VERSION 17400
@@ -1931,10 +1929,9 @@ static void MiniMapUpdate()
 
     ImGui::EndChild();
 
-    /*bool center_on_click = mini_map_is_hovered && ImGui::IsMouseDown(ImGuiMouseButton_Left) &&
+    bool center_on_click = mini_map_is_hovered && ImGui::IsMouseDown(ImGuiMouseButton_Left) &&
                            editor.ClickInteraction.Type == ImNodesClickInteractionType_None &&
-                           !GImNodes->NodeIdxSubmissionOrder.empty();*/
-    bool center_on_click = false;
+                           !GImNodes->NodeIdxSubmissionOrder.empty();
     if (center_on_click)
     {
         ImVec2 target = MiniMapSpaceToGridSpace(editor, ImGui::GetMousePos());
@@ -1990,7 +1987,7 @@ ImNodesIO::MultipleSelectModifier::MultipleSelectModifier() : Modifier(NULL) {}
 
 ImNodesIO::ImNodesIO()
     : EmulateThreeButtonMouse(), LinkDetachWithModifierClick(),
-      AltMouseButton(NULL), AutoPanningSpeed(1000.0f)
+      AltMouseButton(ImGuiMouseButton_Middle), AutoPanningSpeed(1000.0f)
 {
 }
 
