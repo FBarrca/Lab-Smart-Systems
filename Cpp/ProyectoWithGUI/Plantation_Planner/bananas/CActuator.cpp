@@ -1,4 +1,5 @@
-﻿#include "CActuator.h"
+﻿#include "../implot/implot.h"
+#include "CActuator.h"
 #include "CValue.h"
 #include "CDatabaseBanana.h"
 
@@ -78,24 +79,32 @@ void CActuator::draw()
 	// PopUp of Actuator
 	if (ImGui::BeginPopupModal(("GraphViewAct" + std::to_string(m_ID)).c_str(), NULL, NULL))
 	{
-		static float arr[9999];
+		static float x[9999];
+		static float y[9999];
 		int i = 0;
-		float max = 0;
-
+		float xmax = 0;
+		float xmin = 9999999999999999999;
+		float ymax = 0;
+		float ymin = 9999999999999999999;
 		for (auto value : m_vect_values) {
 
-			arr[i] = value.get()->getValue();
-			if (arr[i] > max) { max = arr[i]; }
+			x[i] = value.get()->getValue();
+			y[i] = value.get()->getDate();
+			if (x[i] > xmax) { xmax = x[i]; }
+			if (y[i] > ymax) { ymax = y[i]; }
+			if (x[i] < xmin) { xmin = x[i]; }
+			if (y[i] < ymin) { ymin = y[i]; }
 			i++;
 
 		}
 		//Give vertical axis title of BAR
-		ImGui::Text("    ");
-		ImGui::Text("    ");
-		ImGui::SameLine();
-		ImGui::PlotHistogram(("##SensorHist" + std::to_string(m_ID)).c_str(), arr, m_vect_values.size(), 0, NULL, 0.0f, max, ImVec2(800, 480));
-		ImGui::SameLine();
-		ImGui::Text("    ");
+		ImPlot::BeginPlot("Stem Plots");
+		ImPlot::SetupAxisLimits(ImAxis_X1, xmin, xmax);
+		ImPlot::SetupAxisLimits(ImAxis_Y1, ymin, ymax);
+		ImPlot::PlotStems("Stems 1", x, y, 51);
+		ImPlot::SetNextMarkerStyle(ImPlotMarker_Circle);
+		//ImPlot::PlotStems("Stems 2", xs, ys2, 51);
+		ImPlot::EndPlot();
 		//ImGui::Text("Sensor %d", id_sensor);
 		int j = 0;
 		static time_t arr2[9999];

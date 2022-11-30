@@ -72,6 +72,15 @@
     <ClCompile Include="imgui_tables.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
+    <ClCompile Include="implot\implot.cpp">
+      <Filter>imgui\implot</Filter>
+    </ClCompile>
+    <ClCompile Include="implot\implot_demo.cpp">
+      <Filter>imgui\implot</Filter>
+    </ClCompile>
+    <ClCompile Include="implot\implot_items.cpp">
+      <Filter>imgui\implot</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dm-database\CDatabaseExample.hpp" />
@@ -159,6 +168,12 @@
     <ClInclude Include="IconsFontAwesome5.h">
       <Filter>bananas</Filter>
     </ClInclude>
+    <ClInclude Include="implot\implot.h">
+      <Filter>imgui\implot</Filter>
+    </ClInclude>
+    <ClInclude Include="implot\implot_internal.h">
+      <Filter>imgui\implot</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bananas">
@@ -172,6 +187,9 @@
     </Filter>
     <Filter Include="bananas\Header Files">
       <UniqueIdentifier>{27ec0a42-bee3-4d28-8856-b0948b51525b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui\implot">
+      <UniqueIdentifier>{5372384f-5ed9-47c9-86d1-7b1983ceec70}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

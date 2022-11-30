@@ -5,6 +5,7 @@
 #include "imgui_impl_win32.h"
 
 #include "imnodes/imnodes.h"
+#include "implot/implot.h"
 #include <d3d9.h>
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
@@ -105,7 +106,8 @@ int main()
         ImGui::CreateContext();
         ImGuiIO &io = ImGui::GetIO();
         ImGui::StyleColorsDark();
-
+        ImPlot::CreateContext();
+   
         ImNodes::CreateContext();
 
         ImGui_ImplWin32_Init(hwnd);
@@ -295,6 +297,7 @@ int main()
             ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
             ImNodes::EndNodeEditor();
             ImGui::End();
+            ImPlot::ShowDemoWindow();
             ImGui::EndFrame();
 
             g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
@@ -329,9 +332,12 @@ int main()
         THROW_ERROR(e, ef);
         return (0);
     }
+
+    
     ImGui_ImplDX9_Shutdown();
     ImGui_ImplWin32_Shutdown();
     ImNodes::DestroyContext();
+    ImPlot::DestroyContext();
     ImGui::DestroyContext();
 
     CleanupDeviceD3D();
