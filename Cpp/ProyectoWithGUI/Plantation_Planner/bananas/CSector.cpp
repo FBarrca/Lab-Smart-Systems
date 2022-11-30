@@ -35,7 +35,7 @@ bool CSector::DropInPressure(float min_preass) //Slope of the decay
       for (std::shared_ptr<CSensor> sensor : m_sensors)
       {
           std::string type = sensor.get()->getType();
-          if (type == "Pressure")
+          if (type == "PRESSURE")
           {
               ////Get the value of the sensor
               //std::list<std::shared_ptr<CValue>> last_values = sensor.get()->getLastnValue(4);
@@ -51,8 +51,8 @@ bool CSector::DropInPressure(float min_preass) //Slope of the decay
               //      m_gui_data.hasDropPress = true;
               //      return true;
               //  }
-              std::list<std::shared_ptr<CValue>> last_values = sensor.get()->getLastnValue(4);
-              std::shared_ptr<CValue> lastValue = last_values.front();
+              //std::list<std::shared_ptr<CValue>> last_values = sensor.get()->getLastnValue(4);
+              std::shared_ptr<CValue> lastValue = sensor.get()->getLastValue();
               if (lastValue.get()->getValue() < min_preass)
               {
                    m_gui_data.hasDropPress = true;
@@ -90,16 +90,16 @@ void CSector::draw()
     ImNodes::BeginNodeTitleBar();
     ImGui::Text("Sector %d", m_id);
     ImNodes::EndNodeTitleBar();
+    
+    /*if (m_gui_data.hasDropPress)
+        ImGui::Text("DROP IN PRESS");*/
     // Water Demand
-    if (m_gui_data.hasDropPress)
-        ImGui::Text("DROP IN PRESS");
-
     if (this->m_gui_data.m_editing_water_demand)
     {
         ImVec2 nodeWidth = ImNodes::GetNodeDimensions(this->m_id);
         ImGui::Text("");
         ImGui::SameLine(); // HelpMarker("Fixed width.");
-        ImGui::PushItemWidth(60);
+        ImGui::PushItemWidth(80);
         ImGui::InputFloat("Water Demand", &this->m_water_demand, 0.1f, 1.0f, "%.1f", ImGuiInputTextFlags_EnterReturnsTrue);
         ImGui::SameLine();
         if (ImGui::Button("Done"))

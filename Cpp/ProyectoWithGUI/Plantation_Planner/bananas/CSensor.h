@@ -49,7 +49,7 @@ public:
 	void draw();
 	void getValues(std::vector<CValue*>& values);
 	std::list<std::shared_ptr<CValue>> getLastnValue(int n );
-	CValue getLastValue();
+	std::shared_ptr<CValue> getLastValue();
 	void setID(int id);
 
 };

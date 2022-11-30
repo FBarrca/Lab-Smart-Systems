@@ -114,6 +114,11 @@ void CActuator::draw()
 	}
 }
 
+std::shared_ptr<CValue> CActuator::getLastValue()
+{
+	return m_vect_values.back();
+}
+
 CActuator::~CActuator()
 {
 }

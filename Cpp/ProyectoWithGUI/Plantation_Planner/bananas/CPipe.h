@@ -58,7 +58,7 @@ private:
 		bool treeOpenSensors;
 		bool treeOpenActuators;
 	} m_gui_data;
-	friend bool findwithSector(std::shared_ptr<CSector> s, std::list<std::shared_ptr<CPipe>> v_PipesToSector, std::list<std::shared_ptr<CPipe>> v_Pipes);
+	friend bool findwithSector(std::shared_ptr<CSector> s, std::list<std::shared_ptr<CPipe>>& v_PipesToSector, std::list<std::shared_ptr<CPipe>> v_Pipes);
 };
 
-bool findwithSector(std::shared_ptr<CSector> s, std::list<std::shared_ptr<CPipe>> v_PipesToSector, std::list<std::shared_ptr<CPipe>> v_Pipes);
+bool findwithSector(std::shared_ptr<CSector> s, std::list<std::shared_ptr<CPipe>>& v_PipesToSector, std::list<std::shared_ptr<CPipe>> v_Pipes);

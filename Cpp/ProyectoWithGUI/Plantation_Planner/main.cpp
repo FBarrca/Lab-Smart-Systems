@@ -43,7 +43,7 @@
 
 
 
-#define TIME_SCAN_CYCLE_S 900 // 15 min
+#define TIME_SCAN_CYCLE_S 10 // 15 min
 
 static LPDIRECT3D9 g_pD3D = NULL;
 static LPDIRECT3DDEVICE9 g_pd3dDevice = NULL;
@@ -216,17 +216,21 @@ int main()
                             std::shared_ptr<CSector> otherSector = pipe.get()->otherSector(sector);
                             if (otherSector.get()->DropInPressure(2.5))
                             {
-                                log.println(boost::log::trivial::trace, "There is a leak at Pipe" + pipe.get()->getId());
                                 //Update GUI
                                 pipe.get()->hasLeak(true);
                                 //Close valve (vector in strangecase there are multiple valves)
-                                std::list<std::shared_ptr<CActuator>> valves = pipe.get()->getActuatorbyType("Valve");
+                                std::list<std::shared_ptr<CActuator>> valves = pipe.get()->getActuatorbyType("WATER VALVE");
                                 for (std::shared_ptr<CActuator> valve : valves) {
-                                    dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
-                                    dbObject.ComienzaTransaccion();
-                                    dbObject.setActuator(0, valve.get(), time(0));
-                                    dbObject.ConfirmarTransaccion();
-                                    dbObject.Desconectar();
+                                    
+                                    if (valve.get()->getLastValue().get()->getValue() != 0) {
+                                        log.println(boost::log::trivial::info, "There is a leak at Pipe" + std::to_string(pipe.get()->getId()));
+                                        dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+                                        dbObject.ComienzaTransaccion();
+                                        dbObject.setActuator(0, valve.get(), time(0));
+                                        dbObject.ConfirmarTransaccion();
+                                        dbObject.Desconectar();
+                                        refreshFlag = true;
+                                    }
                                 }
                             }
                         }
@@ -297,7 +301,7 @@ int main()
             ImNodes::MiniMap(0.2f, ImNodesMiniMapLocation_TopRight);
             ImNodes::EndNodeEditor();
             ImGui::End();
-            ImPlot::ShowDemoWindow();
+            
             ImGui::EndFrame();
 
             g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);

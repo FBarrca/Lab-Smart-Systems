@@ -68,23 +68,9 @@ std::list<std::shared_ptr<CValue>> CSensor::getLastnValue(int n)
 //	
 //}
 
-CValue CSensor::getLastValue()
+std::shared_ptr<CValue> CSensor::getLastValue()
 {
-	/*std::vector<std::shared_ptr<CValue>>::iterator it;
-	it = m_vect_values.begin();
-	time_t min_t = 0;
-	CValue lastValue((*it)->getValue(), (*it)->getDate());
-	for (int i = 0; i < m_vect_values.size(); i++, it++)
-	{
-		if ((lastValue.getDate()) < ((*it)->getDate()))
-		{
-			lastValue.setDate((*it)->getDate());
-			lastValue.setValue((*it)->getValue());
-		}
-	}*/
-
-	//return lastValue;
-	return CValue(2, 3);
+	return m_vect_values.back();
 }
 
 void CSensor::setID(int id)

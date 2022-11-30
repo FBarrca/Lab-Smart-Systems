@@ -170,7 +170,7 @@ void CPipe::setPipeInGrid()
     m_gui_data.pos = ImVec2(middlePointx, middlePointy);
 }
 
-bool findwithSector(std::shared_ptr<CSector> s, std::list<std::shared_ptr<CPipe>> v_PipesToSector, std::list<std::shared_ptr<CPipe>> v_Pipes)
+bool findwithSector(std::shared_ptr<CSector> s, std::list<std::shared_ptr<CPipe>>& v_PipesToSector, std::list<std::shared_ptr<CPipe>> v_Pipes)
 {
     for (std::shared_ptr<CPipe> p : v_Pipes)
     {
