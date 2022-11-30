@@ -49,7 +49,7 @@ void CActuator::draw()
 				CDatabaseBanana dbObject;
 				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
 				dbObject.ComienzaTransaccion();
-				if (dbObject.setActuator(!currentValue, this)) {
+				if (dbObject.setActuator(!currentValue, this, time(0))) {
 					std::shared_ptr<CValue> value = std::make_shared<CValue>(!currentValue, time(0));
 					m_vect_values.push_back(value);
 				};
@@ -66,7 +66,7 @@ void CActuator::draw()
 				CDatabaseBanana dbObject;
 				dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
 				dbObject.ComienzaTransaccion();
-				if (dbObject.setActuator(act, this)) {
+				if (dbObject.setActuator(act, this, time(0))) {
 					std::shared_ptr<CValue> value = std::make_shared<CValue>(act,(float)ImGui::GetTime());
 					m_vect_values.push_back(value);
 				};
@@ -80,15 +80,14 @@ void CActuator::draw()
 	if (ImGui::BeginPopupModal(("Graph View Actuator " + m_type.getDesc() + " " + std::to_string(m_ID) + "##GraphViewAct" + std::to_string(m_ID)).c_str(), NULL, NULL))
 	{
 		ImGui::SetWindowSize(ImVec2(ImGui::GetIO().DisplaySize.x * 0.8f, ImGui::GetIO().DisplaySize.y * 0.55f));
-		static float x[9999];
-		static float y[9999];
+		static double x[9999];
+		static double y[9999];
 		int i = 0;
-		float xmax = 0;
-		float xmin = 9999999999999999999;
-		float ymax = 0;
-		float ymin = 9999999999999999999;
+		double xmax = 0;
+		double xmin = 9999999999999999999;
+		double ymax = 0;
+		double ymin = 9999999999999999999;
 		for (auto value : m_vect_values) {
-
 			y[i] = value.get()->getValue();
 			x[i] = value.get()->getDate();
 			if (x[i] > xmax) { xmax = x[i]; }
@@ -100,17 +99,15 @@ void CActuator::draw()
 		//Give vertical axis title of BAR
 		ImPlot::BeginPlot(("Actuator " + m_type.getDesc() + " " + std::to_string(m_ID) + "##GraphViewAct" + std::to_string(m_ID)).c_str());
 		ImPlot::SetupAxisScale(ImAxis_X1, ImPlotScale_Time ); 
-		ImPlot::SetupAxisLimits(ImAxis_X1, xmax-300,xmax+10);
+		ImPlot::SetupAxisLimits(ImAxis_X1, time(0)-300, time(0)+10);
+		ImPlot::SetupAxisLimits(ImAxis_Y1, 0, ymax);
 		// ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 1);
-		// ImPlot::SetNextMarkerStyle(ImPlotMarker_Circle);
-		// ImPlot::PlotStems("", x, y, i-1);
-		//ImPlot::PlotBars("", x, y,i,1);
-		ImPlot::PlotDigital("", x, y, i);
+		ImPlot::SetNextMarkerStyle(ImPlotMarker_Circle);
+		ImPlot::PlotStems("", x, y, i);
 		ImPlot::EndPlot();
 		//Centered close button
 		ImGui::SetCursorPosX((ImGui::GetWindowSize().x - 80) / 2);
 		if (ImGui::Button("Close", ImVec2(80, 0))) { ImGui::CloseCurrentPopup(); }
-
 		ImGui::Text("    ");
 		i = m_vect_values.size();
 		ImGui::EndPopup();

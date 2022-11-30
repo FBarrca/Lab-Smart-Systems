@@ -597,7 +597,7 @@ bool CDatabaseBanana::getValuesSensor(std::list<std::shared_ptr<CValue>>& vector
 	
 
 
-bool CDatabaseBanana::setActuator(double state, CActuator * act)
+bool CDatabaseBanana::setActuator(double state, CActuator * act, time_t t)
 {
 
 	/*
@@ -619,7 +619,7 @@ bool CDatabaseBanana::setActuator(double state, CActuator * act)
 			std::string querypipe("INSERT INTO value_pipe_actuator (ID_ACTUATOR, TIMESTAMP, VALUE) VALUES (");
 			query = act->m_getType().getLoc() == "PIPE" ? querypipe : querysector;
 			std::ostringstream os;
-			os << act->getId() << ", now() ," << state << ");";
+			os << act->getId() << ", FROM_UNIXTIME("<< t <<") ," << state << ");";
 			query += os.str();
 			_log.println(boost::log::trivial::info,  query);
 			bool result = EjecutaQuery(query);

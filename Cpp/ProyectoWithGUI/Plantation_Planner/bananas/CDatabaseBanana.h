@@ -59,7 +59,7 @@ public:
 
 	
 	// CLOSE VALVE 
-	bool setActuator(double state,CActuator * act); // Pasamos puntero para poder usarlo dentro de la Clase CActuator con this.
+	bool setActuator(double state, CActuator* act, time_t t); // Pasamos puntero para poder usarlo dentro de la Clase CActuator con this.
 	//INSERT INTO value_sector_actuator (ID_ACTUATOR, TIMESTAMP, VALUE) VALUES (1,now(),3);
 
 	//UPDATE WATER DEMAND

@@ -1,6 +1,8 @@
 ﻿#include "CSensor.h"
 #include "CValue.h"
 
+#include "../implot/implot.h"
+
 CSensor::CSensor()
 {
 }
@@ -136,50 +138,39 @@ void CSensor::draw()
 		ImGui::Text("==> Value: %.2f", m_vect_values.back().get()->getValue());
 	}
 	//Make a not resizable Modal
-	if (ImGui::BeginPopupModal(("Historical Graph View Sensor " + std::to_string(id_sensor)).c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize)) 
+	if (ImGui::BeginPopupModal(("Historical Graph View Sensor " + std::to_string(id_sensor)).c_str(), NULL, NULL) )
 	{
-		static float arr[9999];
+		ImGui::SetWindowSize(ImVec2(ImGui::GetIO().DisplaySize.x * 0.8f, ImGui::GetIO().DisplaySize.y * 0.55f));
+		static double x[9999];
+		static double y[9999];
 		int i = 0;
-		float max = 0;
-
+		double xmax = 0;
+		double xmin = 9999999999999999999;
+		double ymax = 0;
+		double ymin = 9999999999999999999;
 		for (auto value : m_vect_values) {
-
-			arr[i] = value.get()->getValue();
-			if (arr[i] > max) { max = arr[i]; }
+			y[i] = value.get()->getValue();
+			x[i] = value.get()->getDate();
+			if (x[i] > xmax) { xmax = x[i]; }
+			if (y[i] > ymax) { ymax = y[i]; }
+			if (x[i] < xmin) { xmin = x[i]; }
+			if (y[i] < ymin) { ymin = y[i]; }
 			i++;
-
 		}
 		//Give vertical axis title of BAR
-		ImGui::Text("    ");
-		ImGui::Text(" %s", m_type.getUnit());
-		ImGui::SameLine();
-		ImGui::PlotHistogram(("##SensorHist" + std::to_string(id_sensor)).c_str(), arr, m_vect_values.size(), 0, NULL, 0.0f, max, ImVec2(800, 480));
-		ImGui::SameLine();
-		ImGui::Text("    ");
-		//ImGui::Text("Sensor %d", id_sensor);
-		int j = 0;
-		static time_t arr2[9999];
-		for (auto value : m_vect_values) {
-			arr2[j] = value.get()->getDate();
-			j++;
+		if(ImPlot::BeginPlot(("Historical Graph View Sensor plot " + std::to_string(id_sensor)).c_str())){
+		//ImPlot::SetupAxis();
+		ImPlot::SetupAxisScale(ImAxis_X1, ImPlotScale_Time);
+		ImPlot::SetupAxisLimits(ImAxis_X1, time(0) - 300, time(0) + 10);
+		ImPlot::SetupAxisLimits(ImAxis_Y1, 0, ymax);
+		ImPlot::SetNextMarkerStyle(ImPlotMarker_Circle);
+		ImPlot::PlotStems("", x, y, i);
+		ImPlot::EndPlot();
 		}
-		for (int i = 0; i < m_vect_values.size(); i++) {
-			ImGui::SetCursorPosX(45+(ImGui::GetWindowSize().x - 80) / (j )* i);
-			// Convert time_t to string Day/Month/Year Hour:Minutes:Seconds
-			char buffer[80];
-			struct tm* timeinfo;
-			timeinfo = localtime(&arr2[i]);
-			strftime(buffer, 80, "%d/%m/%Y %H:%M:%S", timeinfo);			
-			ImGui::Text("%s", buffer);
-			ImGui::SameLine();
-
-		}
-		
-		ImGui::Text("    ");
 		//Centered close button
 		ImGui::SetCursorPosX((ImGui::GetWindowSize().x - 80) / 2);
 		if (ImGui::Button("Close", ImVec2(80, 0))) { ImGui::CloseCurrentPopup(); }
-		
+		ImGui::Text("    ");
 		i = m_vect_values.size();
 		ImGui::EndPopup();
 	}

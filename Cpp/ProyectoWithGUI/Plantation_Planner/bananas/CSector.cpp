@@ -34,22 +34,31 @@ bool CSector::DropInPressure(float min_preass) //Slope of the decay
 
       for (std::shared_ptr<CSensor> sensor : m_sensors)
       {
-          if (sensor.get()->getType() == "Pressure")
+          std::string type = sensor.get()->getType();
+          if (type == "Pressure")
           {
-              //Get the value of the sensor
+              ////Get the value of the sensor
+              //std::list<std::shared_ptr<CValue>> last_values = sensor.get()->getLastnValue(4);
+              //std::shared_ptr<CValue> lastValue = last_values.front();
+              //std::shared_ptr<CValue> baseValue = last_values.back();
+              // 
+              //int min_slope = -5;
+
+              // int slope = (lastValue.get()->getValue() - baseValue.get()->getValue()) / (lastValue.get()->getDate() - baseValue.get()->getDate());
+
+              //  if (slope < min_preass)
+              //  {
+              //      m_gui_data.hasDropPress = true;
+              //      return true;
+              //  }
               std::list<std::shared_ptr<CValue>> last_values = sensor.get()->getLastnValue(4);
               std::shared_ptr<CValue> lastValue = last_values.front();
-              std::shared_ptr<CValue> baseValue = last_values.back();
-               
-              int min_slope = -5;
+              if (lastValue.get()->getValue() < min_preass)
+              {
+                   m_gui_data.hasDropPress = true;
+                   return true;
+              }
 
-               int slope = (lastValue.get()->getValue() - baseValue.get()->getValue()) / (lastValue.get()->getDate() - baseValue.get()->getDate());
-
-                if (slope < min_preass)
-                {
-                    m_gui_data.hasDropPress = true;
-                    return true;
-                }
           }
       }
       m_gui_data.hasDropPress = false;
@@ -79,9 +88,12 @@ void CSector::draw()
         ImNodesCol_TitleBar, m_gui_data.hasDropPress ? IM_COL32(255, 178, 47, 255) : IM_COL32(202, 81, 0, 255));
     ImNodes::BeginNode(this->m_id);
     ImNodes::BeginNodeTitleBar();
-    ImGui::Text("Sector %d", m_description.c_str(), m_id);
+    ImGui::Text("Sector %d", m_id);
     ImNodes::EndNodeTitleBar();
     // Water Demand
+    if (m_gui_data.hasDropPress)
+        ImGui::Text("DROP IN PRESS");
+
     if (this->m_gui_data.m_editing_water_demand)
     {
         ImVec2 nodeWidth = ImNodes::GetNodeDimensions(this->m_id);

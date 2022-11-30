@@ -204,7 +204,7 @@ int main()
             for (std::shared_ptr<CSector> sector : v_Sectors)
             {
                 // See if sector has dropped in pressure
-                if (sector.get()->DropInPressure(40.0))
+                if (sector.get()->DropInPressure(2.5))
                 {
                     // Get the pipes that go to that sector
                     std::list<std::shared_ptr<CPipe>> v_PipesToSector;
@@ -214,7 +214,7 @@ int main()
                         for (std::shared_ptr<CPipe> pipe : v_PipesToSector)
                         {
                             std::shared_ptr<CSector> otherSector = pipe.get()->otherSector(sector);
-                            if (otherSector.get()->DropInPressure(40.0))
+                            if (otherSector.get()->DropInPressure(2.5))
                             {
                                 log.println(boost::log::trivial::trace, "There is a leak at Pipe" + pipe.get()->getId());
                                 //Update GUI
@@ -224,7 +224,7 @@ int main()
                                 for (std::shared_ptr<CActuator> valve : valves) {
                                     dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
                                     dbObject.ComienzaTransaccion();
-                                    dbObject.setActuator(0, valve.get());
+                                    dbObject.setActuator(0, valve.get(), time(0));
                                     dbObject.ConfirmarTransaccion();
                                     dbObject.Desconectar();
                                 }
