@@ -136,7 +136,7 @@ void CSensor::draw()
 		ImGui::OpenPopup(("Historical Graph View Sensor " + std::to_string(id_sensor)).c_str());
 	}
 	ImGui::SameLine();
-		if(ImGui::Button(("Delete##DeleteSensor" + std::to_string(id_sensor)).c_str())){
+		if(ImGui::Button(("Delete last value##DeleteSensor" + std::to_string(id_sensor)).c_str())){
 
 			CDatabaseBanana dbObject;
 			dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
