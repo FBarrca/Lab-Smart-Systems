@@ -941,3 +941,8 @@ SELECT ss.ID_SENSOR, ssloc.ID_SECTOR, ss.ID_SENSOR_TYPE
 FROM sensor_sector as ss, sect_sens_loc as ssloc
 WHERE ss.ID_SENSOR = ssloc.ID_SENSOR;
 
+-- Select the last value of sensor 1
+DELETE FROM value_sector_sensor
+WHERE ID_SENSOR = 1
+ORDER BY TIMESTAMP DESC
+LIMIT 1;

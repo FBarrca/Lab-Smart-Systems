@@ -64,6 +64,9 @@ public:
 
 	//UPDATE WATER DEMAND
 	bool updateWaterdemand(float dem, CSector* sect);
+
+	//DELETE LATEST VALUE
+	bool deleteLatestValue(CSensor* sens);
 private:
 
 

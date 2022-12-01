@@ -640,3 +640,42 @@ bool CDatabaseBanana::setActuator(double state, CActuator * act, time_t t)
 		
 	return 1;
 }
+
+bool CDatabaseBanana::deleteLatestValue(CSensor* sens) {
+
+	/*DELETE FROM value_sector_sensor
+		WHERE ID_SENSOR = 12
+		ORDER BY TIMESTAMP DESC
+		LIMIT 1;*/
+	bool error = 0;
+	try {
+		//This condition checks that there is a connection active
+		if (m_p_con != NULL) {
+			std::string query;
+			std::string querysector("DELETE FROM value_sector_sensor WHERE ID_SENSOR =");
+			std::string querypipe("DELETE FROM value_pipe_sensor WHERE ID_SENSOR =");
+			std::string queryback(" ORDER BY TIMESTAMP DESC LIMIT 1;");
+			query = sens->getLoc() == 1 ? querypipe : querysector;
+			std::ostringstream os;
+			os <<sens->getID() <<" ORDER BY TIMESTAMP DESC LIMIT 1;";
+			query += os.str();
+			_log.println(boost::log::trivial::info, query);
+			bool result = EjecutaQuery(query);
+			sens->deleteLastValue();
+			return result;
+		}
+		else {
+			error = 1;
+		}
+	}
+	catch (sql::SQLException& e) {
+		std::ostringstream os; os << "ERROR:" << e.what(); _log.println(boost::log::trivial::error, os.str());
+		error = 1;
+	}
+	if (error) return 0;
+	
+	
+
+
+	return 1;
+}

@@ -1,5 +1,6 @@
 ﻿#include "CSensor.h"
 #include "CValue.h"
+#include "CDatabaseBanana.h"
 
 #include "../implot/implot.h"
 
@@ -17,6 +18,17 @@ void CSensor::addValue(std::list<std::shared_ptr<CValue>>& v)
 std::string CSensor::getType()
 {
 	return m_type.getDesc();
+}
+
+int CSensor::getLoc()
+{
+
+	return m_type.getLoc();
+}
+
+void CSensor::deleteLastValue()
+{
+	m_vect_values.pop_back();
 }
 
 CSensor::CSensor(int id, std::vector<CValue*> values)
@@ -109,6 +121,12 @@ std::string SensorType::getUnit()
 	return m_unit;
 }
 
+int SensorType::getLoc()
+{
+	return m_Loc;
+}
+
+
 void CSensor::draw()
 {
 	ImGui::Text("%s %d", m_type.getDesc(), id_sensor);
@@ -117,12 +135,26 @@ void CSensor::draw()
 
 		ImGui::OpenPopup(("Historical Graph View Sensor " + std::to_string(id_sensor)).c_str());
 	}
+	ImGui::SameLine();
+		if(ImGui::Button(("Delete##DeleteSensor" + std::to_string(id_sensor)).c_str())){
+
+			CDatabaseBanana dbObject;
+			dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+			dbObject.ComienzaTransaccion();
+			dbObject.deleteLatestValue(this);
+			dbObject.ConfirmarTransaccion();
+			dbObject.Desconectar();
+			
+
+		}
 	if (m_vect_values.empty()) {
 		ImGui::Text("==> Value: No data");
+		
 	}
 	else {
 		ImGui::Text("==> Value: %.2f", m_vect_values.back().get()->getValue());
 	}
+
 	//Make a not resizable Modal
 	if (ImGui::BeginPopupModal(("Historical Graph View Sensor " + std::to_string(id_sensor)).c_str(), NULL, NULL) )
 	{

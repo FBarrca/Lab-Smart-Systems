@@ -19,6 +19,9 @@ public:
 	SensorType(unsigned int id, std::string description, std::string unit, int Loc);
 	std::string getDesc();
 	std::string getUnit();
+	int getLoc();
+
+
 private:
 	unsigned int m_id;
 	std::string m_description;
@@ -44,7 +47,9 @@ public:
 	int getID() const;
 	void addValue(std::list<std::shared_ptr<CValue>>& v);
 	std::string getType();
+	int getLoc();
 
+	void deleteLastValue();
 
 	void draw();
 	void getValues(std::vector<CValue*>& values);
