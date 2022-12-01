@@ -13,4 +13,4 @@ Water demand of sector.
 ### INSERT
 Insert new values to actuator.
 ### DELETE
-Delete latest values from sensor.
+Delete latest value from sensor.
