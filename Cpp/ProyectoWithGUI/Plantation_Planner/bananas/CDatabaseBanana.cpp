@@ -506,7 +506,7 @@ bool CDatabaseBanana::getValuesActuator(std::list<std::shared_ptr<CValue>>& vect
 
 			while (res->next())
 			{
-				std::shared_ptr<CValue> value = std::make_shared<CValue>(res->getInt64("VALUE"), res->getInt64("DATE"));
+				std::shared_ptr<CValue> value = std::make_shared<CValue>(res->getDouble("VALUE"), res->getInt64("DATE"));
 				vector.push_back(value);
 
 				result = true;
@@ -569,7 +569,7 @@ bool CDatabaseBanana::getValuesSensor(std::list<std::shared_ptr<CValue>>& vector
 
 			while (res->next())
 			{
-				std::shared_ptr<CValue> value = std::make_shared<CValue>(res->getInt64("VALUE"), res->getInt64("DATE"));
+				std::shared_ptr<CValue> value = std::make_shared<CValue>(res->getDouble("VALUE"), res->getInt64("DATE"));
 				vector.push_back(value);
 
 				result = true;
