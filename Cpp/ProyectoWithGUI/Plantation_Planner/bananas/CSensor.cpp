@@ -151,8 +151,6 @@ void CSensor::draw()
 			dbObject.deleteLatestValue(this);
 			dbObject.ConfirmarTransaccion();
 			dbObject.Desconectar();
-
-
 		}
 	}
 

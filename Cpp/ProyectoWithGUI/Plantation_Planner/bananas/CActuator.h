@@ -13,6 +13,7 @@ public: //prueba
     void addValue(std::shared_ptr<CValue>& v);
     void addValue(std::list<std::shared_ptr<CValue>>& v);
     std::shared_ptr<CValue> getLastValue();
+    void deleteLastValue();
 
     CActuator(unsigned int i, CActType t) :m_ID(i), m_type(t) {};
     ~CActuator();

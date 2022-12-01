@@ -67,6 +67,7 @@ public:
 
 	//DELETE LATEST VALUE
 	bool deleteLatestValue(CSensor* sens);
+	bool deleteLatestValue(CActuator* act);
 private:
 
 

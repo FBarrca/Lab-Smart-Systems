@@ -34,7 +34,6 @@ void CActuator::draw()
 	}
 	else {
 		//Not empty
-
 		if (m_type.getIsSwitch()) {
 			//Is Switch
 			bool currentValue = 0;
@@ -74,6 +73,16 @@ void CActuator::draw()
 				dbObject.Desconectar();
 			}
 			ant = act;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button(("Delete last value##DeleteAct" + std::to_string(m_ID)).c_str())) {
+
+			CDatabaseBanana dbObject;
+			dbObject.Conectar(SCHEMA_NAME, HOST_NAME, USER_NAME, PASSWORD_USER);
+			dbObject.ComienzaTransaccion();
+			dbObject.deleteLatestValue(this);
+			dbObject.ConfirmarTransaccion();
+			dbObject.Desconectar();
 		}
 	}
 	// PopUp of Actuator
@@ -117,6 +126,11 @@ void CActuator::draw()
 std::shared_ptr<CValue> CActuator::getLastValue()
 {
 	return m_vect_values.back();
+}
+
+void CActuator::deleteLastValue()
+{
+	m_vect_values.pop_back();
 }
 
 CActuator::~CActuator()
